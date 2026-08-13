@@ -1,0 +1,95 @@
+import Link from "next/link";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { Icon, type IconName } from "@/components/ui/Icon";
+import { cn } from "@/lib/cn";
+
+export type ButtonVariant = "primary" | "secondary" | "dark" | "ghost";
+export type ButtonSize = "md" | "lg";
+
+const variants: Record<ButtonVariant, string> = {
+  primary:
+    "bg-teal-500 text-white hover:bg-teal-400 active:bg-teal-700 hover:shadow-cta",
+  secondary:
+    "bg-white text-ink border border-line-strong hover:border-teal-400 hover:text-teal-600",
+  dark: "bg-black text-white border border-[#2a3235] hover:border-teal-500 hover:bg-dark-surface",
+  ghost:
+    "bg-transparent text-teal-500 hover:text-teal-400 px-0 hover:underline underline-offset-4",
+};
+
+const sizes: Record<ButtonSize, string> = {
+  md: "h-11 px-5 text-[14px]",
+  lg: "h-13 px-6 text-[15px]",
+};
+
+type SharedProps = {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  icon?: IconName | null;
+  fullWidth?: boolean;
+  className?: string;
+  children: ReactNode;
+};
+
+type ButtonAsLink = SharedProps & { href: string };
+type ButtonAsButton = SharedProps &
+  ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
+
+function classesFor({
+  variant = "primary",
+  size = "md",
+  fullWidth,
+  className,
+}: SharedProps) {
+  return cn(
+    "inline-flex items-center justify-center gap-2 rounded-[10px] font-semibold",
+    "transition-[background-color,color,border-color,box-shadow,transform] duration-200 ease-out-soft",
+    "disabled:pointer-events-none disabled:opacity-55",
+    variants[variant],
+    variant === "ghost" ? "h-auto text-[15px]" : sizes[size],
+    fullWidth && "w-full",
+    className,
+  );
+}
+
+export function Button(props: ButtonAsLink | ButtonAsButton) {
+  const { icon = "arrow-right", children } = props;
+  const body = (
+    <>
+      <span>{children}</span>
+      {icon ? (
+        <Icon
+          name={icon}
+          size={17}
+          className="shrink-0 transition-transform duration-200 ease-out-soft group-hover/btn:translate-x-0.5"
+        />
+      ) : null}
+    </>
+  );
+
+  if (props.href !== undefined) {
+    const { href, ...rest } = props;
+    return (
+      <Link href={href} className={cn("group/btn", classesFor(rest))}>
+        {body}
+      </Link>
+    );
+  }
+
+  const nativeProps: ButtonHTMLAttributes<HTMLButtonElement> = { ...props };
+  for (const key of [
+    "variant",
+    "size",
+    "icon",
+    "fullWidth",
+    "className",
+    "children",
+  ]) {
+    delete (nativeProps as Record<string, unknown>)[key];
+  }
+
+  return (
+    <button {...nativeProps} className={cn("group/btn", classesFor(props))}>
+      {body}
+    </button>
+  );
+}
