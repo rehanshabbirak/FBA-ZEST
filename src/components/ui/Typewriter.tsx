@@ -25,8 +25,12 @@ export function Typewriter({
   const [typed, setTyped] = useState("");
   const [finished, setFinished] = useState(false);
 
-  const wordsKey = JSON.stringify(words);
-  const phrases = useMemo<string[]>(() => JSON.parse(wordsKey), [wordsKey]);
+  // Re-memoised only when the joined content changes, so a fresh array literal
+  // from the parent does not restart the animation. The array is returned
+  // as-is rather than rebuilt from the key, which a JSON round trip would do.
+  const wordsKey = words.join("|");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const phrases = useMemo(() => words, [wordsKey]);
 
   const longest = phrases.reduce((a, b) => (b.length > a.length ? b : a), "");
 

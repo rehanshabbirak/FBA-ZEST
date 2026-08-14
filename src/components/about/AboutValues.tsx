@@ -2,6 +2,9 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
+import { RevealText } from "@/components/motion/RevealText";
+import { DragCarousel } from "@/components/motion/DragCarousel";
+import { GrowthBackdrop } from "@/components/motion/GrowthBackdrop";
 
 const values: { icon: IconName; title: string; description: string }[] = [
   {
@@ -38,35 +41,39 @@ const values: { icon: IconName; title: string; description: string }[] = [
 
 export function AboutValues() {
   return (
-    <section className="bg-surface">
-      <Container className="py-16 lg:py-24">
+    <section className="relative isolate overflow-hidden bg-linear-to-br from-teal-800 via-teal-900 to-dark-900">
+      <GrowthBackdrop className="text-teal-200 opacity-45 mask-[linear-gradient(to_right,transparent_0%,#000_7%,#000_93%,transparent_100%)]" />
+
+      <Container className="relative z-10 py-16 lg:py-24">
         <Reveal className="text-center">
-          <Eyebrow>Our Values</Eyebrow>
-          <h2 className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+          <Eyebrow tone="onTeal">Our Values</Eyebrow>
+          <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
             What Drives Us Every Day
-          </h2>
+          </RevealText>
         </Reveal>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-          {values.map((value, i) => (
-            <Reveal as="li" key={value.title} delay={i * 70} className="h-full">
-              <div className="card-lift group flex h-full flex-col items-center rounded-lg border border-line bg-white px-5 py-9 text-center shadow-card hover:border-teal-400">
-                <Icon
-                  name={value.icon}
-                  size={36}
-                  strokeWidth={1.5}
-                  className="text-teal-500 transition-[color,transform] duration-300 ease-out-soft group-hover:-translate-y-0.5 group-hover:scale-108 group-hover:text-teal-400"
-                />
-                <h3 className="mt-6 text-[16px] font-bold text-ink">
+        <DragCarousel
+          ariaLabel="Our values"
+          tone="dark"
+          className="mt-12"
+          itemClassName="w-[86%] sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+        >
+          {values.map((value) => (
+            <div key={value.title} className="h-full">
+              <div className="card-lift group flex h-full min-h-56 flex-col items-center justify-center rounded-lg border border-line bg-white px-8 py-10 text-center shadow-card hover:border-teal-400 lg:px-9 lg:py-12">
+                <span className="flex size-16 items-center justify-center rounded-full bg-teal-50 text-teal-500 transition-[background-color,transform] duration-300 ease-out-soft group-hover:scale-105 group-hover:bg-teal-100">
+                  <Icon name={value.icon} size={32} strokeWidth={1.5} />
+                </span>
+                <h3 className="mt-5 text-[20px] font-bold text-ink lg:text-[22px]">
                   {value.title}
                 </h3>
-                <p className="mt-3 text-[13px] leading-[1.65] text-muted">
+                <p className="mt-3 max-w-[34ch] text-[15px] leading-[1.7] text-muted">
                   {value.description}
                 </p>
               </div>
-            </Reveal>
+            </div>
           ))}
-        </ul>
+        </DragCarousel>
       </Container>
     </section>
   );

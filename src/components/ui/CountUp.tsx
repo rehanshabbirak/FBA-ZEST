@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { cn } from "@/lib/cn";
 
 type CountUpProps = {
@@ -34,7 +34,9 @@ export function CountUp({
   className,
 }: CountUpProps) {
   const numberRef = useRef<HTMLSpanElement>(null);
-  const format = formatter(decimals);
+  // Intl.NumberFormat is expensive to construct; this ran once per render and
+  // again on every animation frame (~100 constructions per counter).
+  const format = useMemo(() => formatter(decimals), [decimals]);
   const final = `${prefix}${format.format(value)}${suffix}`;
 
   useEffect(() => {
@@ -43,8 +45,7 @@ export function CountUp({
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const render = (n: number) =>
-      `${prefix}${formatter(decimals).format(n)}${suffix}`;
+    const render = (n: number) => `${prefix}${format.format(n)}${suffix}`;
 
     node.textContent = render(0);
 
@@ -94,7 +95,7 @@ export function CountUp({
       clearTimeout(timer);
       node.textContent = render(value);
     };
-  }, [value, prefix, suffix, decimals, duration, delay]);
+  }, [value, prefix, suffix, format, duration, delay]);
 
   return (
     <span className={cn("tabular-nums", className)}>

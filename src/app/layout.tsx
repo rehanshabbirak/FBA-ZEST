@@ -36,7 +36,10 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    // Opts back into Next's scroll-behavior override during route transitions:
+    // without it, globals.css `scroll-behavior: smooth` makes every navigation
+    // smooth-scroll to the top instead of jumping there.
+    <html lang="en" data-scroll-behavior="smooth" className={inter.variable}>
       <body
         suppressHydrationWarning
         className="flex min-h-dvh flex-col antialiased"

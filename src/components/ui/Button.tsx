@@ -52,7 +52,16 @@ function classesFor({
 }
 
 export function Button(props: ButtonAsLink | ButtonAsButton) {
-  const { icon = "arrow-right", children } = props;
+  // Destructuring separates presentation props from DOM props in one pass,
+  // so no per-render object is built and stripped key by key.
+  const { variant, size, icon = "arrow-right", fullWidth, className, children, ...rest } =
+    props;
+
+  const classes = cn(
+    "group/btn",
+    classesFor({ variant, size, fullWidth, className, children }),
+  );
+
   const body = (
     <>
       <span>{children}</span>
@@ -66,29 +75,22 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
     </>
   );
 
-  if (props.href !== undefined) {
-    const { href, ...rest } = props;
+  if (rest.href !== undefined) {
     return (
-      <Link href={href} className={cn("group/btn", classesFor(rest))}>
+      <Link href={rest.href} className={classes}>
         {body}
       </Link>
     );
   }
 
-  const nativeProps: ButtonHTMLAttributes<HTMLButtonElement> = { ...props };
-  for (const key of [
-    "variant",
-    "size",
-    "icon",
-    "fullWidth",
-    "className",
-    "children",
-  ]) {
-    delete (nativeProps as Record<string, unknown>)[key];
-  }
-
+  // Defaults to "button" so a Button dropped inside a form cannot submit it by
+  // accident; an explicit type passed by the caller still wins.
   return (
-    <button {...nativeProps} className={cn("group/btn", classesFor(props))}>
+    <button
+      type="button"
+      {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
+      className={classes}
+    >
       {body}
     </button>
   );

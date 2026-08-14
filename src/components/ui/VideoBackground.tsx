@@ -58,6 +58,9 @@ export function VideoBackground({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        // Evaluated in the callback rather than the effect body: the observer
+        // fires immediately on observe(), so this still resolves on the first
+        // frame without a synchronous setState cascading a re-render.
         if (prefersReduced.matches || connection?.saveData) {
           setSuppressed(true);
           observer.disconnect();

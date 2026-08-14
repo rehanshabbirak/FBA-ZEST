@@ -3,6 +3,8 @@ import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
+import { RevealText } from "@/components/motion/RevealText";
+import { StaggerCards } from "@/components/motion/StaggerCards";
 
 type Service = {
   icon: IconName;
@@ -88,19 +90,14 @@ export function ServicesGrid() {
       <Container className="py-16 lg:py-24">
         <Reveal className="text-center">
           <Eyebrow>Our Services</Eyebrow>
-          <h2 className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
             What We Offer
-          </h2>
+          </RevealText>
         </Reveal>
 
-        <ul className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {services.map((service, i) => (
-            <Reveal
-              as="li"
-              key={service.title}
-              delay={(i % 3) * 80}
-              className="h-full"
-            >
+        <StaggerCards className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service) => (
+            <li key={service.title} className="h-full">
               <div className="card-lift group flex h-full flex-col rounded-lg border border-line bg-white p-7 shadow-card hover:border-teal-400">
                 <span className="flex size-14 shrink-0 items-center justify-center rounded-full bg-teal-500 text-white transition-transform duration-300 ease-out-soft group-hover:scale-106">
                   <Icon name={service.icon} size={26} strokeWidth={1.6} />
@@ -142,9 +139,9 @@ export function ServicesGrid() {
                   <span className="sr-only">about {service.title}</span>
                 </Link>
               </div>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </StaggerCards>
       </Container>
     </section>
   );

@@ -4,6 +4,8 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { caseStudies, type CaseStudy } from "@/lib/content/case-studies";
+import { RevealText } from "@/components/motion/RevealText";
+import { StaggerCards } from "@/components/motion/StaggerCards";
 
 function MetricRing({ metric }: { metric: CaseStudy["metrics"][number] }) {
   return (
@@ -119,22 +121,22 @@ export function CaseStudyList() {
       <Container className="py-16 lg:py-20">
         <Reveal className="text-center">
           <Eyebrow>Featured Case Studies</Eyebrow>
-          <h2 className="mt-4 text-[28px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[34px] lg:text-[38px]">
+          <RevealText className="mt-4 text-[28px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[34px] lg:text-[38px]">
             Success Stories That Speak for Themselves
-          </h2>
+          </RevealText>
           <span
             aria-hidden="true"
             className="mx-auto mt-5 block h-1 w-14 rounded-full bg-teal-500"
           />
         </Reveal>
 
-        <ul className="mt-12 space-y-7">
+        <StaggerCards className="mt-12 space-y-7">
           {caseStudies.map((study, i) => (
-            <Reveal as="li" key={study.slug} delay={i * 90}>
+            <li key={study.slug}>
               <CaseStudyCard study={study} index={i} />
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </StaggerCards>
       </Container>
     </section>
   );

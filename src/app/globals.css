@@ -16,6 +16,8 @@
   --color-teal-500: #10939f;
   --color-teal-600: #0d8290;
   --color-teal-700: #08737d;
+  --color-teal-800: #065c64;
+  --color-teal-900: #04343a;
 
   --color-ink: #111417;
   --color-muted: #5b6268;
@@ -237,6 +239,14 @@
     opacity: 1;
   }
 
+  .stagger-group > * {
+    opacity: 0;
+  }
+
+  .page-enter {
+    animation: page-enter 350ms var(--ease-out-soft) both;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(16px);
@@ -271,6 +281,17 @@
   }
 }
 
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -280,6 +301,11 @@
     opacity: 1;
     transform: none;
     transition: none;
+  }
+
+  .stagger-group > * {
+    opacity: 1 !important;
+    transform: none !important;
   }
 
   *,

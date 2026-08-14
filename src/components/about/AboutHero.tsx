@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
+import { Parallax } from "@/components/motion/Parallax";
 import { site } from "@/lib/site";
 
 export function AboutHero() {
@@ -37,7 +38,7 @@ export function AboutHero() {
         </Reveal>
 
         <Reveal delay={120} className="relative lg:pb-10">
-          <div className="overflow-hidden rounded-lg">
+          <Parallax className="rounded-lg" amount={6}>
             <Image
               src={officeImage}
               alt={`Inside the ${site.name} office — a meeting room with the wall statement "We Build Brands. We Drive Growth. We Deliver Results."`}
@@ -46,7 +47,7 @@ export function AboutHero() {
               sizes="(max-width: 1024px) 100vw, 660px"
               className="h-auto w-full"
             />
-          </div>
+          </Parallax>
 
           <div className="relative z-10 mx-4 -mt-12 rounded-lg border border-line bg-white p-6 shadow-card-hover sm:mx-8 lg:absolute lg:bottom-0 lg:-left-10 lg:mx-0 lg:mt-0 lg:max-w-110">
             <div className="flex items-start gap-4">

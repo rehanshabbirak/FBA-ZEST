@@ -7,6 +7,7 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
 import { agencyStats, type Stat } from "@/lib/stats";
+import { RevealText } from "@/components/motion/RevealText";
 
 const icons: Record<Stat["key"], IconName> = {
   brands: "users",
@@ -40,9 +41,9 @@ export function WhyChooseUs() {
       <Container className="relative grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-10 lg:py-14 lg:pr-[42%]">
         <Reveal>
           <Eyebrow>Why Choose Us</Eyebrow>
-          <h2 className="mt-4 max-w-[19ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[36px] lg:text-[38px]">
+          <RevealText className="mt-4 max-w-[19ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[36px] lg:text-[38px]">
             Your Growth Partner on <span className="text-teal-500">Amazon</span>
-          </h2>
+          </RevealText>
           <p className="mt-5 max-w-[44ch] text-[15px] leading-[1.7] text-muted">
             We combine industry expertise, innovative strategies and a
             performance-driven approach to deliver measurable results.

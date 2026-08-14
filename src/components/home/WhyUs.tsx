@@ -5,6 +5,8 @@ import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
 import { agencyStats, type Stat } from "@/lib/stats";
+import { RevealText } from "@/components/motion/RevealText";
+import { StaggerCards } from "@/components/motion/StaggerCards";
 
 const icons: Record<Stat["key"], IconName> = {
   brands: "cart",
@@ -28,9 +30,9 @@ export function WhyUs() {
       <Container className="relative grid gap-12 py-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16 lg:py-24">
         <Reveal>
           <Eyebrow>Why Choose FBA Zest?</Eyebrow>
-          <h2 className="mt-4 max-w-[14ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 max-w-[14ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
             Your Growth is Our Mission
-          </h2>
+          </RevealText>
           <p className="mt-5 max-w-[42ch] text-[15px] leading-[1.7] text-white/65">
             We combine marketplace expertise, data-driven strategies, and
             creative execution to deliver real results.
@@ -40,9 +42,9 @@ export function WhyUs() {
           </Button>
         </Reveal>
 
-        <ul className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <StaggerCards className="grid grid-cols-2 gap-4 lg:grid-cols-4">
           {agencyStats.map((stat, i) => (
-            <Reveal as="li" key={stat.key} delay={i * 80}>
+            <li key={stat.key}>
               <div className="glass-panel flex h-full flex-col items-center justify-center rounded-lg px-4 py-9 text-center transition-[border-color,transform] duration-300 ease-out-soft hover:-translate-y-1 hover:border-teal-500/60">
                 <Icon
                   name={icons[stat.key]}
@@ -62,9 +64,9 @@ export function WhyUs() {
                   {stat.label}
                 </p>
               </div>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </StaggerCards>
       </Container>
     </section>
   );

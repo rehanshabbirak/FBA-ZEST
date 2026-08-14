@@ -5,6 +5,8 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoBackground } from "@/components/ui/VideoBackground";
+import { RevealText } from "@/components/motion/RevealText";
+import { StaggerCards } from "@/components/motion/StaggerCards";
 
 const services: {
   icon: IconName;
@@ -70,9 +72,9 @@ export function Services() {
         <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
           <div>
             <Eyebrow>What We Do</Eyebrow>
-            <h2 className="mt-4 max-w-[16ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+            <RevealText className="mt-4 max-w-[16ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
               End-to-End Amazon Brand Management
-            </h2>
+            </RevealText>
           </div>
           <p className="max-w-[52ch] text-[16px] leading-[1.65] text-white/85 lg:pb-2">
             We provide data-driven strategies and hands-on execution to help
@@ -80,14 +82,9 @@ export function Services() {
           </p>
         </Reveal>
 
-        <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:grid-cols-6">
-          {services.map((service, i) => (
-            <Reveal
-              as="li"
-              key={service.title}
-              delay={i * 60}
-              className="h-full"
-            >
+        <StaggerCards className="mt-12 grid gap-5 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:grid-cols-6">
+          {services.map((service) => (
+            <li key={service.title} className="h-full">
               <Link
                 href={service.href}
                 className="card-tint-lift group flex h-full flex-col items-center rounded-lg border border-white/12 bg-black/55 px-5 py-8 text-center backdrop-blur-sm hover:border-teal-400/60"
@@ -105,9 +102,9 @@ export function Services() {
                   {service.description}
                 </p>
               </Link>
-            </Reveal>
+            </li>
           ))}
-        </ul>
+        </StaggerCards>
 
         <Reveal className="mt-12 flex justify-center">
           <Button href="/services" size="lg">
