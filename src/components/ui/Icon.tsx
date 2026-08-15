@@ -1,6 +1,7 @@
 import type { SVGProps } from "react";
 
 const paths = {
+  "arrow-down": <path d="M12 4v16M5 13l7 7 7-7" />,
   "arrow-right": <path d="M4 12h16M13 5l7 7-7 7" />,
   "arrow-up-right": <path d="M5 19 19 5M8 5h11v11" />,
   "bar-up": (
@@ -104,6 +105,12 @@ const paths = {
     <path d="M9 18h6M10 21h4M8 14c-2-1.3-3-3-3-5a7 7 0 0 1 14 0c0 2-1 3.7-3 5l-1 2h-6z" />
   ),
   lightning: <path d="m13 2-9 12h7l-1 8 9-13h-7Z" />,
+  link: (
+    <>
+      <path d="M10 13a4 4 0 0 0 5.7.4l3-3a4 4 0 0 0-5.7-5.7l-1.7 1.7" />
+      <path d="M14 11a4 4 0 0 0-5.7-.4l-3 3a4 4 0 0 0 5.7 5.7l1.7-1.7" />
+    </>
+  ),
   linkedin: <path d="M5 8v11M5 5v.1M10 19v-6a4 4 0 0 1 8 0v6M10 11V8" />,
   "location-pin": (
     <>
@@ -199,6 +206,8 @@ const paths = {
 } as const;
 
 export type IconName = keyof typeof paths;
+
+export const iconNames = Object.keys(paths) as IconName[];
 
 type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {
   name: IconName;

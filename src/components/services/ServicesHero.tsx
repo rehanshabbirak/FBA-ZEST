@@ -49,7 +49,7 @@ export function ServicesHero() {
           src={heroLaptop}
           alt=""
           fill
-          sizes="100vw"
+          sizes="(min-width: 1024px) 1px, 100vw"
           className="object-cover"
         />
       </div>

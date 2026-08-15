@@ -110,11 +110,14 @@ export function Header() {
         </div>
       </Container>
 
+      {/* Overlays the page instead of sitting in flow: in flow it grew the
+          sticky header and pushed the content down when opened. `top-full`
+          resolves against the sticky header, so it hangs just below the bar. */}
       <div
         id="mobile-nav"
         hidden={!open}
         onClick={() => setOpen(false)}
-        className="border-t border-white/10 bg-black lg:hidden"
+        className="absolute inset-x-0 top-full max-h-[calc(100dvh-var(--spacing)*18)] overflow-y-auto border-t border-white/10 bg-black shadow-[0_18px_40px_-12px_rgba(0,0,0,0.75)] lg:hidden"
       >
         <Container className="py-4">
           <nav aria-label="Mobile">

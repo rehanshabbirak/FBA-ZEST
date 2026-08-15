@@ -21,10 +21,7 @@ export function Logo({
     <Link
       href="/"
       aria-label="FBA Zest, home"
-      className={cn(
-        "inline-flex shrink-0 transition-opacity duration-200 hover:opacity-85",
-        className,
-      )}
+      className={cn("inline-flex shrink-0", className)}
     >
       <Image
         src={tone === "dark" ? logoOnDark : logoOnLight}

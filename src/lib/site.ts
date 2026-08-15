@@ -3,6 +3,7 @@ import type { IconName } from "@/components/ui/Icon";
 export const site = {
   name: "FBA Zest",
   tagline: "Amazon Brand Management Agency",
+  url: "https://fbazest.com",
   description:
     "We help Amazon brands grow smarter, sell more, and scale beyond limits.",
   email: "hello@fbazest.com",
