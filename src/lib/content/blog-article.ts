@@ -1,10 +1,10 @@
+import { cache } from "react";
 import type { PortableTextBlock } from "@portabletext/types";
 import type { IconName } from "@/components/ui/Icon";
 import { sanityFetch } from "@/sanity/client";
 import {
   nextPostQuery,
   postBySlugQuery,
-  previousPostQuery,
   relatedPostsQuery,
 } from "@/sanity/queries";
 import type { BlogPost } from "@/lib/content/blog";
@@ -29,9 +29,11 @@ export type Article = BlogPost & {
   sectionNoun: string;
 };
 
-export function getPostBySlug(slug: string): Promise<Article | null> {
+// cache() dedupes the generateMetadata and page-body calls for the same slug
+// into one fetch per request.
+export const getPostBySlug = cache((slug: string): Promise<Article | null> => {
   return sanityFetch<Article | null>(postBySlugQuery, { slug });
-}
+});
 
 export function getRelatedPosts(post: BlogPost, limit = 3): Promise<BlogPost[]> {
   return sanityFetch<BlogPost[]>(relatedPostsQuery, {
@@ -41,18 +43,11 @@ export function getRelatedPosts(post: BlogPost, limit = 3): Promise<BlogPost[]> 
   });
 }
 
-export async function getAdjacentPosts(post: BlogPost): Promise<{
-  previous: BlogPost | null;
-  next: BlogPost | null;
-}> {
-  const params = { slug: post.slug, publishedAt: post.publishedAt };
-
-  const [previous, next] = await Promise.all([
-    sanityFetch<BlogPost | null>(previousPostQuery, params),
-    sanityFetch<BlogPost | null>(nextPostQuery, params),
-  ]);
-
-  return { previous, next };
+export function getNextPost(post: BlogPost): Promise<BlogPost | null> {
+  return sanityFetch<BlogPost | null>(nextPostQuery, {
+    slug: post.slug,
+    publishedAt: post.publishedAt,
+  });
 }
 
 export type ArticleHeading = {

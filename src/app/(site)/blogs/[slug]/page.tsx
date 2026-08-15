@@ -14,8 +14,8 @@ import { ArticleSidebar } from "@/components/blog/ArticleSidebar";
 import { ShareRow } from "@/components/blog/ShareRow";
 import { getAllPostSlugs } from "@/lib/content/blog";
 import {
-  getAdjacentPosts,
   getArticleHeadings,
+  getNextPost,
   getPostBySlug,
   getReadingMinutes,
   getRelatedPosts,
@@ -61,8 +61,8 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
   if (!post) notFound();
 
-  const [{ next }, related] = await Promise.all([
-    getAdjacentPosts(post),
+  const [next, related] = await Promise.all([
+    getNextPost(post),
     getRelatedPosts(post),
   ]);
 

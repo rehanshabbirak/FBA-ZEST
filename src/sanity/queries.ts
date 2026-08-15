@@ -102,14 +102,3 @@ export const nextPostQuery = defineQuery(`
   }
 `);
 
-export const previousPostQuery = defineQuery(`
-  *[
-    _type == "post"
-    && (
-      publishedAt > $publishedAt
-      || (publishedAt == $publishedAt && slug.current < $slug)
-    )
-  ] | order(publishedAt asc, slug.current desc)[0] {
-    ${POST_FIELDS}
-  }
-`);

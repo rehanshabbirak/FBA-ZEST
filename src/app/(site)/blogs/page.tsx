@@ -36,6 +36,10 @@ export default async function BlogsPage({
 }) {
   const { category: rawCategory, q, page: rawPage } = await searchParams;
 
+  // The featured query is independent of the filters, so it starts before the
+  // category validation that filterPosts depends on.
+  const featuredPromise = getFeaturedPost();
+
   const categories = await getCategories();
   const isKnownCategory = categories.some((c) => c.slug === rawCategory);
   const category = isKnownCategory ? rawCategory! : "all";
@@ -45,7 +49,7 @@ export default async function BlogsPage({
   const requestedPage = Number.isFinite(parsedPage) ? parsedPage : 1;
 
   const [featured, matching] = await Promise.all([
-    getFeaturedPost(),
+    featuredPromise,
     filterPosts({ category, query }),
   ]);
 

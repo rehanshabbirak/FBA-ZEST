@@ -43,6 +43,12 @@ const paths = {
       <path d="M2 20h21" />
     </>
   ),
+  chat: (
+    <>
+      <path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1.5-4.5A8 8 0 1 1 21 12Z" />
+      <path d="M8.5 12h.01M12 12h.01M15.5 12h.01" />
+    </>
+  ),
   check: <path d="m5 12 4 4L19 6" />,
   "chevron-down": <path d="m6 9 6 6 6-6" />,
   "chevron-right": <path d="m9 6 6 6-6 6" />,
@@ -53,6 +59,12 @@ const paths = {
     </>
   ),
   close: <path d="m6 6 12 12M18 6 6 18" />,
+  compass: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <path d="m15.5 8.5-2 5-5 2 2-5z" />
+    </>
+  ),
   cursor: <path d="M5 3l4 15 3-5 5 3 2-3-5-3 5-2z" />,
   document: (
     <>
@@ -101,6 +113,12 @@ const paths = {
       <circle cx="17.3" cy="6.7" r="1" />
     </>
   ),
+  layers: (
+    <>
+      <path d="m12 3 9 5-9 5-9-5z" />
+      <path d="m3 13 9 5 9-5M3 16.5 12 21l9-4.5" />
+    </>
+  ),
   lightbulb: (
     <path d="M9 18h6M10 21h4M8 14c-2-1.3-3-3-3-5a7 7 0 0 1 14 0c0 2-1 3.7-3 5l-1 2h-6z" />
   ),
@@ -122,6 +140,12 @@ const paths = {
     <>
       <path d="M12 21s7-6.5 7-12A7 7 0 0 0 5 9c0 5.5 7 12 7 12z" />
       <circle cx="12" cy="9" r="2.5" />
+    </>
+  ),
+  lock: (
+    <>
+      <rect x="4" y="10" width="16" height="11" rx="2" />
+      <path d="M8 10V7a4 4 0 0 1 8 0v3" />
     </>
   ),
   mail: (

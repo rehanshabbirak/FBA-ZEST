@@ -25,6 +25,8 @@ type SharedProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: IconName | null;
+  /** Side the icon sits on; "start" also flips the hover nudge. */
+  iconPosition?: "start" | "end";
   fullWidth?: boolean;
   className?: string;
   children: ReactNode;
@@ -54,24 +56,40 @@ function classesFor({
 export function Button(props: ButtonAsLink | ButtonAsButton) {
   // Destructuring separates presentation props from DOM props in one pass,
   // so no per-render object is built and stripped key by key.
-  const { variant, size, icon = "arrow-right", fullWidth, className, children, ...rest } =
-    props;
+  const {
+    variant,
+    size,
+    icon = "arrow-right",
+    iconPosition = "end",
+    fullWidth,
+    className,
+    children,
+    ...rest
+  } = props;
 
   const classes = cn(
     "group/btn",
     classesFor({ variant, size, fullWidth, className, children }),
   );
 
+  const glyph = icon ? (
+    <Icon
+      name={icon}
+      size={17}
+      className={cn(
+        "shrink-0 transition-transform duration-200 ease-out-soft",
+        iconPosition === "start"
+          ? "group-hover/btn:-translate-x-0.5"
+          : "group-hover/btn:translate-x-0.5",
+      )}
+    />
+  ) : null;
+
   const body = (
     <>
+      {iconPosition === "start" ? glyph : null}
       <span>{children}</span>
-      {icon ? (
-        <Icon
-          name={icon}
-          size={17}
-          className="shrink-0 transition-transform duration-200 ease-out-soft group-hover/btn:translate-x-0.5"
-        />
-      ) : null}
+      {iconPosition === "end" ? glyph : null}
     </>
   );
 
