@@ -17,8 +17,10 @@ export default function CaseStudiesPage() {
       <TrustBar heading="Trusted by 100+ brands worldwide" dividers />
       <CaseStudyList />
       <CTABanner
-        title="Ready to Be Our Next Success Story?"
-        description="Let's build, grow, and scale your brand on Amazon."
+        icon="target"
+        title="Ready to Build a More Profitable Amazon Growth Strategy?"
+        description="Whether you need to scale a hero product, improve advertising efficiency, recover after an inventory disruption, or turn a broad catalog into a focused growth engine, FBA Zest can help."
+        note="Let's identify the biggest growth opportunities in your Amazon account."
       />
     </>
   );

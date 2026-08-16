@@ -12,6 +12,8 @@ type CTABannerProps = {
   backdrop?: StaticImageData;
   title: string;
   description: string;
+  /** Closing invitation shown under the description, brighter than body copy. */
+  note?: string;
   ctaLabel?: string;
   ctaHref?: string;
 };
@@ -22,6 +24,7 @@ export function CTABanner({
   backdrop,
   title,
   description,
+  note,
   ctaLabel = "Get a Free Consultation",
   ctaHref = "/contact",
 }: CTABannerProps) {
@@ -65,9 +68,14 @@ export function CTABanner({
                 <h2 className="text-[22px] leading-tight font-bold text-white lg:text-[26px]">
                   {title}
                 </h2>
-                <p className="mt-2 text-[15px] leading-relaxed text-white/70">
+                <p className="mt-2 max-w-[64ch] text-[15px] leading-relaxed text-white/70">
                   {description}
                 </p>
+                {note ? (
+                  <p className="mt-2.5 max-w-[64ch] text-[15px] leading-relaxed font-medium text-white">
+                    {note}
+                  </p>
+                ) : null}
               </div>
             </div>
 
