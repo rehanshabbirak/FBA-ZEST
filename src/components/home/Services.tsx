@@ -63,7 +63,6 @@ export function Services() {
     <section className="relative isolate overflow-hidden bg-black">
       <VideoBackground
         src="/vedio/background-vedio.mp4"
-        label="Amazon brand management showreel"
         videoClassName="brightness-112 contrast-106 saturate-112"
         overlayClassName="bg-linear-to-b from-black/78 from-0% via-black/30 via-52% to-black/55 after:absolute after:inset-0 after:bg-teal-800/8"
       />
