@@ -1,5 +1,5 @@
 import Image from "next/image";
-import officeImage from "../../../public/png/about_office.png";
+import officeImage from "../../../public/images/about_office.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";

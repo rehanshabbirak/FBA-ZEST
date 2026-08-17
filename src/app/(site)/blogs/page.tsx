@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import amazonLogo from "../../../../public/png/amazon-scale-icon.png";
-import growthBackdrop from "../../../../public/png/growth-arrows.png";
+import amazonLogo from "../../../../public/images/amazon-scale-icon.png";
+import growthBackdrop from "../../../../public/images/growth-arrows.png";
 import { Container } from "@/components/ui/Container";
 import { CTABanner } from "@/components/shared/CTABanner";
 import { BlogHero } from "@/components/blog/BlogHero";

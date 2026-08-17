@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroAnalytics from "../../../public/png/home_hero_analytics.png";
+import heroAnalytics from "../../../public/images/home_hero_analytics.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";

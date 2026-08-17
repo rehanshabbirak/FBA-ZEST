@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroLaptop from "../../../public/png/services_hero_laptop.png";
+import heroLaptop from "../../../public/images/services_hero_laptop.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";

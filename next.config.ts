@@ -32,7 +32,7 @@ const nextConfig: NextConfig = {
         // Immutable cache for the self-hosted hero video; its filename never
         // changes, so a year-long TTL only risks staleness if the file is
         // replaced in place.
-        source: "/vedio/:path*",
+        source: "/videos/:path*",
         headers: [
           { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
         ],

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroImage from "../../../public/png/case-study-hero.png";
+import heroImage from "../../../public/images/case-study-hero.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import growthPerson from "../../../public/png/services_growth_person.png";
+import growthPerson from "../../../public/images/services_growth_person.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";

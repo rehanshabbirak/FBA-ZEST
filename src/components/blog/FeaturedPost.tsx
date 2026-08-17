@@ -1,5 +1,5 @@
 import Image from "next/image";
-import featureImage from "../../../public/png/blog-feature-image.png";
+import featureImage from "../../../public/images/blog-feature-image.png";
 import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { formatPostDate, type BlogPost } from "@/lib/content/blog";

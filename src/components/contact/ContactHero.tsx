@@ -1,5 +1,5 @@
 import Image from "next/image";
-import heroImage from "../../../public/png/contact-hero-dashboard.png";
+import heroImage from "../../../public/images/contact-hero-dashboard.png";
 import { Container } from "@/components/ui/Container";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Icon, type IconName } from "@/components/ui/Icon";
