@@ -55,6 +55,17 @@
   --animate-caret-blink: caret-blink 1.06s steps(1) infinite;
   --animate-caret-retire: caret-retire 400ms ease-out 1400ms both;
 
+  --animate-logo-marquee: logo-marquee 45s linear infinite;
+
+  @keyframes logo-marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
   @keyframes caret-blink {
     0%,
     49% {

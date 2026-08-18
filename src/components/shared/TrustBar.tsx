@@ -1,55 +1,58 @@
+import Image from "next/image";
+import { brandLogos } from "@/lib/content/brands";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { cn } from "@/lib/cn";
 
-const brands: { name: string; sub?: string; className?: string }[] = [
-  { name: "UGREEN", className: "font-extrabold tracking-[-0.01em]" },
-  { name: "ORTIZ", sub: "Gaming", className: "font-bold tracking-[0.02em]" },
-  { name: "vivicti", className: "font-medium lowercase tracking-[0.01em]" },
-  { name: "JUGLANA", className: "font-normal tracking-[0.18em]" },
-  { name: "MAVEN", sub: "Threads", className: "font-normal tracking-[0.14em]" },
-  { name: "YEK", sub: "Bags", className: "font-normal tracking-[0.2em]" },
-];
-
 type TrustBarProps = {
   heading: string;
+  /** Hairline rules above and below the band, to separate it from a neighbouring light section. */
   dividers?: boolean;
 };
 
 export function TrustBar({ heading, dividers = false }: TrustBarProps) {
   return (
-    <section aria-label="Brands we work with" className="bg-surface">
+    <section
+      aria-label="Brands we work with"
+      className={cn("bg-surface", dividers && "border-y border-line")}
+    >
       <Container className="py-12 lg:py-14">
         <Reveal>
           <p className="text-center text-[14px] text-muted">{heading}</p>
 
-          <ul
-            className={cn(
-              "mt-8 grid grid-cols-2 items-center gap-x-6 gap-y-8 sm:grid-cols-3 lg:flex lg:justify-between lg:gap-4",
-              dividers && "lg:divide-x lg:divide-line",
-            )}
-          >
-            {brands.map((brand) => (
-              <li
-                key={brand.name}
-                className={cn(
-                  "flex flex-col items-center text-center text-ink/80 transition-colors duration-200 hover:text-ink",
-                  dividers && "lg:flex-1 lg:px-6",
-                )}
-              >
-                <span
-                  className={cn("text-[22px] leading-none", brand.className)}
-                >
-                  {brand.name}
-                </span>
-                {brand.sub ? (
-                  <span className="mt-1.5 text-[9px] font-medium tracking-[0.3em] text-subtle uppercase">
-                    {brand.sub}
-                  </span>
-                ) : null}
-              </li>
-            ))}
-          </ul>
+          {/*
+            Two identical copies of the list scroll as one track; the animation
+            travels exactly half its width, so the second copy lands where the
+            first started and the loop has no seam. Spacing lives on the items
+            rather than a flex gap, which would add one extra gap to the track
+            and break that alignment.
+          */}
+          <div className="group relative mt-8 overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_6%,black_94%,transparent)] motion-reduce:[mask-image:none]">
+            <ul className="flex w-max animate-logo-marquee items-center group-hover:[animation-play-state:paused] motion-reduce:w-full motion-reduce:animate-none motion-reduce:flex-wrap motion-reduce:justify-center motion-reduce:gap-y-6">
+              {[...brandLogos, ...brandLogos].map((brand, index) => {
+                const duplicate = index >= brandLogos.length;
+
+                return (
+                  <li
+                    key={`${brand.name}-${index}`}
+                    aria-hidden={duplicate}
+                    className={cn(
+                      "flex shrink-0 items-center justify-center px-7 lg:px-9",
+                      duplicate && "motion-reduce:hidden",
+                    )}
+                  >
+                    <Image
+                      src={brand.src}
+                      alt={`${brand.name} logo`}
+                      width={brand.width}
+                      height={brand.height}
+                      className="h-9 w-auto max-w-[130px] object-contain opacity-75 grayscale transition duration-300 ease-out-soft hover:opacity-100 hover:grayscale-0 lg:h-11 lg:max-w-[150px]"
+                    />
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </Reveal>
       </Container>
     </section>
