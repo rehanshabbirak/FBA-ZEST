@@ -36,7 +36,7 @@ export function Hero() {
       <Container className="relative grid items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)] lg:gap-10 lg:py-24">
         <div className="max-w-xl lg:max-w-none">
           <div className="hero-fade" style={{ animationDelay: step.eyebrow }}>
-            <Eyebrow>Amazon Brand Management Experts</Eyebrow>
+            <Eyebrow>Amazon Account Management Experts</Eyebrow>
           </div>
 
           <h1 className="mt-5 text-[38px] leading-[1.08] font-extrabold tracking-[-0.02em] text-white sm:text-[48px] lg:text-[54px] xl:text-[58px]">

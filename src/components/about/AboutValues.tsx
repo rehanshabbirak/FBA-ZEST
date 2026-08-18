@@ -6,36 +6,30 @@ import { RevealText } from "@/components/motion/RevealText";
 import { DragCarousel } from "@/components/motion/DragCarousel";
 import { GrowthBackdrop } from "@/components/motion/GrowthBackdrop";
 
+/** The four values as stated in the FBA Zest agency profile. */
 const values: { icon: IconName; title: string; description: string }[] = [
   {
-    icon: "search",
-    title: "Transparency",
-    description:
-      "We believe in clear communication and complete transparency in everything we do.",
-  },
-  {
-    icon: "rocket",
-    title: "Performance",
-    description:
-      "We are obsessed with data and performance. Your growth is our success.",
-  },
-  {
-    icon: "lightbulb",
-    title: "Innovation",
-    description:
-      "We stay ahead of the curve by continuously learning, testing, and innovating.",
-  },
-  {
-    icon: "handshake",
-    title: "Partnership",
-    description:
-      "We work as an extension of your team, aligned with your goals and vision.",
+    icon: "shield-check",
+    title: "Integrity",
+    description: "We believe in honesty and transparency in everything we do.",
   },
   {
     icon: "star",
     title: "Excellence",
     description:
-      "We hold ourselves to the highest standards in our strategies and execution.",
+      "We're committed to providing outstanding services and continuously improving.",
+  },
+  {
+    icon: "lightbulb",
+    title: "Innovation",
+    description:
+      "We use cutting-edge tools and strategies to keep you ahead of the competition.",
+  },
+  {
+    icon: "handshake",
+    title: "Client-Centric",
+    description:
+      "Your success is our priority, and we tailor our services to meet your unique needs.",
   },
 ];
 

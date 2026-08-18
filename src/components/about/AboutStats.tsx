@@ -5,10 +5,10 @@ import { Reveal } from "@/components/ui/Reveal";
 import { agencyStats, type Stat } from "@/lib/stats";
 
 const icons: Record<Stat["key"], IconName> = {
-  brands: "users",
-  revenue: "growth-arrow",
-  marketplaces: "globe",
-  satisfaction: "trophy",
+  salesGrowth: "chart-line",
+  ppcSales: "megaphone",
+  acos: "target",
+  buyBox: "trophy",
 };
 
 export function AboutStats() {
@@ -32,6 +32,7 @@ export function AboutStats() {
                         value={stat.value}
                         prefix={stat.prefix}
                         suffix={stat.suffix}
+                        decimals={stat.decimals}
                         delay={i * 80}
                       />
                     </p>

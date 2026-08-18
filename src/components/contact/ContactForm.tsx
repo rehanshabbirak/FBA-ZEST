@@ -66,6 +66,27 @@ export function ContactForm() {
       </p>
 
       <form action={formAction} className="mt-7" noValidate>
+        {/* Honeypot. Positioned off-screen rather than display:none, which some
+            bots detect and skip; hidden from tab order and assistive tech so no
+            visitor can reach it. The name is deliberately meaningless: calling
+            it "website" or "url" invites browser autofill and password managers
+            to fill it, which would silently discard a real enquiry. The
+            data-*-ignore attributes are the documented opt-outs for 1Password
+            and LastPass. */}
+        <div aria-hidden="true" className="absolute -left-[9999px] top-auto">
+          <label htmlFor="hp-reference">Do not fill this in</label>
+          <input
+            id="hp-reference"
+            name="hp_reference"
+            type="text"
+            tabIndex={-1}
+            autoComplete="off"
+            data-1p-ignore="true"
+            data-lpignore="true"
+            data-form-type="other"
+          />
+        </div>
+
         <div className="grid gap-5 sm:grid-cols-2">
           <div>
             <Label htmlFor="name" required>

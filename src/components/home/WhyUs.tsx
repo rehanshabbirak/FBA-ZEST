@@ -9,10 +9,10 @@ import { RevealText } from "@/components/motion/RevealText";
 import { StaggerCards } from "@/components/motion/StaggerCards";
 
 const icons: Record<Stat["key"], IconName> = {
-  brands: "cart",
-  revenue: "growth-arrow",
-  marketplaces: "globe",
-  satisfaction: "trophy",
+  salesGrowth: "growth-arrow",
+  ppcSales: "megaphone",
+  acos: "target",
+  buyBox: "trophy",
 };
 
 export function WhyUs() {
@@ -33,9 +33,13 @@ export function WhyUs() {
           <RevealText className="mt-4 max-w-[14ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
             Your Growth is Our Mission
           </RevealText>
-          <p className="mt-5 max-w-[42ch] text-[15px] leading-[1.7] text-white/65">
-            We combine marketplace expertise, data-driven strategies, and
-            creative execution to deliver real results.
+          <p className="mt-5 max-w-[46ch] text-[15px] leading-[1.7] text-white/65">
+            Our primary goal is to achieve up to 30% sales growth for your
+            Amazon business through effective ad management. We specialize in
+            optimizing your ad spend to ensure that every dollar works harder
+            for you, driving higher returns. Our expert team uses data-driven
+            strategies and advanced tools to fine-tune your campaigns, improve
+            visibility, and boost conversions.
           </p>
           <Button href="/about" size="lg" className="mt-8">
             About Us
@@ -57,6 +61,7 @@ export function WhyUs() {
                     value={stat.value}
                     prefix={stat.prefix}
                     suffix={stat.suffix}
+                    decimals={stat.decimals}
                     delay={i * 80}
                   />
                 </p>

@@ -25,11 +25,10 @@ export function AboutHero() {
           />
 
           <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.7] text-muted">
-            {site.name} is an Amazon brand management agency focused on helping
-            brands thrive in one of the world&rsquo;s most competitive
-            marketplaces. We combine marketplace expertise, data-driven
-            strategies, and creative execution to drive sustainable growth and
-            long-term success for our clients.
+            We strive to be the top Amazon account management agency, known for
+            driving exceptional sales growth and efficiency. We want to empower
+            brands with innovative strategies that lead to long-term success on
+            Amazon.
           </p>
 
           <Button href="/services" size="lg" className="mt-9">
@@ -57,9 +56,9 @@ export function AboutHero() {
               <div>
                 <h2 className="text-[19px] font-bold text-ink">Our Purpose</h2>
                 <p className="mt-2 text-[14px] leading-[1.6] text-muted">
-                  To empower brands to reach their full potential on Amazon
-                  through smart strategies, innovation, and relentless
-                  execution.
+                  We help brands achieve remarkable growth on Amazon by
+                  integrating expert strategies across marketing, creative
+                  content, and account management.
                 </p>
               </div>
             </div>

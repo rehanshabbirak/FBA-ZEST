@@ -113,7 +113,7 @@ export function Footer() {
       <div className="border-t border-white/10">
         <Container className="flex flex-col gap-3 py-5 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
-            © {new Date().getFullYear()} {site.name} Brand Management Agency.
+            © {new Date().getFullYear()} {site.name} Account Management Agency.
             All rights reserved.
           </p>
           <ul className="flex gap-6">

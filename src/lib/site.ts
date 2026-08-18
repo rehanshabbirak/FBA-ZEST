@@ -3,7 +3,7 @@ import { services } from "@/lib/content/services";
 
 export const site = {
   name: "FBA Zest",
-  tagline: "Amazon Brand Management Agency",
+  tagline: "Amazon Account Management Agency",
   url: "https://fbazest.com",
   description:
     "We help Amazon brands grow smarter, sell more, and scale beyond limits.",

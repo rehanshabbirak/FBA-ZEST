@@ -10,17 +10,15 @@ import { agencyStats, type Stat } from "@/lib/stats";
 import { RevealText } from "@/components/motion/RevealText";
 
 const icons: Record<Stat["key"], IconName> = {
-  brands: "users",
-  revenue: "growth-arrow",
-  marketplaces: "globe",
-  satisfaction: "chart-bar",
+  salesGrowth: "growth-arrow",
+  ppcSales: "megaphone",
+  acos: "target",
+  buyBox: "chart-bar",
 };
 
-const OVERRIDES: Partial<Record<Stat["key"], number>> = { brands: 200 };
-
-const shown = agencyStats
-  .filter((stat) => stat.key !== "marketplaces")
-  .map((stat) => ({ ...stat, value: OVERRIDES[stat.key] ?? stat.value }));
+// The panel is a vertical stack beside the photo and only has room for three;
+// Buy Box is the least relevant of the four to a services page.
+const shown = agencyStats.filter((stat) => stat.key !== "buyBox");
 
 const PHOTO_ALT =
   "An Amazon brand manager reviewing performance dashboards on a laptop, with a rising sales chart behind him.";
@@ -66,6 +64,7 @@ export function WhyChooseUs() {
                       value={stat.value}
                       prefix={stat.prefix}
                       suffix={stat.suffix}
+                      decimals={stat.decimals}
                       delay={i * 80}
                     />
                   </p>

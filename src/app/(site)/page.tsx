@@ -6,7 +6,7 @@ import { WhyUs } from "@/components/home/WhyUs";
 import { Testimonials } from "@/components/home/Testimonials";
 
 export const metadata: Metadata = {
-  title: "Amazon Brand Management Agency",
+  title: "Amazon Account Management Agency",
   description:
     "We build, grow and scale Amazon brands. From strategy to execution — PPC, listing optimization, content and analytics that drive profitable growth.",
 };

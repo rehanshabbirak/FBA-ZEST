@@ -2,14 +2,7 @@
 
 import { Children, useCallback, useEffect, useRef, useState } from "react";
 import type { ReactNode } from "react";
-import {
-  LazyMotion,
-  animate,
-  domMax,
-  m,
-  useMotionValue,
-  useReducedMotion,
-} from "motion/react";
+import { Draggable, gsap, useGSAP } from "@/lib/gsap";
 import { Icon } from "@/components/ui/Icon";
 import { cn } from "@/lib/cn";
 
@@ -21,19 +14,8 @@ type DragCarouselProps = {
   tone?: "light" | "dark";
 };
 
-const item = {
-  hidden: { opacity: 0, y: 24 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: [0.22, 0.61, 0.36, 1] as const },
-  },
-};
-
-const track = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.08 } },
-};
+/** Settle after a dot/arrow press. Eased rather than sprung so it cannot overshoot past a bound. */
+const SETTLE = { duration: 0.55, ease: "power3.out" } as const;
 
 type Metrics = {
   /** One card per view: pages map to cards and the active card is centred. */
@@ -75,6 +57,18 @@ function targetFor(m: Metrics, index: number) {
     : Math.max(-m.maxDrag, -index * m.vpWidth);
 }
 
+/** Inverse of targetFor: which page does this x land on. */
+function pageFor(m: Metrics, x: number) {
+  const raw = m.centered
+    ? Math.round((m.pad - x) / m.stride)
+    : Math.round(-x / m.vpWidth);
+  return Math.max(0, Math.min(m.pages - 1, raw));
+}
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
 export function DragCarousel({
   children,
   ariaLabel,
@@ -85,8 +79,9 @@ export function DragCarousel({
   const onDark = tone === "dark";
   const viewport = useRef<HTMLDivElement>(null);
   const rail = useRef<HTMLUListElement>(null);
-  const x = useMotionValue(0);
-  const reduced = useReducedMotion();
+  const dragger = useRef<InstanceType<typeof Draggable> | null>(null);
+  /** Written by the snap solver, read once the throw settles. */
+  const landedOn = useRef(0);
 
   const [metrics, setMetrics] = useState<Metrics>(EMPTY_METRICS);
   const [page, setPage] = useState(0);
@@ -109,7 +104,8 @@ export function DragCarousel({
 
     // Cards that fit at once. One means a peek layout (mobile), where paging by
     // viewport width would leave the active card clipped at both edges.
-    const perPage = stride > 0 ? Math.max(1, Math.round((vpWidth + gap) / stride)) : 1;
+    const perPage =
+      stride > 0 ? Math.max(1, Math.round((vpWidth + gap) / stride)) : 1;
     const centered = perPage === 1 && items.length > 1;
 
     const next: Metrics = centered
@@ -154,136 +150,167 @@ export function DragCarousel({
 
   const goTo = useCallback(
     (next: number) => {
+      const rl = rail.current;
       const clamped = Math.max(0, Math.min(metrics.pages - 1, next));
-
-      animate(
-        x,
-        targetFor(metrics, clamped),
-        reduced
-          ? { duration: 0 }
-          : { type: "spring", stiffness: 280, damping: 34, mass: 0.6 },
-      );
       setPage(clamped);
+      if (!rl) return;
+
+      gsap.to(rl, {
+        x: targetFor(metrics, clamped),
+        duration: prefersReducedMotion() ? 0 : SETTLE.duration,
+        ease: SETTLE.ease,
+        overwrite: true,
+        // Draggable caches the element's position when it is created; a
+        // programmatic move has to hand the new resting point back to it or
+        // the next drag jumps from the stale value.
+        onComplete: () => dragger.current?.update(),
+      });
     },
-    [metrics, reduced, x],
+    [metrics],
   );
 
-  // Re-anchor whenever the layout changes: on mount a centred rail must start
-  // at +pad rather than 0, and a breakpoint change invalidates the old resting
-  // position for the page the user is on.
+  // Re-anchor and rebuild the drag handler whenever the layout changes: on
+  // mount a centred rail must start at +pad rather than 0, and a breakpoint
+  // change invalidates both the resting position and the drag bounds.
   useEffect(() => {
-    if (metrics.vpWidth === 0) return;
-    x.set(targetFor(metrics, Math.min(page, metrics.pages - 1)));
+    const rl = rail.current;
+    if (!rl || metrics.vpWidth === 0) return;
+
+    gsap.set(rl, { x: targetFor(metrics, Math.min(page, metrics.pages - 1)) });
+
+    if (metrics.maxDrag <= 1) return;
+
+    const [instance] = Draggable.create(rl, {
+      type: "x",
+      bounds: { minX: metrics.pad - metrics.maxDrag, maxX: metrics.pad },
+      // Mirrors Motion's dragElastic: a little give past the ends, not a wall.
+      edgeResistance: 0.88,
+      inertia: true,
+      // Vertical page scrolling must still win on touch devices.
+      allowNativeTouchScrolling: true,
+      snap: {
+        // Receives the position the throw would land on, so the page is chosen
+        // from projected momentum rather than from where the finger lifted.
+        x: (endValue: number) => {
+          landedOn.current = pageFor(metrics, endValue);
+          return targetFor(metrics, landedOn.current);
+        },
+      },
+      onThrowComplete: () => setPage(landedOn.current),
+    });
+    dragger.current = instance;
+
+    return () => {
+      instance.kill();
+      dragger.current = null;
+    };
     // `page` is intentionally omitted: this realigns on layout change only.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [metrics, x]);
+  }, [metrics]);
 
-  const { centered, pages, pad, maxDrag, stride, vpWidth } = metrics;
+  // Entrance stagger. Scoped to the viewport so useGSAP reverts it on unmount.
+  useGSAP(
+    () => {
+      const rl = rail.current;
+      if (!rl || rl.children.length === 0) return;
+
+      const mm = gsap.matchMedia();
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        gsap.from(Array.from(rl.children), {
+          opacity: 0,
+          y: 24,
+          duration: 0.5,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: rl, start: "top 80%", once: true },
+        });
+      });
+
+      return () => mm.revert();
+    },
+    { scope: viewport },
+  );
+
+  const { pages, maxDrag } = metrics;
   // Derived rather than synced: a breakpoint change can shrink `pages` below
   // the stored index, and clamping here avoids a write-back render.
   const activePage = Math.min(page, pages - 1);
   const canScroll = maxDrag > 1;
-  // Centred rails rest at +pad, so both bounds shift by it.
-  const dragConstraints = { left: pad - maxDrag, right: pad };
 
   return (
-    // This is the only component on the site that needs Motion's drag
-    // features, so the feature bundle is loaded here rather than app-wide.
-    <LazyMotion features={domMax} strict>
-      <div
-        className={cn("relative", className)}
-        role="group"
-        aria-roledescription="carousel"
-        aria-label={ariaLabel}
-      >
-        <div ref={viewport} className="overflow-x-clip overflow-y-visible">
-          <m.ul
-            ref={rail}
-            style={{ x }}
-            drag={canScroll ? "x" : false}
-            dragConstraints={dragConstraints}
-            dragElastic={0.12}
-            dragMomentum
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={track}
-            className={cn(
-              "flex gap-5",
-              canScroll && "cursor-grab active:cursor-grabbing",
-            )}
-            onDragEnd={(_, info) => {
-              const projected = x.get() + info.velocity.x * 0.12;
-              // Centred rails step one card at a time; otherwise a full view.
-              goTo(
-                centered
-                  ? Math.round((pad - projected) / stride)
-                  : Math.round(-projected / vpWidth),
-              );
-            }}
-          >
-            {Children.map(children, (child) => (
-              <m.li variants={item} className={cn("shrink-0", itemClassName)}>
-                {child}
-              </m.li>
-            ))}
-          </m.ul>
-        </div>
-
-        {canScroll ? (
-          <div className="mt-8 flex items-center justify-center gap-5">
-            <button
-              type="button"
-              onClick={() => goTo((activePage - 1 + pages) % pages)}
-              aria-label="Previous"
-              className={cn(
-                "flex size-10 items-center justify-center rounded-full border transition-colors duration-200",
-                onDark
-                  ? "border-white/25 bg-white/10 text-white hover:border-teal-300 hover:text-teal-200"
-                  : "border-line bg-white text-ink hover:border-teal-400 hover:text-teal-600",
-              )}
-            >
-              <Icon name="chevron-right" size={18} className="rotate-180" />
-            </button>
-
-            <div className="flex gap-2.5">
-              {Array.from({ length: pages }, (_, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => goTo(i)}
-                  aria-label={`Go to slide ${i + 1}`}
-                  aria-current={i === activePage}
-                  className={cn(
-                    "h-2.5 rounded-full transition-[background-color,width] duration-200",
-                    i === activePage
-                      ? onDark
-                        ? "w-6 bg-teal-300"
-                        : "w-6 bg-teal-500"
-                      : onDark
-                        ? "w-2.5 bg-white/25 hover:bg-white/45"
-                        : "w-2.5 bg-ink/20 hover:bg-ink/35",
-                  )}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={() => goTo((activePage + 1) % pages)}
-              aria-label="Next"
-              className={cn(
-                "flex size-10 items-center justify-center rounded-full border transition-colors duration-200",
-                onDark
-                  ? "border-white/25 bg-white/10 text-white hover:border-teal-300 hover:text-teal-200"
-                  : "border-line bg-white text-ink hover:border-teal-400 hover:text-teal-600",
-              )}
-            >
-              <Icon name="chevron-right" size={18} />
-            </button>
-          </div>
-        ) : null}
+    <div
+      className={cn("relative", className)}
+      role="group"
+      aria-roledescription="carousel"
+      aria-label={ariaLabel}
+    >
+      <div ref={viewport} className="overflow-x-clip overflow-y-visible">
+        <ul
+          ref={rail}
+          className={cn(
+            "flex gap-5",
+            canScroll && "cursor-grab active:cursor-grabbing",
+          )}
+        >
+          {Children.map(children, (child) => (
+            <li className={cn("shrink-0", itemClassName)}>{child}</li>
+          ))}
+        </ul>
       </div>
-    </LazyMotion>
+
+      {canScroll ? (
+        <div className="mt-8 flex items-center justify-center gap-5">
+          <button
+            type="button"
+            onClick={() => goTo((activePage - 1 + pages) % pages)}
+            aria-label="Previous"
+            className={cn(
+              "flex size-10 items-center justify-center rounded-full border transition-colors duration-200",
+              onDark
+                ? "border-white/25 bg-white/10 text-white hover:border-teal-300 hover:text-teal-200"
+                : "border-line bg-white text-ink hover:border-teal-400 hover:text-teal-600",
+            )}
+          >
+            <Icon name="chevron-right" size={18} className="rotate-180" />
+          </button>
+
+          <div className="flex gap-2.5">
+            {Array.from({ length: pages }, (_, i) => (
+              <button
+                key={i}
+                type="button"
+                onClick={() => goTo(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                aria-current={i === activePage}
+                className={cn(
+                  "h-2.5 rounded-full transition-[background-color,width] duration-200",
+                  i === activePage
+                    ? onDark
+                      ? "w-6 bg-teal-300"
+                      : "w-6 bg-teal-500"
+                    : onDark
+                      ? "w-2.5 bg-white/25 hover:bg-white/45"
+                      : "w-2.5 bg-ink/20 hover:bg-ink/35",
+                )}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={() => goTo((activePage + 1) % pages)}
+            aria-label="Next"
+            className={cn(
+              "flex size-10 items-center justify-center rounded-full border transition-colors duration-200",
+              onDark
+                ? "border-white/25 bg-white/10 text-white hover:border-teal-300 hover:text-teal-200"
+                : "border-line bg-white text-ink hover:border-teal-400 hover:text-teal-600",
+            )}
+          >
+            <Icon name="chevron-right" size={18} />
+          </button>
+        </div>
+      ) : null}
+    </div>
   );
 }

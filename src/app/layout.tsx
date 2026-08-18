@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     siteName: site.name,
-    title: `${site.name} — Amazon Brand Management Agency`,
+    title: `${site.name} — Amazon Account Management Agency`,
     description:
       "From strategy to scale, we help Amazon brands increase visibility, drive sales, and maximize profitability.",
   },
