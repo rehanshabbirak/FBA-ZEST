@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { TrustBar } from "@/components/shared/TrustBar";
 import { Services } from "@/components/home/Services";
+import { Process } from "@/components/home/Process";
 import { WhyUs } from "@/components/home/WhyUs";
 import { Testimonials } from "@/components/home/Testimonials";
 
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Hero />
       <TrustBar heading={"We’ve Helped Brands Grow on Amazon"} />
       <Services />
+      <Process />
       <WhyUs />
       <Testimonials />
     </>

@@ -46,7 +46,10 @@ export function WhyUs() {
           </Button>
         </Reveal>
 
-        <StaggerCards className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {/* Four across only from xl: the stats sit in the narrower 1.15fr
+            column, which at lg leaves ~117px per card — less than the widest
+            figure ("+63.6%") needs at this size. */}
+        <StaggerCards className="grid grid-cols-2 gap-4 xl:grid-cols-4">
           {agencyStats.map((stat, i) => (
             <li key={stat.key}>
               <div className="glass-panel flex h-full flex-col items-center justify-center rounded-lg px-4 py-9 text-center transition-[border-color,transform] duration-300 ease-out-soft hover:-translate-y-1 hover:border-teal-500/60">
