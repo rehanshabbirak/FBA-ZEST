@@ -13,21 +13,25 @@ export const site = {
   address: "150-H-1 Johar Town, Lahore",
 } as const;
 
-export type NavItem = { label: string; href: string };
+/** External Calendly booking page used by the consultation CTAs. */
+export const bookingUrl = "https://calendly.com/fbazest/30min";
+
+export type NavItem = { label: string; href: string; icon?: IconName };
 
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
   { label: "Our Services", href: "/services" },
   { label: "Pricing", href: "/pricing" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blogs", href: "/blogs" },
+  { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
 
 export const serviceNav: NavItem[] = services.map((service) => ({
   label: service.navLabel,
-  href: `/services#${service.id}`,
+  href: `/services/${service.id}`,
+  icon: service.icon,
 }));
 
 export const resourceNav: NavItem[] = [

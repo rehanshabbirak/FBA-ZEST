@@ -3,23 +3,14 @@ import heroAnalytics from "../../../public/images/home_hero_analytics.png";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Eyebrow } from "@/components/ui/Eyebrow";
-import { Avatar } from "@/components/ui/Avatar";
 import { Typewriter } from "@/components/ui/Typewriter";
-
-const trustedBy = [
-  "John Carter",
-  "Sarah Mitchell",
-  "Michael Brown",
-  "Elena Ruiz",
-  "David Kim",
-];
+import { bookingUrl } from "@/lib/site";
 
 const step = {
   eyebrow: "0ms",
   headlineA: "60ms",
   body: "260ms",
   actions: "360ms",
-  trust: "460ms",
   visual: "200ms",
 } as const;
 
@@ -74,31 +65,9 @@ export function Hero() {
             <Button href="/services" size="lg">
               Our Services
             </Button>
-            <Button href="/contact" variant="dark" size="lg">
+            <Button href={bookingUrl} variant="dark" size="lg">
               Get in Touch
             </Button>
-          </div>
-
-          <div
-            className="hero-fade mt-12"
-            style={{ animationDelay: step.trust }}
-          >
-            <p className="text-[13px] font-medium text-white/55">
-              Trusted by 100+ Brands Worldwide
-            </p>
-            <ul className="mt-3 flex items-center">
-              {trustedBy.map((name) => (
-                <li key={name} className="-mr-2.5 last:mr-0">
-                  <Avatar name={name} size={38} className="ring-2 ring-black" />
-                </li>
-              ))}
-              <li
-                aria-hidden="true"
-                className="ml-2.5 flex size-9.5 items-center justify-center rounded-full border border-white/25 text-[15px] font-semibold text-white/80"
-              >
-                +
-              </li>
-            </ul>
           </div>
         </div>
 

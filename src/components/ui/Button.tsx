@@ -94,6 +94,21 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   );
 
   if (rest.href !== undefined) {
+    // Off-site targets (booking, socials) open in a new tab so the visitor
+    // keeps their place, and skip the router prefetch Link would attempt.
+    if (/^https?:\/\//.test(rest.href)) {
+      return (
+        <a
+          href={rest.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={classes}
+        >
+          {body}
+        </a>
+      );
+    }
+
     return (
       <Link href={rest.href} className={classes}>
         {body}

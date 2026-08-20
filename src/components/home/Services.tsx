@@ -36,7 +36,7 @@ export function Services() {
           {services.map((service) => (
             <li key={service.id} className="h-full">
               <Link
-                href={`/services#${service.id}`}
+                href={`/services/${service.id}`}
                 className="card-tint-lift group flex h-full flex-col items-center rounded-lg border border-white/12 bg-black/55 px-5 py-8 text-center backdrop-blur-sm hover:border-teal-400/60"
               >
                 <Icon

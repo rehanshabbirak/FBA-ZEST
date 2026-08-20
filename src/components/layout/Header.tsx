@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { mainNav } from "@/lib/site";
+import { bookingUrl, mainNav, serviceNav } from "@/lib/site";
 import { cn } from "@/lib/cn";
 
 function isActive(pathname: string, href: string) {
@@ -18,6 +18,25 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  /** Which nav item's dropdown is showing, by href; null when none. */
+  const [menu, setMenu] = useState<string | null>(null);
+  /** Which mobile nav item is expanded, by href. */
+  const [expanded, setExpanded] = useState<string | null>(null);
+  const closeTimer = useRef(0);
+
+  const openMenu = useCallback((href: string) => {
+    window.clearTimeout(closeTimer.current);
+    setMenu(href);
+  }, []);
+
+  // A short grace period keeps the panel up while the pointer travels the gap
+  // between the trigger and the panel, so a diagonal path does not dismiss it.
+  const scheduleClose = useCallback(() => {
+    window.clearTimeout(closeTimer.current);
+    closeTimer.current = window.setTimeout(() => setMenu(null), 140);
+  }, []);
+
+  useEffect(() => () => window.clearTimeout(closeTimer.current), []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -47,7 +66,11 @@ export function Header() {
   }, []);
 
   useEffect(() => {
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Escape") return;
+      setOpen(false);
+      setMenu(null);
+    };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
@@ -66,26 +89,133 @@ export function Header() {
           <ul className="flex items-center gap-7">
             {mainNav.map((item) => {
               const active = isActive(pathname, item.href);
+              const submenu = item.href === "/services" ? serviceNav : null;
+              const showing = submenu !== null && menu === item.href;
+
               return (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "relative inline-flex h-18 items-center text-[15px] font-medium transition-colors duration-200",
-                      active
-                        ? "text-teal-400"
-                        : "text-white/85 hover:text-white",
-                    )}
-                  >
-                    {item.label}
-                    <span
+                <li
+                  key={item.href}
+                  className={submenu ? "relative" : undefined}
+                  onMouseEnter={
+                    submenu ? () => openMenu(item.href) : undefined
+                  }
+                  onMouseLeave={submenu ? scheduleClose : undefined}
+                  // Capture phase so tabbing out of any panel link closes it.
+                  onBlurCapture={
+                    submenu
+                      ? (e) => {
+                          if (!e.currentTarget.contains(e.relatedTarget)) {
+                            setMenu(null);
+                          }
+                        }
+                      : undefined
+                  }
+                >
+                  {submenu ? (
+                    // Opens the panel only; the services page is reached from
+                    // inside it. Also gives touch devices, which never hover,
+                    // a way in.
+                    <button
+                      type="button"
+                      onClick={() =>
+                        showing ? setMenu(null) : openMenu(item.href)
+                      }
+                      aria-expanded={showing}
+                      aria-haspopup="true"
                       className={cn(
-                        "absolute bottom-5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-teal-400 transition-opacity duration-200",
-                        active ? "opacity-100" : "opacity-0",
+                        "relative inline-flex h-18 cursor-pointer items-center gap-1.5 text-[15px] font-medium transition-colors duration-200",
+                        active
+                          ? "text-teal-400"
+                          : "text-white/85 hover:text-white",
                       )}
-                    />
-                  </Link>
+                    >
+                      {item.label}
+                      <Icon
+                        name="chevron-down"
+                        size={15}
+                        className={cn(
+                          "shrink-0 transition-transform duration-200 ease-out-soft",
+                          showing && "-rotate-180",
+                        )}
+                      />
+                      <span
+                        className={cn(
+                          "absolute bottom-5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-teal-400 transition-opacity duration-200",
+                          active ? "opacity-100" : "opacity-0",
+                        )}
+                      />
+                    </button>
+                  ) : (
+                    <Link
+                      href={item.href}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "relative inline-flex h-18 items-center text-[15px] font-medium transition-colors duration-200",
+                        active
+                          ? "text-teal-400"
+                          : "text-white/85 hover:text-white",
+                      )}
+                    >
+                      {item.label}
+                      <span
+                        className={cn(
+                          "absolute bottom-5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-teal-400 transition-opacity duration-200",
+                          active ? "opacity-100" : "opacity-0",
+                        )}
+                      />
+                    </Link>
+                  )}
+
+                  {submenu ? (
+                    /* pt-2 is a transparent bridge: an actual margin would open
+                       a dead gap that drops the hover before the pointer lands. */
+                    <div
+                      // Delegated to the panel only: a same-page anchor never
+                      // unmounts the header, so the panel must close itself.
+                      onClick={() => setMenu(null)}
+                      className={cn(
+                        "absolute top-full left-1/2 z-50 -translate-x-1/2 pt-2 transition duration-200 ease-out-soft",
+                        showing
+                          ? "visible translate-y-0 opacity-100"
+                          : "invisible -translate-y-1 opacity-0",
+                      )}
+                    >
+                      <ul className="w-72 rounded-[14px] border border-white/10 bg-black p-2 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.85)]">
+                        {submenu.map((service) => (
+                          <li key={service.href}>
+                            <Link
+                              href={service.href}
+                              tabIndex={showing ? undefined : -1}
+                              className="group/item flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[14px] font-medium text-white/80 transition-colors duration-200 hover:bg-white/8 hover:text-white"
+                            >
+                              {service.icon ? (
+                                <Icon
+                                  name={service.icon}
+                                  size={17}
+                                  className="shrink-0 text-teal-400"
+                                />
+                              ) : null}
+                              {service.label}
+                            </Link>
+                          </li>
+                        ))}
+                        <li className="mt-1 border-t border-white/10 pt-1">
+                          <Link
+                            href={item.href}
+                            tabIndex={showing ? undefined : -1}
+                            className="group/all flex items-center gap-2 rounded-[10px] px-3 py-2.5 text-[14px] font-semibold text-teal-400 transition-colors duration-200 hover:bg-white/8"
+                          >
+                            View all services
+                            <Icon
+                              name="arrow-right"
+                              size={15}
+                              className="shrink-0 transition-transform duration-200 ease-out-soft group-hover/all:translate-x-0.5"
+                            />
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
+                  ) : null}
                 </li>
               );
             })}
@@ -94,7 +224,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <div className="hidden md:block">
-            <Button href="/contact">Get a Free Consultation</Button>
+            <Button href={bookingUrl}>Get a Free Consultation</Button>
           </div>
 
           <button
@@ -116,7 +246,10 @@ export function Header() {
       <div
         id="mobile-nav"
         hidden={!open}
-        onClick={() => setOpen(false)}
+        onClick={() => {
+          setOpen(false);
+          setExpanded(null);
+        }}
         className="absolute inset-x-0 top-full max-h-[calc(100dvh-var(--spacing)*18)] overflow-y-auto border-t border-white/10 bg-black shadow-[0_18px_40px_-12px_rgba(0,0,0,0.75)] lg:hidden"
       >
         <Container className="py-4">
@@ -124,31 +257,109 @@ export function Header() {
             <ul className="flex flex-col">
               {mainNav.map((item) => {
                 const active = isActive(pathname, item.href);
+                const submenu = item.href === "/services" ? serviceNav : null;
+                const isOpen = submenu !== null && expanded === item.href;
+
                 return (
                   <li key={item.href}>
-                    <Link
-                      href={item.href}
-                      aria-current={active ? "page" : undefined}
-                      className={cn(
-                        "flex min-h-11 items-center justify-between border-b border-white/8 py-3 text-[15px] font-medium transition-colors",
-                        active
-                          ? "text-teal-400"
-                          : "text-white/85 hover:text-white",
-                      )}
-                    >
-                      {item.label}
-                      <Icon
-                        name="chevron-right"
-                        size={18}
-                        className="opacity-50"
-                      />
-                    </Link>
+                    {submenu ? (
+                      <button
+                        type="button"
+                        // The menu wrapper closes on any click inside it, so
+                        // expanding has to stop the event from reaching it.
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpanded(isOpen ? null : item.href);
+                        }}
+                        aria-expanded={isOpen}
+                        className={cn(
+                          "flex min-h-11 w-full cursor-pointer items-center justify-between border-b border-white/8 py-3 text-[15px] font-medium transition-colors",
+                          active
+                            ? "text-teal-400"
+                            : "text-white/85 hover:text-white",
+                        )}
+                      >
+                        {item.label}
+                        <Icon
+                          name="chevron-down"
+                          size={18}
+                          className={cn(
+                            "shrink-0 transition-transform duration-200 ease-out-soft",
+                            isOpen ? "-rotate-180" : "opacity-50",
+                          )}
+                        />
+                      </button>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={cn(
+                          "flex min-h-11 items-center justify-between border-b border-white/8 py-3 text-[15px] font-medium transition-colors",
+                          active
+                            ? "text-teal-400"
+                            : "text-white/85 hover:text-white",
+                        )}
+                      >
+                        {item.label}
+                        <Icon
+                          name="chevron-right"
+                          size={18}
+                          className="shrink-0 opacity-50"
+                        />
+                      </Link>
+                    )}
+
+                    {submenu ? (
+                      /* 0fr -> 1fr lets the row animate to its natural height,
+                         which a fixed max-height would only approximate. */
+                      <div
+                        className={cn(
+                          "grid transition-[grid-template-rows] duration-300 ease-out-soft",
+                          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+                        )}
+                      >
+                        <ul className="overflow-hidden">
+                          {submenu.map((service) => (
+                            <li key={service.href}>
+                              <Link
+                                href={service.href}
+                                tabIndex={isOpen ? undefined : -1}
+                                className="flex min-h-11 items-center gap-3 border-b border-white/5 py-2.5 pl-4 text-[14px] text-white/70 transition-colors hover:text-white"
+                              >
+                                {service.icon ? (
+                                  <Icon
+                                    name={service.icon}
+                                    size={16}
+                                    className="shrink-0 text-teal-400"
+                                  />
+                                ) : null}
+                                {service.label}
+                              </Link>
+                            </li>
+                          ))}
+                          <li>
+                            <Link
+                              href={item.href}
+                              tabIndex={isOpen ? undefined : -1}
+                              className="flex min-h-11 items-center gap-2 border-b border-white/5 py-2.5 pl-4 text-[14px] font-semibold text-teal-400 transition-colors hover:text-teal-300"
+                            >
+                              View all services
+                              <Icon
+                                name="arrow-right"
+                                size={15}
+                                className="shrink-0"
+                              />
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    ) : null}
                   </li>
                 );
               })}
             </ul>
           </nav>
-          <Button href="/contact" fullWidth size="lg" className="mt-5">
+          <Button href={bookingUrl} fullWidth size="lg" className="mt-5">
             Get a Free Consultation
           </Button>
         </Container>

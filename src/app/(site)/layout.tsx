@@ -1,3 +1,4 @@
+import { TopBar } from "@/components/layout/TopBar";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 
@@ -12,6 +13,7 @@ export default function SiteLayout({
       >
         Skip to content
       </a>
+      <TopBar />
       <Header />
       <main id="main" className="flex-1">
         {children}

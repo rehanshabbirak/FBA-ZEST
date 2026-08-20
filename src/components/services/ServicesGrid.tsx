@@ -47,7 +47,7 @@ export function ServicesGrid() {
                 </p>
 
                 <Link
-                  href="/contact"
+                  href={`/services/${service.id}`}
                   className="mt-6 inline-flex items-center gap-1.5 border-t border-line pt-5 text-[14px] font-semibold text-teal-500 transition-colors duration-300 ease-out-soft hover:text-teal-600"
                 >
                   Learn More

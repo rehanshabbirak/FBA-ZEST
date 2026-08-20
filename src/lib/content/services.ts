@@ -73,3 +73,13 @@ export const services: Service[] = [
       "International Amazon expansion, new marketplace launches, localization, DTC integration, external traffic, and omnichannel growth.",
   },
 ];
+
+/** Resolves the `[slug]` segment of /services/<id> to its service. */
+export function getServiceById(id: string): Service | undefined {
+  return services.find((service) => service.id === id);
+}
+
+/** Everything except the given service, for the cross-links on a detail page. */
+export function getOtherServices(id: string): Service[] {
+  return services.filter((service) => service.id !== id);
+}

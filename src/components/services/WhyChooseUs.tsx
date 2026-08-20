@@ -26,17 +26,17 @@ const PHOTO_ALT =
 export function WhyChooseUs() {
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-teal-50 via-white to-surface">
-      <div className="absolute inset-y-0 right-0 hidden w-[42%] overflow-hidden lg:block">
+      <div className="absolute inset-y-0 right-0 hidden overflow-hidden lg:block lg:left-[calc(min(58%,calc(50%_+_0.08_*_var(--container-page)))_+_48px)]">
         <Image
           src={growthPerson}
           alt={PHOTO_ALT}
           fill
           sizes="45vw"
-          className="scale-110 object-cover object-center origin-right [mask-image:linear-gradient(to_right,transparent_0%,#0009_9%,#000e_16%,#000_24%)]"
+          className="scale-110 object-cover object-center origin-right [mask-image:linear-gradient(to_right,transparent_9%,#0009_17%,#000e_24%,#000_31%)]"
         />
       </div>
 
-      <Container className="relative grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-10 lg:py-14 lg:pr-[42%]">
+      <Container className="relative grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-10 lg:py-14 lg:pr-[min(42%,calc(0.42_*_var(--container-page)))]">
         <Reveal>
           <Eyebrow>Why Choose Us</Eyebrow>
           <RevealText className="mt-4 max-w-[19ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[36px] lg:text-[38px]">
