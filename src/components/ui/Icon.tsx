@@ -249,7 +249,17 @@ const paths = {
   trophy: (
     <path d="M8 4h8v5a4 4 0 0 1-8 0zM12 13v5M8 21h8M5 5H2v2a4 4 0 0 0 4 4M19 5h3v2a4 4 0 0 1-4 4" />
   ),
-  "twitter-x": <path d="M5 4 19 20M19 4 5 20" />,
+  // The one filled glyph in the set. X's mark is a solid shape with angled
+  // cuts, not two crossed strokes — drawn as an outline at the 16px these
+  // render at, the counter closes up and it reads as a close button. `fill`
+  // and `stroke` are set here to override the root svg's defaults.
+  "twitter-x": (
+    <path
+      fill="currentColor"
+      stroke="none"
+      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+    />
+  ),
   users: (
     <>
       <circle cx="9" cy="8" r="3" />
