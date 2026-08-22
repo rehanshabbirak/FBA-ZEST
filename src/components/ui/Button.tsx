@@ -119,7 +119,14 @@ export function Button(props: ButtonAsLink | ButtonAsButton) {
   // Defaults to "button" so a Button dropped inside a form cannot submit it by
   // accident; an explicit type passed by the caller still wins.
   return (
+    // suppressHydrationWarning: form-filler browser extensions stamp an
+    // `fdprocessedid` attribute onto buttons and inputs before React hydrates,
+    // which React reports as a mismatch in development. Every <button>,
+    // <input>, <select> and <textarea> in the app carries this for that reason
+    // — it is not hiding a known bug, and it costs us hydration warnings on
+    // these elements, so check it first if a control ever hydrates wrong.
     <button
+      suppressHydrationWarning
       type="button"
       {...(rest as ButtonHTMLAttributes<HTMLButtonElement>)}
       className={classes}

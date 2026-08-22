@@ -76,6 +76,7 @@ export function ContactForm() {
         <div aria-hidden="true" className="absolute -left-[9999px] top-auto">
           <label htmlFor="hp-reference">Do not fill this in</label>
           <input
+            suppressHydrationWarning
             id="hp-reference"
             name="hp_reference"
             type="text"
@@ -93,6 +94,7 @@ export function ContactForm() {
               Full Name
             </Label>
             <input
+              suppressHydrationWarning
               id="name"
               name="name"
               type="text"
@@ -112,6 +114,7 @@ export function ContactForm() {
               Email Address
             </Label>
             <input
+              suppressHydrationWarning
               id="email"
               name="email"
               type="email"
@@ -129,6 +132,7 @@ export function ContactForm() {
           <div>
             <Label htmlFor="company">Company Name</Label>
             <input
+              suppressHydrationWarning
               id="company"
               name="company"
               type="text"
@@ -140,6 +144,7 @@ export function ContactForm() {
           <div>
             <Label htmlFor="phone">Phone Number</Label>
             <input
+              suppressHydrationWarning
               id="phone"
               name="phone"
               type="tel"
@@ -151,6 +156,7 @@ export function ContactForm() {
           <div className="sm:col-span-2">
             <Label htmlFor="service">Service Interested In</Label>
             <select
+              suppressHydrationWarning
               id="service"
               name="service"
               defaultValue=""
@@ -177,6 +183,7 @@ export function ContactForm() {
               Message
             </Label>
             <textarea
+              suppressHydrationWarning
               id="message"
               name="message"
               rows={5}
@@ -196,6 +203,7 @@ export function ContactForm() {
         </div>
 
         <button
+          suppressHydrationWarning
           type="submit"
           disabled={isPending}
           className="group/btn mt-6 inline-flex h-13 w-full items-center justify-center gap-2 rounded-[10px] bg-teal-500 text-[15px] font-semibold text-white transition-[background-color,box-shadow] duration-200 ease-out-soft hover:bg-teal-400 hover:shadow-cta disabled:pointer-events-none disabled:opacity-55"

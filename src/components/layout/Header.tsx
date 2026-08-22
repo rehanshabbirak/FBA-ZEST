@@ -96,9 +96,7 @@ export function Header() {
                 <li
                   key={item.href}
                   className={submenu ? "relative" : undefined}
-                  onMouseEnter={
-                    submenu ? () => openMenu(item.href) : undefined
-                  }
+                  onMouseEnter={submenu ? () => openMenu(item.href) : undefined}
                   onMouseLeave={submenu ? scheduleClose : undefined}
                   // Capture phase so tabbing out of any panel link closes it.
                   onBlurCapture={
@@ -112,39 +110,59 @@ export function Header() {
                   }
                 >
                   {submenu ? (
-                    // Opens the panel only; the services page is reached from
-                    // inside it. Also gives touch devices, which never hover,
-                    // a way in.
-                    <button
-                      type="button"
-                      onClick={() =>
-                        showing ? setMenu(null) : openMenu(item.href)
-                      }
-                      aria-expanded={showing}
-                      aria-haspopup="true"
-                      className={cn(
-                        "relative inline-flex h-18 cursor-pointer items-center gap-1.5 text-[15px] font-medium transition-colors duration-200",
-                        active
-                          ? "text-teal-400"
-                          : "text-white/85 hover:text-white",
-                      )}
-                    >
-                      {item.label}
-                      <Icon
-                        name="chevron-down"
-                        size={15}
+                    // Label and chevron are separate controls: the label goes
+                    // to the section's own page, the chevron opens the panel.
+                    // They cannot be one element — the label has to be a link
+                    // to navigate, and a button nested inside a link is invalid
+                    // markup. Splitting them also keeps the panel reachable on
+                    // touch, which never fires the hover that opens it.
+                    <div className="relative flex h-18 items-center gap-1.5">
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
                         className={cn(
-                          "shrink-0 transition-transform duration-200 ease-out-soft",
-                          showing && "-rotate-180",
+                          "text-[15px] font-medium transition-colors duration-200",
+                          active
+                            ? "text-teal-400"
+                            : "text-white/85 hover:text-white",
                         )}
-                      />
+                      >
+                        {item.label}
+                      </Link>
+
+                      <button
+                        suppressHydrationWarning
+                        type="button"
+                        onClick={() =>
+                          showing ? setMenu(null) : openMenu(item.href)
+                        }
+                        aria-expanded={showing}
+                        aria-haspopup="true"
+                        aria-label={`${showing ? "Hide" : "Show"} ${item.label} menu`}
+                        className={cn(
+                          "inline-flex cursor-pointer items-center transition-colors duration-200",
+                          active
+                            ? "text-teal-400"
+                            : "text-white/85 hover:text-white",
+                        )}
+                      >
+                        <Icon
+                          name="chevron-down"
+                          size={15}
+                          className={cn(
+                            "shrink-0 transition-transform duration-200 ease-out-soft",
+                            showing && "-rotate-180",
+                          )}
+                        />
+                      </button>
+
                       <span
                         className={cn(
                           "absolute bottom-5 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-teal-400 transition-opacity duration-200",
                           active ? "opacity-100" : "opacity-0",
                         )}
                       />
-                    </button>
+                    </div>
                   ) : (
                     <Link
                       href={item.href}
@@ -228,6 +246,7 @@ export function Header() {
           </div>
 
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
@@ -264,6 +283,7 @@ export function Header() {
                   <li key={item.href}>
                     {submenu ? (
                       <button
+                        suppressHydrationWarning
                         type="button"
                         // The menu wrapper closes on any click inside it, so
                         // expanding has to stop the event from reaching it.

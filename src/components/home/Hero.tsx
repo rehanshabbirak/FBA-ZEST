@@ -18,13 +18,16 @@ const TYPING_STARTS_AT = 220;
 
 export function Hero() {
   return (
-    <section className="bg-hero-dark relative overflow-hidden">
+    <section
+      data-testid="hero"
+      className="bg-hero-dark relative overflow-hidden"
+    >
       <div
         aria-hidden="true"
         className="teal-glow animate-ambient-glow pointer-events-none absolute -top-[12%] -right-[10%] h-140 w-180"
       />
 
-      <Container className="relative grid items-center gap-12 py-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)] lg:gap-10 lg:py-24">
+      <Container className="relative grid items-center gap-12 py-10 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,1fr)] lg:gap-10 lg:py-12">
         <div className="max-w-xl lg:max-w-none">
           <div className="hero-fade" style={{ animationDelay: step.eyebrow }}>
             <Eyebrow>Amazon Account Management Experts</Eyebrow>

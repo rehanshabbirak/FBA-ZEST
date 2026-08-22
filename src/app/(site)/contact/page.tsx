@@ -5,6 +5,7 @@ import { CTABanner } from "@/components/shared/CTABanner";
 import { ContactHero } from "@/components/contact/ContactHero";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { ContactChannels } from "@/components/contact/ContactChannels";
+import { bookingUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -31,6 +32,7 @@ export default function ContactPage() {
         title="Ready to Take Your Amazon Business to the Next Level?"
         description="Book a free consultation call with our experts and get a customized growth plan."
         ctaLabel="Book Free Consultation"
+        ctaHref={bookingUrl}
       />
     </>
   );

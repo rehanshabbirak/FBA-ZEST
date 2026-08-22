@@ -58,14 +58,14 @@ export function ShareRow({ url, title }: ShareRowProps) {
         ))}
         <li>
           <button
+            suppressHydrationWarning
             type="button"
             aria-label={copied ? "Link copied" : "Copy link"}
             onClick={async () => {
               try {
                 await navigator.clipboard.writeText(url);
                 setCopied(true);
-              } catch {
-              }
+              } catch {}
             }}
             className="flex size-9 items-center justify-center rounded-full border border-line text-muted transition-colors duration-200 hover:border-teal-400 hover:text-teal-600"
           >

@@ -75,10 +75,7 @@ function Block({ block, number }: { block: ArticleBlock; number: number }) {
       const tone = calloutTones[block.tone];
       return (
         <div
-          className={cn(
-            "flex gap-3.5 rounded-lg border p-4 lg:p-5",
-            tone.box,
-          )}
+          className={cn("flex gap-3.5 rounded-lg border p-4 lg:p-5", tone.box)}
         >
           <Icon
             name={tone.icon}
@@ -152,11 +149,7 @@ function Blocks({
   return (
     <>
       {numbered(blocks, startNumber).map((entry, index) => (
-        <Block
-          key={index}
-          block={entry.block}
-          number={entry.number}
-        />
+        <Block key={index} block={entry.block} number={entry.number} />
       ))}
     </>
   );
@@ -177,7 +170,10 @@ export function ArticleBody({
   }, []);
 
   const foldAt = sectionStarts[SECTIONS_BEFORE_FOLD] ?? blocks.length;
-  const foldedSections = Math.max(0, sectionStarts.length - SECTIONS_BEFORE_FOLD);
+  const foldedSections = Math.max(
+    0,
+    sectionStarts.length - SECTIONS_BEFORE_FOLD,
+  );
   const hasFold = foldAt < blocks.length;
 
   return (
@@ -201,6 +197,7 @@ export function ArticleBody({
 
           {expanded ? null : (
             <button
+              suppressHydrationWarning
               type="button"
               onClick={expand}
               className="mt-1 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] border border-line-strong bg-white text-[14px] font-semibold text-teal-600 transition-colors duration-200 ease-out-soft hover:border-teal-400 hover:bg-teal-50 sm:w-auto sm:self-center sm:px-8"

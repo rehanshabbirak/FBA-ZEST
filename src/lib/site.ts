@@ -38,6 +38,7 @@ export const resourceNav: NavItem[] = [
   { label: "Blog", href: "/blogs" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Amazon Seller Guide", href: "/blogs" },
+  { label: "FAQs", href: "/#faq" },
   { label: "Privacy Policy", href: "/privacy-policy" },
 ];
 

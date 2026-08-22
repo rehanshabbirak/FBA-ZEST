@@ -72,8 +72,8 @@ const steps: Step[] = [
 
 export function Process() {
   return (
-    <section className="bg-surface">
-      <Container className="py-16 lg:py-24">
+    <section data-testid="process" className="bg-surface">
+      <Container className="py-10 lg:py-12">
         <Reveal className="text-center">
           <Eyebrow>Our Process</Eyebrow>
           <RevealText className="mx-auto mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">

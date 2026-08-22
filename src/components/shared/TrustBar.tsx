@@ -13,10 +13,11 @@ type TrustBarProps = {
 export function TrustBar({ heading, dividers = false }: TrustBarProps) {
   return (
     <section
+      data-testid="trust-bar"
       aria-label="Brands we work with"
       className={cn("bg-surface", dividers && "border-y border-line")}
     >
-      <Container className="py-12 lg:py-14">
+      <Container className="py-10 lg:py-12">
         <Reveal>
           <p className="text-center text-[14px] text-muted">{heading}</p>
 

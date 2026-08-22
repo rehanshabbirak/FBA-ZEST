@@ -302,6 +302,7 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
                 ) : null}
                 <div className="flex justify-center pt-7">
                   <button
+                    suppressHydrationWarning
                     type="button"
                     ref={toggleRef}
                     aria-expanded={expanded}

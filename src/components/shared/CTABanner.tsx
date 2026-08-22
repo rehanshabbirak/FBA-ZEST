@@ -29,7 +29,7 @@ export function CTABanner({
   ctaHref = "/contact",
 }: CTABannerProps) {
   return (
-    <section className="bg-white">
+    <section data-testid="cta-banner" className="bg-white">
       <Container className="py-14 lg:py-16">
         <Reveal>
           <div className="relative flex flex-col items-center gap-7 overflow-hidden rounded-lg bg-black px-7 py-10 text-center lg:flex-row lg:justify-between lg:px-12 lg:py-11 lg:text-left">

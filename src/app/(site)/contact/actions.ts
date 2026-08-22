@@ -4,6 +4,13 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { renderEnquiryEmail, type Enquiry } from "@/lib/email/enquiry-email";
 
+/** The homepage account-review bar: email and revenue band, nothing else. */
+export type AccountReviewState = {
+  status: "idle" | "success" | "error";
+  message: string;
+  errors: Partial<Record<"email" | "revenue", string>>;
+};
+
 export type ContactFormState = {
   status: "idle" | "success" | "error";
   message: string;
@@ -171,6 +178,101 @@ export async function submitContactForm(
   return {
     status: "success",
     message: "Thanks — your message is on its way. We reply within 24 hours.",
+    errors: {},
+  };
+}
+
+/** Kept in step with the options the form offers, so a tampered <select>
+ *  cannot post an arbitrary string into the notification email. */
+const REVENUE_BANDS = [
+  "Under $50K",
+  "$50K–$150K",
+  "$150K–$500K",
+  "$500K+",
+] as const;
+
+/**
+ * The short homepage variant of {@link submitContactForm}. It collects only an
+ * email and a revenue band, so it validates and shapes its own enquiry — but
+ * shares this module's rate limiting and delivery, so both routes are held to
+ * the same limits and land in the same inbox.
+ */
+export async function submitAccountReview(
+  _prevState: AccountReviewState,
+  formData: FormData,
+): Promise<AccountReviewState> {
+  if (field(formData, "hp_reference")) {
+    return {
+      status: "success",
+      message: "Thanks — we will be in touch within one business day.",
+      errors: {},
+    };
+  }
+
+  const email = field(formData, "email");
+  const revenue = field(formData, "revenue");
+  const errors: AccountReviewState["errors"] = {};
+
+  if (!email) {
+    errors.email = "Please enter your work email.";
+  } else if (!EMAIL_PATTERN.test(email)) {
+    errors.email = "That email address does not look right.";
+  } else if (email.length > MAX_LENGTH.short) {
+    errors.email = "That email address is too long.";
+  }
+
+  if (!revenue) {
+    errors.revenue = "Please choose a revenue range.";
+  } else if (
+    !REVENUE_BANDS.includes(revenue as (typeof REVENUE_BANDS)[number])
+  ) {
+    errors.revenue = "Please choose one of the listed ranges.";
+  }
+
+  if (Object.keys(errors).length > 0) {
+    return {
+      status: "error",
+      message: "Please check the highlighted fields and try again.",
+      errors,
+    };
+  }
+
+  if (isRateLimited(await clientKey())) {
+    return {
+      status: "error",
+      message:
+        "You have sent several requests already. Please try again in a few minutes.",
+      errors: {},
+    };
+  }
+
+  try {
+    await deliverEnquiry({
+      // No name is collected, so the address stands in for one: it is what the
+      // subject line and reply-to need, and inventing a placeholder would put
+      // fabricated text in front of whoever reads the notification.
+      name: email,
+      email,
+      company: "",
+      phone: "",
+      service: "Account review",
+      message: `Requested an account review from the homepage. Monthly Amazon revenue: ${revenue}.`,
+    });
+  } catch (error) {
+    console.error(
+      "[account-review] delivery failed:",
+      error instanceof Error ? error.message : "unknown error",
+    );
+    return {
+      status: "error",
+      message: "Something went wrong sending your request. Please try again.",
+      errors: {},
+    };
+  }
+
+  return {
+    status: "success",
+    message: "Thanks — we will be in touch within one business day.",
     errors: {},
   };
 }

@@ -1,5 +1,6 @@
+import { Button } from "@/components/ui/Button";
 import { Icon, type IconName } from "@/components/ui/Icon";
-import { site } from "@/lib/site";
+import { bookingUrl, site } from "@/lib/site";
 
 type Channel = {
   icon: IconName;
@@ -51,7 +52,27 @@ export function ContactChannels() {
         any of the following channels.
       </p>
 
-      <ul className="mt-6 flex flex-col gap-4">
+      {/* Sits above the channel list: booking is the fastest route to a
+          conversation, and it is the one channel the form cannot replace. */}
+      <div className="mt-6 rounded-lg border border-teal-500/25 bg-teal-50 p-5">
+        <div className="flex items-start gap-4">
+          <span className="flex size-11 shrink-0 items-center justify-center rounded-full bg-teal-500 text-white">
+            <Icon name="calendar" size={19} strokeWidth={1.7} />
+          </span>
+          <div className="min-w-0">
+            <p className="text-[15px] font-bold text-ink">Book a Free Call</p>
+            <p className="mt-1.5 text-[13.5px] leading-[1.55] text-muted">
+              Prefer to talk it through? Pick a 30-minute slot that suits you
+              and speak with an Amazon specialist no waiting on a reply.
+            </p>
+          </div>
+        </div>
+        <Button href={bookingUrl} fullWidth className="mt-4">
+          Schedule on Calendly
+        </Button>
+      </div>
+
+      <ul className="mt-4 flex flex-col gap-4">
         {channels.map((channel) => (
           <li
             key={channel.title}

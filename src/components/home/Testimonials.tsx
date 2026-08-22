@@ -54,8 +54,8 @@ const testimonials: Testimonial[] = [
 
 export function Testimonials() {
   return (
-    <section className="bg-surface">
-      <Container className="py-16 lg:py-24">
+    <section data-testid="testimonials" className="bg-surface">
+      <Container className="py-10 lg:py-12">
         <Reveal className="text-center">
           <Eyebrow>Clients Love Us</Eyebrow>
           <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">

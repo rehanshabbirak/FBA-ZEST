@@ -17,7 +17,7 @@ const icons: Record<Stat["key"], IconName> = {
 
 export function WhyUs() {
   return (
-    <section className="relative overflow-hidden bg-black">
+    <section data-testid="why-us" className="relative overflow-hidden bg-black">
       <div
         aria-hidden="true"
         className="dot-grid pointer-events-none absolute inset-0 opacity-45 [mask-image:radial-gradient(70%_60%_at_65%_50%,#000,transparent)]"
@@ -27,7 +27,7 @@ export function WhyUs() {
         className="teal-glow pointer-events-none absolute -bottom-[30%] -left-[5%] h-105 w-130 opacity-45"
       />
 
-      <Container className="relative grid gap-12 py-16 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16 lg:py-24">
+      <Container className="relative grid gap-12 py-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16 lg:py-12">
         <Reveal>
           <Eyebrow>Why Choose FBA Zest?</Eyebrow>
           <RevealText className="mt-4 max-w-[14ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
@@ -52,12 +52,21 @@ export function WhyUs() {
         <StaggerCards className="grid grid-cols-2 gap-4 xl:grid-cols-4">
           {agencyStats.map((stat, i) => (
             <li key={stat.key}>
-              <div className="glass-panel flex h-full flex-col items-center justify-center rounded-lg px-4 py-9 text-center transition-[border-color,transform] duration-300 ease-out-soft hover:-translate-y-1 hover:border-teal-500/60">
+              {/* Properties are listed rather than using `transition-all`: the
+                  fill brightens through the overlay below, because the panel's
+                  own background is set by `glass-panel` and swapping a
+                  background-color under a backdrop-filter flickers in Safari. */}
+              <div className="group glass-panel relative isolate flex h-full flex-col items-center justify-center overflow-hidden rounded-lg px-4 py-9 text-center transition-[transform,border-color,box-shadow] duration-500 ease-out-soft hover:-translate-y-1.5 hover:border-teal-500/60 hover:shadow-[0_22px_46px_-22px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.22)]">
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 -z-10 bg-white/0 transition-colors duration-500 ease-out-soft group-hover:bg-white/6"
+                />
+
                 <Icon
                   name={icons[stat.key]}
                   size={34}
                   strokeWidth={1.5}
-                  className="text-teal-400"
+                  className="text-teal-400 transition-transform duration-500 ease-out-soft group-hover:-translate-y-0.5 group-hover:scale-110"
                 />
                 <p className="mt-6 text-[30px] leading-none font-bold text-white lg:text-[34px]">
                   <CountUp
@@ -68,7 +77,7 @@ export function WhyUs() {
                     delay={i * 80}
                   />
                 </p>
-                <p className="mt-2.5 text-[12px] font-medium text-white/60">
+                <p className="mt-2.5 text-[12px] font-medium text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
                   {stat.label}
                 </p>
               </div>

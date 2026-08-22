@@ -261,6 +261,7 @@ export function DragCarousel({
       {canScroll ? (
         <div className="mt-8 flex items-center justify-center gap-5">
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => goTo((activePage - 1 + pages) % pages)}
             aria-label="Previous"
@@ -277,6 +278,7 @@ export function DragCarousel({
           <div className="flex gap-2.5">
             {Array.from({ length: pages }, (_, i) => (
               <button
+                suppressHydrationWarning
                 key={i}
                 type="button"
                 onClick={() => goTo(i)}
@@ -297,6 +299,7 @@ export function DragCarousel({
           </div>
 
           <button
+            suppressHydrationWarning
             type="button"
             onClick={() => goTo((activePage + 1) % pages)}
             aria-label="Next"

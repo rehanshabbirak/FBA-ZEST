@@ -11,14 +11,17 @@ import { services } from "@/lib/content/services";
 
 export function Services() {
   return (
-    <section className="relative isolate overflow-hidden bg-black">
+    <section
+      data-testid="services"
+      className="relative isolate overflow-hidden bg-black"
+    >
       <VideoBackground
         src="/videos/background-video.mp4"
         videoClassName="brightness-112 contrast-106 saturate-112"
         overlayClassName="bg-linear-to-b from-black/78 from-0% via-black/30 via-52% to-black/55 after:absolute after:inset-0 after:bg-teal-800/8"
       />
 
-      <Container className="relative z-10 py-16 lg:py-24">
+      <Container className="relative z-10 py-10 lg:py-12">
         <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
           <div>
             <Eyebrow>What We Do</Eyebrow>

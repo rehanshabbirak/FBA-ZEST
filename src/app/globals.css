@@ -138,6 +138,25 @@
     background-color: var(--color-teal-500);
     color: var(--color-white);
   }
+
+  /* Chrome paints autofilled fields with its own pale blue, applied as a UA
+     style that `background-color` cannot override. The long transition is the
+     way out: the fill is a transition target, so a duration this large means
+     it never visibly arrives and the field keeps its own background. Matters
+     most on the dark forms, where the default lands as a white slab.
+     `currentColor` keeps the text in whatever colour that field already sets,
+     so one rule covers the light and dark forms alike. */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: currentColor;
+    caret-color: currentColor;
+    transition:
+      background-color 600000s 0s,
+      color 600000s 0s;
+  }
 }
 
 @utility teal-glow {
