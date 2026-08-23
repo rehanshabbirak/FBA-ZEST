@@ -141,7 +141,12 @@ export function ProofChart() {
               scale: 1,
               duration: 0.4,
               ease: "back.out(2.4)",
-              transformOrigin: "center",
+              // Absolute user units, not "center". GSAP resolves a relative
+              // origin against the group's bbox and caches it on the DOM node;
+              // switching metric only moves the circles' cx/cy, so a cached
+              // origin would still describe the previous metric's dot and the
+              // scale would be applied about a point that is no longer there.
+              svgOrigin: `${chart.end.x} ${chart.end.y}`,
             },
             "-=0.3",
           );
@@ -287,7 +292,10 @@ export function ProofChart() {
             className="text-teal-400"
           />
 
-          <g data-proof-end className="text-teal-400">
+          {/* Keyed so the metric toggle mounts a fresh node: GSAP's transform
+              cache lives on the element, and reusing it across a move leaves
+              the dot pinned to the previous metric's end point. */}
+          <g key={activeId} data-proof-end className="text-teal-400">
             <circle
               cx={chart.end.x}
               cy={chart.end.y}
