@@ -24,6 +24,12 @@ if (typeof window !== "undefined") {
 
   ScrollTrigger.config({ ignoreMobileResize: true });
 
+  // Temporary: exposes ScrollTrigger to the devtools console in development so
+  // trigger positions can be inspected after a client-side navigation.
+  if (process.env.NODE_ENV !== "production") {
+    (window as unknown as Record<string, unknown>).ScrollTrigger = ScrollTrigger;
+  }
+
   if (document.readyState === "complete") {
     ScrollTrigger.refresh();
   } else {

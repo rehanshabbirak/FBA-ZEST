@@ -74,7 +74,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
 
       <section className="bg-surface">
         <ArticleReaderProvider>
-          <Container className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_336px] lg:py-16">
+          <Container className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_21rem] lg:py-16">
             <article className="flex flex-col gap-7">
               <div className="relative aspect-16/9 overflow-hidden rounded-lg border border-line bg-white shadow-card">
                 <Image
@@ -82,7 +82,7 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                   alt=""
                   fill
                   priority
-                  sizes="(max-width: 1024px) 100vw, 800px"
+                  sizes="(max-width: 1024px) 100vw, 56vw"
                   className="object-cover"
                 />
               </div>
@@ -101,10 +101,10 @@ export default async function BlogPostPage({ params }: { params: Params }) {
                     className="group flex items-center gap-4 sm:max-w-xs"
                   >
                     <span className="min-w-0 text-right">
-                      <span className="block text-[11.5px] font-semibold text-subtle">
+                      <span className="block text-[0.71875rem] font-semibold text-subtle">
                         Next Article
                       </span>
-                      <span className="mt-1 block text-[13px] leading-snug font-bold text-ink transition-colors duration-200 group-hover:text-teal-600">
+                      <span className="mt-1 block text-[0.8125rem] leading-snug font-bold text-ink transition-colors duration-200 group-hover:text-teal-600">
                         {next.title}
                       </span>
                     </span>

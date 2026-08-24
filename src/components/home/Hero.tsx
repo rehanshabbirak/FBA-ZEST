@@ -33,7 +33,7 @@ export function Hero() {
             <Eyebrow>Amazon Account Management Experts</Eyebrow>
           </div>
 
-          <h1 className="mt-5 text-[38px] leading-[1.08] font-extrabold tracking-[-0.02em] text-white sm:text-[48px] lg:text-[54px] xl:text-[58px]">
+          <h1 className="mt-5 text-[2.375rem] leading-[1.08] font-extrabold tracking-[-0.02em] text-white sm:text-5xl lg:text-[3.375rem] xl:text-[3.625rem]">
             <span className="hero-line-mask">
               <span
                 className="hero-line"
@@ -54,7 +54,7 @@ export function Hero() {
           </h1>
 
           <p
-            className="hero-fade mt-6 max-w-[46ch] text-[17px] leading-[1.65] text-white/70"
+            className="hero-fade mt-6 max-w-[46ch] text-[1.0625rem] leading-[1.65] text-white/70"
             style={{ animationDelay: step.body }}
           >
             From strategy to scale, we help Amazon brands increase visibility,
@@ -84,7 +84,7 @@ export function Hero() {
               alt="Amazon seller analytics dashboard on a laptop showing $1,234,567 in total sales, 25,643 orders and 18.6% ACOS, beside branded shipping boxes."
               priority
               placeholder="blur"
-              sizes="(max-width: 1024px) 100vw, 640px"
+              sizes="(max-width: 1024px) 100vw, 45vw"
               className="h-auto w-full"
             />
           </div>

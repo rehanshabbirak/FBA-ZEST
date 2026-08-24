@@ -25,7 +25,7 @@ export async function CategoryFilter({ active, query }: CategoryFilterProps) {
                 href={blogHref({ category: tab.slug, query })}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "inline-flex h-9 items-center rounded-[8px] px-4 text-[13px] font-semibold transition-colors duration-200",
+                  "inline-flex h-9 items-center rounded-sm px-4 text-[0.8125rem] font-semibold transition-colors duration-200",
                   isActive
                     ? "bg-teal-500 text-white"
                     : "text-muted hover:bg-teal-50 hover:text-teal-600",

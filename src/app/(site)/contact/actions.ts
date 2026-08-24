@@ -4,7 +4,6 @@ import { headers } from "next/headers";
 import { Resend } from "resend";
 import { renderEnquiryEmail, type Enquiry } from "@/lib/email/enquiry-email";
 
-/** The homepage account-review bar: email and revenue band, nothing else. */
 export type AccountReviewState = {
   status: "idle" | "success" | "error";
   message: string;
@@ -19,17 +18,10 @@ export type ContactFormState = {
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/** Anything longer is a bot pasting, not a person writing. */
 const MAX_LENGTH = { short: 200, message: 5000 } as const;
 
 const RATE_LIMIT = { windowMs: 10 * 60 * 1000, max: 3 } as const;
 
-/**
- * Per-process submission log. On a single server this limits every visitor; on
- * serverless each instance keeps its own copy, so the effective ceiling is
- * `max` per instance rather than per site. That is enough to blunt a naive
- * flood — move to a shared store (Redis/Upstash) if real abuse appears.
- */
 const recentSubmissions = new Map<string, number[]>();
 
 function field(data: FormData, key: string): string {
@@ -182,8 +174,6 @@ export async function submitContactForm(
   };
 }
 
-/** Kept in step with the options the form offers, so a tampered <select>
- *  cannot post an arbitrary string into the notification email. */
 const REVENUE_BANDS = [
   "Under $50K",
   "$50K–$150K",
@@ -191,12 +181,6 @@ const REVENUE_BANDS = [
   "$500K+",
 ] as const;
 
-/**
- * The short homepage variant of {@link submitContactForm}. It collects only an
- * email and a revenue band, so it validates and shapes its own enquiry — but
- * shares this module's rate limiting and delivery, so both routes are held to
- * the same limits and land in the same inbox.
- */
 export async function submitAccountReview(
   _prevState: AccountReviewState,
   formData: FormData,

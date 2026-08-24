@@ -3,7 +3,6 @@ import type { IconName } from "@/components/ui/Icon";
 export type PricingPlan = {
   id: string;
   name: string;
-  /** Digits only; the currency symbol and period are rendered separately. */
   price: string;
   period: string;
   features: string[];
@@ -19,7 +18,6 @@ export type PricingAssurance = {
   description: string;
 };
 
-/** Shown as a row of check marks under the hero copy. */
 export const pricingGuarantees = [
   "No Long-Term Contracts",
   "Cancel Anytime",

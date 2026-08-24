@@ -17,17 +17,8 @@ export type PolicySection = {
   contacts?: PolicyContact[];
 };
 
-/** How far behind today the published "Last updated" date sits. */
 const UPDATED_LAG_DAYS = 5;
 
-/**
- * Returns the "Last updated" date as an ISO day string, always
- * UPDATED_LAG_DAYS behind today. A function rather than a module constant so
- * the value is recomputed
- * on each regeneration instead of being frozen at the first module evaluation;
- * the page sets a `revalidate` window to drive that. UTC throughout, matching
- * how the hero formats it for display.
- */
 export function getPrivacyPolicyUpdatedAt(): string {
   const date = new Date();
   date.setUTCDate(date.getUTCDate() - UPDATED_LAG_DAYS);

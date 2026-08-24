@@ -51,24 +51,24 @@ export function NotFound() {
       <Container className="relative py-14 lg:py-20">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-14">
           <div className="max-w-xl">
-            <p className="text-[13px] font-bold tracking-[0.34em] text-teal-400 uppercase">
+            <p className="text-[0.8125rem] font-bold tracking-[0.34em] text-teal-400 uppercase">
               Oops!
             </p>
 
-            <p className="mt-4 text-[104px] leading-[0.92] font-extrabold tracking-[-0.045em] text-white sm:text-[132px] lg:text-[150px]">
+            <p className="mt-4 text-[6.5rem] leading-[0.92] font-extrabold tracking-[-0.045em] text-white sm:text-[8.25rem] lg:text-[9.375rem]">
               4<span className="text-teal-500">0</span>4
             </p>
 
-            <h1 className="mt-3 text-[34px] leading-[1.08] font-extrabold tracking-[-0.02em] text-white sm:text-[42px] lg:text-[48px]">
+            <h1 className="mt-3 text-[2.125rem] leading-[1.08] font-extrabold tracking-[-0.02em] text-white sm:text-[2.625rem] lg:text-5xl">
               Page Not Found
             </h1>
 
             <span
               aria-hidden="true"
-              className="mt-6 block h-px w-20 bg-white/25"
+              className="mt-6 block h-[0.0625rem] w-20 bg-white/25"
             />
 
-            <p className="mt-6 max-w-[42ch] text-[16px] leading-[1.7] text-white/65">
+            <p className="mt-6 max-w-[42ch] text-base leading-[1.7] text-white/65">
               The page you&rsquo;re looking for doesn&rsquo;t exist or has been
               moved. Let&rsquo;s get you back on track.
             </p>
@@ -102,10 +102,10 @@ export function NotFound() {
                 <Icon name="compass" size={24} strokeWidth={1.6} />
               </span>
               <div>
-                <p className="text-[16px] font-bold text-white">
+                <p className="text-[1rem] font-bold text-white">
                   Not sure where to go?
                 </p>
-                <p className="mt-1 text-[13.5px] leading-[1.5] text-white/55">
+                <p className="mt-1 text-[0.84375rem] leading-[1.5] text-white/55">
                   Here are some helpful links to get you started.
                 </p>
               </div>
@@ -124,10 +124,10 @@ export function NotFound() {
                   className="mt-0.5 shrink-0 text-teal-400"
                 />
                 <span>
-                  <span className="block text-[14.5px] font-bold text-white transition-colors duration-200 group-hover:text-teal-400">
+                  <span className="block text-[0.90625rem] font-bold text-white transition-colors duration-200 group-hover:text-teal-400">
                     {link.title}
                   </span>
-                  <span className="mt-1 block text-[13px] leading-[1.5] text-white/55">
+                  <span className="mt-1 block text-[0.8125rem] leading-[1.5] text-white/55">
                     {link.description}
                   </span>
                 </span>

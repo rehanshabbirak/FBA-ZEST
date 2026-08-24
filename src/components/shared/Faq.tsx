@@ -28,7 +28,7 @@ export function Faq() {
       <Container className="py-10 lg:py-12">
         <Reveal className="text-center">
           <Eyebrow>FAQ</Eyebrow>
-          <RevealText className="mt-4 text-[34px] leading-[1.12] font-bold tracking-[-0.02em] text-ink sm:text-[44px] lg:text-[52px]">
+          <RevealText className="mt-4 text-[2.125rem] leading-[1.12] font-bold tracking-[-0.02em] text-ink sm:text-[2.75rem] lg:text-[3.25rem]">
             Frequently Asked Questions
           </RevealText>
           <span
@@ -66,7 +66,7 @@ export function Faq() {
                     >
                       <span
                         className={cn(
-                          "text-[14px] leading-snug font-semibold transition-colors duration-200",
+                          "text-sm leading-snug font-semibold transition-colors duration-200",
                           isOpen ? "text-teal-600" : "text-ink",
                         )}
                       >
@@ -84,8 +84,6 @@ export function Faq() {
                     </button>
                   </h3>
 
-                  {/* 0fr -> 1fr animates to the answer's natural height without
-                      measuring it or pinning a max-height guess. */}
                   <div
                     id={panelId}
                     role="region"
@@ -100,13 +98,13 @@ export function Faq() {
                     )}
                   >
                     <div className="overflow-hidden">
-                      <div className="space-y-3 border-t border-line px-5 pt-4 pb-5 text-[13.5px] leading-[1.7] text-muted">
+                      <div className="space-y-3 border-t border-line px-5 pt-4 pb-5 text-[0.84375rem] leading-[1.7] text-muted">
                         {faq.answer.map((block, blockIndex) =>
                           Array.isArray(block) ? (
                             <ul key={blockIndex} className="space-y-2">
                               {block.map((point) => (
                                 <li key={point} className="flex gap-2.5">
-                                  <span className="mt-[7px] size-1.5 shrink-0 rounded-full bg-teal-500" />
+                                  <span className="mt-[0.4375rem] size-1.5 shrink-0 rounded-full bg-teal-500" />
                                   <span>{point}</span>
                                 </li>
                               ))}

@@ -20,10 +20,10 @@ export function PricingAssurances() {
                   strokeWidth={1.5}
                   className="text-teal-400"
                 />
-                <h2 className="text-[15px] leading-snug font-bold text-white">
+                <h2 className="text-[0.9375rem] leading-snug font-bold text-white">
                   {item.title}
                 </h2>
-                <p className="max-w-[34ch] text-[13px] leading-[1.65] text-white/60">
+                <p className="max-w-[34ch] text-[0.8125rem] leading-[1.65] text-white/60">
                   {item.description}
                 </p>
               </li>

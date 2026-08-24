@@ -18,9 +18,7 @@ export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  /** Which nav item's dropdown is showing, by href; null when none. */
   const [menu, setMenu] = useState<string | null>(null);
-  /** Which mobile nav item is expanded, by href. */
   const [expanded, setExpanded] = useState<string | null>(null);
   const closeTimer = useRef(0);
 
@@ -79,7 +77,7 @@ export function Header() {
     <header
       className={cn(
         "sticky top-0 z-50 bg-black transition-shadow duration-200 ease-out-soft",
-        scrolled && "shadow-[0_1px_0_0_rgba(255,255,255,0.10)]",
+        scrolled && "shadow-[0_0.0625rem_0_0_rgba(255,255,255,0.10)]",
       )}
     >
       <Container className="flex h-18 items-center justify-between gap-6">
@@ -121,7 +119,7 @@ export function Header() {
                         href={item.href}
                         aria-current={active ? "page" : undefined}
                         className={cn(
-                          "text-[15px] font-medium transition-colors duration-200",
+                          "text-[0.9375rem] font-medium transition-colors duration-200",
                           active
                             ? "text-teal-400"
                             : "text-white/85 hover:text-white",
@@ -168,7 +166,7 @@ export function Header() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "relative inline-flex h-18 items-center text-[15px] font-medium transition-colors duration-200",
+                        "relative inline-flex h-18 items-center text-[0.9375rem] font-medium transition-colors duration-200",
                         active
                           ? "text-teal-400"
                           : "text-white/85 hover:text-white",
@@ -185,8 +183,6 @@ export function Header() {
                   )}
 
                   {submenu ? (
-                    /* pt-2 is a transparent bridge: an actual margin would open
-                       a dead gap that drops the hover before the pointer lands. */
                     <div
                       // Delegated to the panel only: a same-page anchor never
                       // unmounts the header, so the panel must close itself.
@@ -198,13 +194,13 @@ export function Header() {
                           : "invisible -translate-y-1 opacity-0",
                       )}
                     >
-                      <ul className="w-72 rounded-[14px] border border-white/10 bg-black p-2 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.85)]">
+                      <ul className="w-72 rounded-[0.875rem] border border-white/10 bg-black p-2 shadow-[0_1.5rem_3rem_-0.75rem_rgba(0,0,0,0.85)]">
                         {submenu.map((service) => (
                           <li key={service.href}>
                             <Link
                               href={service.href}
                               tabIndex={showing ? undefined : -1}
-                              className="group/item flex items-center gap-3 rounded-[10px] px-3 py-2.5 text-[14px] font-medium text-white/80 transition-colors duration-200 hover:bg-white/8 hover:text-white"
+                              className="group/item flex items-center gap-3 rounded-[0.625rem] px-3 py-2.5 text-[0.875rem] font-medium text-white/80 transition-colors duration-200 hover:bg-white/8 hover:text-white"
                             >
                               {service.icon ? (
                                 <Icon
@@ -221,7 +217,7 @@ export function Header() {
                           <Link
                             href={item.href}
                             tabIndex={showing ? undefined : -1}
-                            className="group/all flex items-center gap-2 rounded-[10px] px-3 py-2.5 text-[14px] font-semibold text-teal-400 transition-colors duration-200 hover:bg-white/8"
+                            className="group/all flex items-center gap-2 rounded-[0.625rem] px-3 py-2.5 text-[0.875rem] font-semibold text-teal-400 transition-colors duration-200 hover:bg-white/8"
                           >
                             View all services
                             <Icon
@@ -252,16 +248,13 @@ export function Header() {
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
-            className="inline-flex size-11 items-center justify-center rounded-[10px] text-white transition-colors duration-200 hover:bg-white/10 lg:hidden"
+            className="inline-flex size-11 items-center justify-center rounded-[0.625rem] text-white transition-colors duration-200 hover:bg-white/10 lg:hidden"
           >
             <Icon name={open ? "close" : "menu"} size={22} />
           </button>
         </div>
       </Container>
 
-      {/* Overlays the page instead of sitting in flow: in flow it grew the
-          sticky header and pushed the content down when opened. `top-full`
-          resolves against the sticky header, so it hangs just below the bar. */}
       <div
         id="mobile-nav"
         hidden={!open}
@@ -269,7 +262,7 @@ export function Header() {
           setOpen(false);
           setExpanded(null);
         }}
-        className="absolute inset-x-0 top-full max-h-[calc(100dvh-var(--spacing)*18)] overflow-y-auto border-t border-white/10 bg-black shadow-[0_18px_40px_-12px_rgba(0,0,0,0.75)] lg:hidden"
+        className="absolute inset-x-0 top-full max-h-[calc(100dvh-var(--spacing)*18)] overflow-y-auto border-t border-white/10 bg-black shadow-[0_1.125rem_2.5rem_-0.75rem_rgba(0,0,0,0.75)] lg:hidden"
       >
         <Container className="py-4">
           <nav aria-label="Mobile">
@@ -293,7 +286,7 @@ export function Header() {
                         }}
                         aria-expanded={isOpen}
                         className={cn(
-                          "flex min-h-11 w-full cursor-pointer items-center justify-between border-b border-white/8 py-3 text-[15px] font-medium transition-colors",
+                          "flex min-h-11 w-full cursor-pointer items-center justify-between border-b border-white/8 py-3 text-[0.9375rem] font-medium transition-colors",
                           active
                             ? "text-teal-400"
                             : "text-white/85 hover:text-white",
@@ -314,7 +307,7 @@ export function Header() {
                         href={item.href}
                         aria-current={active ? "page" : undefined}
                         className={cn(
-                          "flex min-h-11 items-center justify-between border-b border-white/8 py-3 text-[15px] font-medium transition-colors",
+                          "flex min-h-11 items-center justify-between border-b border-white/8 py-3 text-[0.9375rem] font-medium transition-colors",
                           active
                             ? "text-teal-400"
                             : "text-white/85 hover:text-white",
@@ -330,8 +323,6 @@ export function Header() {
                     )}
 
                     {submenu ? (
-                      /* 0fr -> 1fr lets the row animate to its natural height,
-                         which a fixed max-height would only approximate. */
                       <div
                         className={cn(
                           "grid transition-[grid-template-rows] duration-300 ease-out-soft",
@@ -344,7 +335,7 @@ export function Header() {
                               <Link
                                 href={service.href}
                                 tabIndex={isOpen ? undefined : -1}
-                                className="flex min-h-11 items-center gap-3 border-b border-white/5 py-2.5 pl-4 text-[14px] text-white/70 transition-colors hover:text-white"
+                                className="flex min-h-11 items-center gap-3 border-b border-white/5 py-2.5 pl-4 text-[0.875rem] text-white/70 transition-colors hover:text-white"
                               >
                                 {service.icon ? (
                                   <Icon
@@ -361,7 +352,7 @@ export function Header() {
                             <Link
                               href={item.href}
                               tabIndex={isOpen ? undefined : -1}
-                              className="flex min-h-11 items-center gap-2 border-b border-white/5 py-2.5 pl-4 text-[14px] font-semibold text-teal-400 transition-colors hover:text-teal-300"
+                              className="flex min-h-11 items-center gap-2 border-b border-white/5 py-2.5 pl-4 text-[0.875rem] font-semibold text-teal-400 transition-colors hover:text-teal-300"
                             >
                               View all services
                               <Icon

@@ -6,17 +6,11 @@ import { Icon } from "@/components/ui/Icon";
 import { proofMetrics } from "@/lib/content/proof";
 import { cn } from "@/lib/cn";
 
-/** User units, not pixels — the SVG scales to whatever width it is given. */
 const VIEW = { width: 1000, height: 340 };
 const PLOT = { left: 40, right: 960, top: 40, bottom: 268 };
 
 type Point = { x: number; y: number };
 
-/**
- * Catmull-Rom through every reading, converted to cubic beziers. A polyline
- * would kink at each month; a spline reads as a trend, which is what the
- * section is arguing about.
- */
 function spline(points: Point[]): string {
   if (points.length < 2) return "";
 
@@ -181,7 +175,7 @@ export function ProofChart() {
             aria-pressed={entry.id === activeId}
             onClick={() => setActiveId(entry.id)}
             className={cn(
-              "rounded-full px-5 py-2 text-[13px] font-semibold transition-colors duration-300 ease-out-soft",
+              "rounded-full px-5 py-2 text-[0.8125rem] font-semibold transition-colors duration-300 ease-out-soft",
               entry.id === activeId
                 ? "bg-teal-500 text-white"
                 : "text-white/55 hover:text-white",
@@ -194,16 +188,14 @@ export function ProofChart() {
 
       <div className="mt-8 rounded-xl border border-white/10 bg-black/40 p-4 backdrop-blur-md sm:p-6">
         <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
-          <p className="text-[13px] text-white/50">{metric.caption}</p>
-          <p className="flex items-baseline gap-2 text-[13px] text-white/50">
+          <p className="text-[0.8125rem] text-white/50">{metric.caption}</p>
+          <p className="flex items-baseline gap-2 text-[0.8125rem] text-white/50">
             {format(chart.first)}
             <span aria-hidden="true">→</span>
-            <span className="text-[15px] font-bold text-white">
+            <span className="text-[0.9375rem] font-bold text-white">
               {format(chart.last)}
             </span>
-            {/* The arrow follows the metric, not the sign: a falling ACOS is
-                the win, so an "up = good" arrow would misread the chart. */}
-            <span className="flex items-center gap-1 rounded-full bg-teal-500/15 px-2.5 py-1 text-[12px] font-bold text-teal-300">
+            <span className="flex items-center gap-1 rounded-full bg-teal-500/15 px-2.5 py-1 text-[0.75rem] font-bold text-teal-300">
               <Icon
                 name={metric.improvesDownward ? "arrow-down" : "arrow-up-right"}
                 size={11}
@@ -292,9 +284,6 @@ export function ProofChart() {
             className="text-teal-400"
           />
 
-          {/* Keyed so the metric toggle mounts a fresh node: GSAP's transform
-              cache lives on the element, and reusing it across a move leaves
-              the dot pinned to the previous metric's end point. */}
           <g key={activeId} data-proof-end className="text-teal-400">
             <circle
               cx={chart.end.x}

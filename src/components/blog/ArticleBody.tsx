@@ -14,7 +14,7 @@ import { cn } from "@/lib/cn";
 const portableTextComponents: PortableTextComponents = {
   block: {
     normal: ({ children }) => (
-      <p className="text-[14px] leading-[1.75] text-muted">{children}</p>
+      <p className="text-sm leading-[1.75] text-muted">{children}</p>
     ),
   },
   marks: {
@@ -57,7 +57,7 @@ function Block({ block, number }: { block: ArticleBlock; number: number }) {
       return (
         <h2
           id={headingId(block.title)}
-          className="scroll-mt-28 pt-3 text-[19px] leading-snug font-bold text-ink lg:text-[20px]"
+          className="scroll-mt-28 pt-3 text-[1.1875rem] leading-snug font-bold text-ink lg:text-xl"
         >
           <span className="text-teal-600">{number}.</span> {block.title}
         </h2>
@@ -84,8 +84,8 @@ function Block({ block, number }: { block: ArticleBlock; number: number }) {
             className="mt-0.5 shrink-0 text-teal-600"
           />
           <div>
-            <p className="text-[13.5px] font-bold text-ink">{block.title}:</p>
-            <p className="mt-1 text-[13.5px] leading-[1.7] text-muted">
+            <p className="text-[0.84375rem] font-bold text-ink">{block.title}:</p>
+            <p className="mt-1 text-[0.84375rem] leading-[1.7] text-muted">
               {block.text}
             </p>
           </div>
@@ -101,7 +101,7 @@ function Block({ block, number }: { block: ArticleBlock; number: number }) {
               <span className="mt-0.5 flex size-4.5 shrink-0 items-center justify-center rounded-full bg-teal-500 text-white">
                 <Icon name="check" size={11} strokeWidth={3} />
               </span>
-              <span className="text-[13.5px] leading-[1.65] text-muted">
+              <span className="text-[0.84375rem] leading-[1.65] text-muted">
                 {item}
               </span>
             </li>
@@ -112,14 +112,14 @@ function Block({ block, number }: { block: ArticleBlock; number: number }) {
     case "highlights":
       return (
         <div className="rounded-lg border border-line bg-white p-5 shadow-card lg:p-6">
-          <p className="text-[14px] font-bold text-ink">{block.title}:</p>
+          <p className="text-[0.875rem] font-bold text-ink">{block.title}:</p>
           <ul className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {block.items.map((item) => (
               <li key={item.label} className="flex items-center gap-2.5">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-[10px] bg-teal-50 text-teal-600">
+                <span className="flex size-9 shrink-0 items-center justify-center rounded-[0.625rem] bg-teal-50 text-teal-600">
                   <Icon name={item.icon} size={17} strokeWidth={1.7} />
                 </span>
-                <span className="text-[12.5px] leading-snug font-medium text-muted">
+                <span className="text-[0.78125rem] leading-snug font-medium text-muted">
                   {item.label}
                 </span>
               </li>
@@ -200,7 +200,7 @@ export function ArticleBody({
               suppressHydrationWarning
               type="button"
               onClick={expand}
-              className="mt-1 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[10px] border border-line-strong bg-white text-[14px] font-semibold text-teal-600 transition-colors duration-200 ease-out-soft hover:border-teal-400 hover:bg-teal-50 sm:w-auto sm:self-center sm:px-8"
+              className="mt-1 inline-flex h-12 w-full items-center justify-center gap-2 rounded-[0.625rem] border border-line-strong bg-white text-[0.875rem] font-semibold text-teal-600 transition-colors duration-200 ease-out-soft hover:border-teal-400 hover:bg-teal-50 sm:w-auto sm:self-center sm:px-8"
             >
               Continue Reading ({foldedSections} More {sectionNoun})
               <Icon name="arrow-down" size={16} />

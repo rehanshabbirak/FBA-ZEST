@@ -47,7 +47,7 @@ export function WeeklyReporting() {
         <Reveal className="flex items-center justify-center gap-3">
           <span
             aria-hidden="true"
-            className="h-px w-8 bg-teal-500/50 sm:w-10"
+            className="h-[0.0625rem] w-8 bg-teal-500/50 sm:w-10"
           />
           <span
             aria-hidden="true"
@@ -60,18 +60,18 @@ export function WeeklyReporting() {
           />
           <span
             aria-hidden="true"
-            className="h-px w-8 bg-teal-500/50 sm:w-10"
+            className="h-[0.0625rem] w-8 bg-teal-500/50 sm:w-10"
           />
         </Reveal>
 
         <div className="mt-8 grid gap-10 lg:mt-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center lg:gap-14">
           <Reveal>
-            <RevealText className="max-w-[16ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+            <RevealText className="max-w-[16ch] text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[2.375rem] lg:text-[2.625rem]">
               Reporting that answers{" "}
               <span className="text-teal-500">“why,”</span> not just “what.”
             </RevealText>
 
-            <p className="mt-5 max-w-[46ch] text-[15px] leading-[1.7] text-muted">
+            <p className="mt-5 max-w-[46ch] text-[0.9375rem] leading-[1.7] text-muted">
               Your weekly update connects performance with inventory, pricing,
               reviews, catalog issues, and the actions we took.
             </p>
@@ -85,7 +85,7 @@ export function WeeklyReporting() {
                   <span className="flex size-6 shrink-0 items-center justify-center rounded-full border border-teal-500/25 bg-teal-50 text-teal-600">
                     <Icon name="check" size={13} strokeWidth={3} />
                   </span>
-                  <span className="text-[14px] leading-snug font-semibold text-ink">
+                  <span className="text-sm leading-snug font-semibold text-ink">
                     {item}
                   </span>
                 </li>
@@ -111,15 +111,15 @@ export function WeeklyReporting() {
 
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="text-[11px] font-bold tracking-[0.14em] text-white/45 uppercase">
+                  <p className="text-[0.6875rem] font-bold tracking-[0.14em] text-white/45 uppercase">
                     Weekly Performance
                   </p>
-                  <h3 className="mt-1.5 text-[20px] leading-tight font-bold tracking-[-0.01em] text-white transition-colors duration-500 ease-out-soft group-hover:text-teal-200 lg:text-[22px]">
+                  <h3 className="mt-1.5 text-xl leading-tight font-bold tracking-[-0.01em] text-white transition-colors duration-500 ease-out-soft group-hover:text-teal-200 lg:text-[1.375rem]">
                     Executive summary
                   </h3>
                 </div>
 
-                <span className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[11px] font-bold tracking-[0.1em] text-white/60 uppercase">
+                <span className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-[0.6875rem] font-bold tracking-[0.1em] text-white/60 uppercase">
                   Feb 08 — Feb 14
                 </span>
               </div>
@@ -134,14 +134,14 @@ export function WeeklyReporting() {
                     className="group/metric relative py-4 transition-colors duration-300 ease-out-soft hover:bg-white/4"
                   >
                     <div className="flex items-baseline justify-between gap-4">
-                      <p className="text-[13.5px] font-bold text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-100">
+                      <p className="text-[0.84375rem] font-bold text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-100">
                         {line.label}
                       </p>
                       <p className="flex shrink-0 items-baseline gap-2">
-                        <span className="text-[15px] font-bold tracking-[-0.01em] text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-50">
+                        <span className="text-[0.9375rem] font-bold tracking-[-0.01em] text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-50">
                           {line.value}
                         </span>
-                        <span className="flex items-center gap-0.5 text-[12px] font-bold text-teal-300">
+                        <span className="flex items-center gap-0.5 text-[0.75rem] font-bold text-teal-300">
                           <Icon
                             name="arrow-up-right"
                             size={11}
@@ -151,7 +151,7 @@ export function WeeklyReporting() {
                         </span>
                       </p>
                     </div>
-                    <p className="mt-1.5 max-w-[58ch] text-[13px] leading-[1.6] text-white/55">
+                    <p className="mt-1.5 max-w-[58ch] text-[0.8125rem] leading-[1.6] text-white/55">
                       {line.note}
                     </p>
                   </li>
@@ -159,10 +159,10 @@ export function WeeklyReporting() {
               </StaggerCards>
 
               <div className="mt-5 rounded-lg border border-teal-400/20 bg-teal-400/8 p-4">
-                <p className="text-[11px] font-bold tracking-[0.14em] text-teal-300 uppercase">
+                <p className="text-[0.6875rem] font-bold tracking-[0.14em] text-teal-300 uppercase">
                   Next Action
                 </p>
-                <p className="mt-1.5 text-[13px] leading-[1.6] text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
+                <p className="mt-1.5 text-[0.8125rem] leading-[1.6] text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
                   Reduce bids on low-converting terms and expand exact-match
                   coverage for emerging search queries.
                 </p>

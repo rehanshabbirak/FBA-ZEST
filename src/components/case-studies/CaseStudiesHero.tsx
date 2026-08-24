@@ -29,13 +29,13 @@ export function CaseStudiesHero() {
         <div className="max-w-lg py-16 lg:py-24">
           <Eyebrow>Case Studies</Eyebrow>
 
-          <h1 className="mt-4 text-[34px] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[42px] lg:text-[46px]">
+          <h1 className="mt-4 text-[2.125rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.625rem] lg:text-[2.875rem]">
             Real Brands.
             <br />
             Real Results.
           </h1>
 
-          <p className="mt-5 max-w-[44ch] text-[16px] leading-[1.7] text-white/70">
+          <p className="mt-5 max-w-[44ch] text-base leading-[1.7] text-white/70">
             We partner with ambitious brands and turn challenges into measurable
             growth on Amazon and beyond.
           </p>

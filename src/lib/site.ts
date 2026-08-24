@@ -13,7 +13,6 @@ export const site = {
   address: "150-H-1 Johar Town, Lahore",
 } as const;
 
-/** External Calendly booking page used by the consultation CTAs. */
 export const bookingUrl = "https://calendly.com/fbazest/30min";
 
 export type NavItem = { label: string; href: string; icon?: IconName };

@@ -27,7 +27,7 @@ export function AboutStats() {
                     <Icon name={icons[stat.key]} size={26} strokeWidth={1.6} />
                   </span>
                   <div>
-                    <p className="text-[26px] leading-none font-bold text-white lg:text-[28px]">
+                    <p className="text-[1.625rem] leading-none font-bold text-white lg:text-[1.75rem]">
                       <CountUp
                         value={stat.value}
                         prefix={stat.prefix}
@@ -36,7 +36,7 @@ export function AboutStats() {
                         delay={i * 80}
                       />
                     </p>
-                    <p className="mt-2 text-[13px] text-white/60">
+                    <p className="mt-2 text-[0.8125rem] text-white/60">
                       {stat.label}
                     </p>
                   </div>

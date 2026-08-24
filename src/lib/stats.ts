@@ -3,16 +3,10 @@ export type Stat = {
   value: number;
   prefix?: string;
   suffix?: string;
-  /** Fractional digits to render; the source figures are not all whole. */
   decimals?: number;
   label: string;
 };
 
-/**
- * Reported results from managed accounts, taken from the FBA Zest agency
- * profile. These are individual client outcomes rather than agency averages —
- * the labels say "client" so the figures are not read as typical results.
- */
 export const agencyStats: Stat[] = [
   {
     key: "salesGrowth",

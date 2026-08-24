@@ -279,12 +279,15 @@ type IconProps = Omit<SVGProps<SVGSVGElement>, "name"> & {
   title?: string;
 };
 
-export function Icon({ name, size = 24, title, ...props }: IconProps) {
+export function Icon({ name, size = 24, title, style, ...props }: IconProps) {
+  const edge = `${size / 16}rem`;
+
   return (
     <svg
       viewBox="0 0 24 24"
       width={size}
       height={size}
+      style={{ width: edge, height: edge, ...style }}
       fill="none"
       stroke="currentColor"
       strokeWidth={1.8}

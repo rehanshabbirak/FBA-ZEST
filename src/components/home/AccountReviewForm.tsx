@@ -20,10 +20,10 @@ const initialState: AccountReviewState = {
 const bands = ["Under $50K", "$50K–$150K", "$150K–$500K", "$500K+"];
 
 const labelClass =
-  "block text-[11px] font-bold tracking-[0.14em] whitespace-nowrap text-white/45 uppercase";
+  "block text-[0.6875rem] font-bold tracking-[0.14em] whitespace-nowrap text-white/45 uppercase";
 
 const fieldClass =
-  "mt-1.5 h-9 w-full bg-transparent text-[14px] text-white outline-none placeholder:text-white/35";
+  "mt-1.5 h-9 w-full bg-transparent text-[0.875rem] text-white outline-none placeholder:text-white/35";
 
 type RevenueSelectProps = {
   name: string;
@@ -144,7 +144,7 @@ function RevenueSelect({
         role="listbox"
         aria-labelledby={labelId}
         className={cn(
-          "absolute top-full right-0 left-0 z-50 mt-2 rounded-[14px] border border-white/10 bg-black p-2 shadow-[0_24px_48px_-12px_rgba(0,0,0,0.85)] transition duration-200 ease-out-soft",
+          "absolute top-full right-0 left-0 z-50 mt-2 rounded-[0.875rem] border border-white/10 bg-black p-2 shadow-[0_1.5rem_3rem_-0.75rem_rgba(0,0,0,0.85)] transition duration-200 ease-out-soft",
           open
             ? "visible translate-y-0 opacity-100"
             : "invisible -translate-y-1 opacity-0",
@@ -155,10 +155,6 @@ function RevenueSelect({
 
           return (
             <li key={band}>
-              {/* Options are not focusable: focus stays on the trigger and
-                  aria-activedescendant points at the highlighted row, so the
-                  keyboard and the pointer cannot disagree about which row is
-                  current. */}
               <div
                 id={`${id}-opt-${index}`}
                 role="option"
@@ -166,7 +162,7 @@ function RevenueSelect({
                 onPointerEnter={() => setActive(index)}
                 onClick={() => choose(band)}
                 className={cn(
-                  "flex cursor-pointer items-center justify-between gap-3 rounded-[10px] px-3 py-2.5 text-[14px] font-medium transition-colors duration-200",
+                  "flex cursor-pointer items-center justify-between gap-3 rounded-[0.625rem] px-3 py-2.5 text-[0.875rem] font-medium transition-colors duration-200",
                   selected ? "text-teal-300" : "text-white/80",
                   open && index === active && "bg-white/8 text-white",
                 )}
@@ -200,9 +196,6 @@ export function AccountReviewForm() {
 
   return (
     <form action={formAction} className="mt-10 lg:mt-12" noValidate>
-      {/* Honeypot. Positioned off-screen rather than display:none, which some
-          bots detect and skip; hidden from tab order and assistive tech so no
-          real visitor can reach it. */}
       <div className="absolute left-[-9999px]" aria-hidden="true">
         <label htmlFor="hp_reference_cta">Reference</label>
         <input
@@ -215,8 +208,6 @@ export function AccountReviewForm() {
         />
       </div>
 
-      {/* One bar from sm up, stacked below it: the divider between the fields
-          only reads as a bar when they sit side by side. */}
       <div className="grid w-full gap-4 rounded-xl border border-white/12 bg-white/5 p-4 text-left backdrop-blur-md sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] sm:items-end sm:gap-0 sm:p-3 sm:pl-6">
         <div className="sm:pr-6">
           <label htmlFor="cta-email" className={labelClass}>
@@ -260,16 +251,15 @@ export function AccountReviewForm() {
         </Button>
       </div>
 
-      {/* aria-live so the outcome is announced without stealing focus. */}
       <div aria-live="polite">
         {state.errors.email ? (
-          <p id="cta-email-error" className="mt-3 text-[13px] text-error">
+          <p id="cta-email-error" className="mt-3 text-[0.8125rem] text-error">
             {state.errors.email}
           </p>
         ) : null}
 
         {state.errors.revenue ? (
-          <p id="cta-revenue-error" className="mt-1.5 text-[13px] text-error">
+          <p id="cta-revenue-error" className="mt-1.5 text-[0.8125rem] text-error">
             {state.errors.revenue}
           </p>
         ) : null}
@@ -277,7 +267,7 @@ export function AccountReviewForm() {
         {state.status !== "idle" && !hasFieldError ? (
           <p
             className={cn(
-              "mt-3 text-[13.5px]",
+              "mt-3 text-[0.84375rem]",
               state.status === "success" ? "text-teal-300" : "text-error",
             )}
           >

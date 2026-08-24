@@ -30,10 +30,10 @@ export function WhyUs() {
       <Container className="relative grid gap-12 py-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:items-center lg:gap-16 lg:py-12">
         <Reveal>
           <Eyebrow>Why Choose FBA Zest?</Eyebrow>
-          <RevealText className="mt-4 max-w-[14ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 max-w-[14ch] text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[2.375rem] lg:text-[2.625rem]">
             Your Growth is Our Mission
           </RevealText>
-          <p className="mt-5 max-w-[46ch] text-[15px] leading-[1.7] text-white/65">
+          <p className="mt-5 max-w-[46ch] text-[0.9375rem] leading-[1.7] text-white/65">
             Our primary goal is to achieve up to 30% sales growth for your
             Amazon business through effective ad management. We specialize in
             optimizing your ad spend to ensure that every dollar works harder
@@ -46,17 +46,10 @@ export function WhyUs() {
           </Button>
         </Reveal>
 
-        {/* Four across only from xl: the stats sit in the narrower 1.15fr
-            column, which at lg leaves ~117px per card — less than the widest
-            figure ("+63.6%") needs at this size. */}
         <StaggerCards className="grid grid-cols-2 gap-4 xl:grid-cols-4">
           {agencyStats.map((stat, i) => (
             <li key={stat.key}>
-              {/* Properties are listed rather than using `transition-all`: the
-                  fill brightens through the overlay below, because the panel's
-                  own background is set by `glass-panel` and swapping a
-                  background-color under a backdrop-filter flickers in Safari. */}
-              <div className="group glass-panel relative isolate flex h-full flex-col items-center justify-center overflow-hidden rounded-lg px-4 py-9 text-center transition-[transform,border-color,box-shadow] duration-500 ease-out-soft hover:-translate-y-1.5 hover:border-teal-500/60 hover:shadow-[0_22px_46px_-22px_rgb(0_0_0/0.9),inset_0_1px_0_rgb(255_255_255/0.22)]">
+              <div className="group glass-panel relative isolate flex h-full flex-col items-center justify-center overflow-hidden rounded-lg px-4 py-9 text-center transition-[transform,border-color,box-shadow] duration-500 ease-out-soft hover:-translate-y-1.5 hover:border-teal-500/60 hover:shadow-[0_1.375rem_2.875rem_-1.375rem_rgb(0_0_0/0.9),inset_0_0.0625rem_0_rgb(255_255_255/0.22)]">
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 -z-10 bg-white/0 transition-colors duration-500 ease-out-soft group-hover:bg-white/6"
@@ -68,7 +61,7 @@ export function WhyUs() {
                   strokeWidth={1.5}
                   className="text-teal-400 transition-transform duration-500 ease-out-soft group-hover:-translate-y-0.5 group-hover:scale-110"
                 />
-                <p className="mt-6 text-[30px] leading-none font-bold text-white lg:text-[34px]">
+                <p className="mt-6 text-3xl leading-none font-bold text-white lg:text-[2.125rem]">
                   <CountUp
                     value={stat.value}
                     prefix={stat.prefix}
@@ -77,7 +70,7 @@ export function WhyUs() {
                     delay={i * 80}
                   />
                 </p>
-                <p className="mt-2.5 text-[12px] font-medium text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
+                <p className="mt-2.5 text-[0.75rem] font-medium text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
                   {stat.label}
                 </p>
               </div>

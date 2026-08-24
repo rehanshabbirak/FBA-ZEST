@@ -17,21 +17,21 @@ export function FeaturedPost({ post }: { post: BlogPost }) {
           sizes="(max-width: 768px) 100vw, 42vw"
           className="object-cover"
         />
-        <span className="absolute top-4 left-4 rounded-md bg-teal-500 px-3 py-1.5 text-[10.5px] font-bold tracking-[0.12em] text-white uppercase">
+        <span className="absolute top-4 left-4 rounded-md bg-teal-500 px-3 py-1.5 text-[0.65625rem] font-bold tracking-[0.12em] text-white uppercase">
           Featured
         </span>
       </div>
 
       <div className="flex flex-col justify-center p-6 lg:p-8">
-        <p className="text-[10.5px] font-bold tracking-[0.14em] text-teal-500 uppercase">
+        <p className="text-[0.65625rem] font-bold tracking-[0.14em] text-teal-500 uppercase">
           {post.categoryTitle}
         </p>
 
-        <h2 className="mt-3 text-[21px] leading-[1.25] font-bold text-ink lg:text-[24px]">
+        <h2 className="mt-3 text-[1.3125rem] leading-[1.25] font-bold text-ink lg:text-2xl">
           {post.title}
         </h2>
 
-        <p className="mt-3.5 text-[13.5px] leading-[1.65] text-muted">
+        <p className="mt-3.5 text-[0.84375rem] leading-[1.65] text-muted">
           {post.excerpt}
         </p>
 
@@ -39,10 +39,10 @@ export function FeaturedPost({ post }: { post: BlogPost }) {
           <div className="flex items-center gap-3">
             <Avatar name={post.author.name} src={post.author.avatar} size={38} />
             <span className="leading-tight">
-              <span className="block text-[12.5px] font-semibold text-ink">
+              <span className="block text-[0.78125rem] font-semibold text-ink">
                 By {post.author.name}
               </span>
-              <span className="block text-[12px] text-subtle">
+              <span className="block text-[0.75rem] text-subtle">
                 {formatPostDate(post.publishedAt)}
               </span>
             </span>

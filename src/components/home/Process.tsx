@@ -12,11 +12,9 @@ import { cn } from "@/lib/cn";
 
 type Step = {
   number: string;
-  /** Split so the phrase after the ampersand can carry the teal accent. */
   title: string;
   titleAccent: string;
   description: string;
-  /** Rendered two per row, so these read across then down. */
   points: { icon: IconName; label: string }[];
   image: StaticImageData;
   alt: string;
@@ -76,11 +74,11 @@ export function Process() {
       <Container className="py-10 lg:py-12">
         <Reveal className="text-center">
           <Eyebrow>Our Process</Eyebrow>
-          <RevealText className="mx-auto mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mx-auto mt-4 text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[2.375rem] lg:text-[2.625rem]">
             A Proven Process for{" "}
             <span className="text-teal-500">Amazon Growth</span>
           </RevealText>
-          <p className="mx-auto mt-5 max-w-[62ch] text-[15px] leading-[1.7] text-muted">
+          <p className="mx-auto mt-5 max-w-[62ch] text-[0.9375rem] leading-[1.7] text-muted">
             From strategy to execution, we follow a data-driven process that
             helps Amazon brands grow, scale, and stay ahead of the competition.
           </p>
@@ -104,27 +102,21 @@ export function Process() {
                           !imageFirst && "lg:order-2",
                         )}
                       >
-                        {/* Elliptical radii — 56px across, 50% down — put the
-                            corner arcs' meeting point at the vertical centre,
-                            giving one continuous sweep instead of two rounded
-                            corners with a flat run between them. The teal sits
-                            a touch wider than the photo so the curve reads as
-                            an accent edge rather than a border. */}
                         <div
                           aria-hidden="true"
                           className={cn(
                             "absolute inset-0 bg-teal-500",
                             imageFirst
-                              ? "lg:rounded-tr-[56px_50%] lg:rounded-br-[56px_50%]"
-                              : "lg:rounded-tl-[56px_50%] lg:rounded-bl-[56px_50%]",
+                              ? "lg:rounded-tr-[3.5rem_50%] lg:rounded-br-[3.5rem_50%]"
+                              : "lg:rounded-tl-[3.5rem_50%] lg:rounded-bl-[3.5rem_50%]",
                           )}
                         />
                         <div
                           className={cn(
                             "absolute inset-0 overflow-hidden",
                             imageFirst
-                              ? "lg:right-2.5 lg:rounded-tr-[56px_50%] lg:rounded-br-[56px_50%]"
-                              : "lg:left-2.5 lg:rounded-tl-[56px_50%] lg:rounded-bl-[56px_50%]",
+                              ? "lg:right-2.5 lg:rounded-tr-[3.5rem_50%] lg:rounded-br-[3.5rem_50%]"
+                              : "lg:left-2.5 lg:rounded-tl-[3.5rem_50%] lg:rounded-bl-[3.5rem_50%]",
                           )}
                         >
                           <Image
@@ -147,14 +139,14 @@ export function Process() {
                         <div className="flex items-start gap-4">
                           <span
                             data-process-badge
-                            className="flex size-13 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-[19px] font-bold text-white"
+                            className="flex size-13 shrink-0 items-center justify-center rounded-xl bg-teal-600 text-[1.1875rem] font-bold text-white"
                           >
                             {step.number}
                           </span>
                           <div>
                             <h3
                               data-process-copy
-                              className="text-[22px] leading-tight font-bold tracking-[-0.01em] text-ink sm:text-[26px]"
+                              className="text-[1.375rem] leading-tight font-bold tracking-[-0.01em] text-ink sm:text-[1.625rem]"
                             >
                               {step.title}{" "}
                               <span className="text-teal-500">
@@ -171,7 +163,7 @@ export function Process() {
 
                         <p
                           data-process-copy
-                          className="mt-5 text-[15px] leading-[1.7] text-muted"
+                          className="mt-5 text-[0.9375rem] leading-[1.7] text-muted"
                         >
                           {step.description}
                         </p>
@@ -190,7 +182,7 @@ export function Process() {
                                   strokeWidth={1.7}
                                 />
                               </span>
-                              <span className="text-[14px] leading-snug text-ink">
+                              <span className="text-sm leading-snug text-ink">
                                 {point.label}
                               </span>
                             </li>

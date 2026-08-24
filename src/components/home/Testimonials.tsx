@@ -58,7 +58,7 @@ export function Testimonials() {
       <Container className="py-10 lg:py-12">
         <Reveal className="text-center">
           <Eyebrow>Clients Love Us</Eyebrow>
-          <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[2.375rem] lg:text-[2.625rem]">
             What Our Clients Say
           </RevealText>
         </Reveal>
@@ -79,16 +79,16 @@ export function Testimonials() {
                 strokeWidth={1.6}
                 className="text-teal-500"
               />
-              <blockquote className="mt-5 flex-1 text-[15px] leading-[1.65] text-muted">
+              <blockquote className="mt-5 flex-1 text-[0.9375rem] leading-[1.65] text-muted">
                 {item.quote}
               </blockquote>
               <figcaption className="mt-7 flex items-center gap-3 border-t border-line pt-5">
                 <Avatar name={item.name} src={item.avatar} size={42} />
                 <span className="leading-tight">
-                  <span className="block text-[14px] font-bold text-ink">
+                  <span className="block text-[0.875rem] font-bold text-ink">
                     {item.name}
                   </span>
-                  <span className="block text-[13px] text-subtle">
+                  <span className="block text-[0.8125rem] text-subtle">
                     {item.role}
                   </span>
                 </span>

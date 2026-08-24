@@ -36,12 +36,12 @@ export function ContactHero() {
         <div className="max-w-xl py-16 lg:max-w-lg lg:py-24">
           <Eyebrow>Let&rsquo;s Grow Together</Eyebrow>
 
-          <h1 className="mt-4 text-[34px] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[42px] lg:text-[46px]">
+          <h1 className="mt-4 text-[2.125rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.625rem] lg:text-[2.875rem]">
             Let&rsquo;s Scale Your
             <span className="block text-teal-400">Amazon Business</span>
           </h1>
 
-          <p className="mt-5 max-w-[46ch] text-[16px] leading-[1.7] text-white/70">
+          <p className="mt-5 max-w-[46ch] text-base leading-[1.7] text-white/70">
             Have questions or need expert advice? We&rsquo;re here to help. Get
             in touch with our team and take the first step toward growing your
             brand on Amazon.
@@ -56,10 +56,10 @@ export function ContactHero() {
                   strokeWidth={1.6}
                   className="text-teal-400"
                 />
-                <span className="text-[13.5px] leading-snug font-semibold text-white">
+                <span className="text-[0.84375rem] leading-snug font-semibold text-white">
                   {highlight.title}
                 </span>
-                <span className="-mt-1.5 text-[12.5px] text-white/55">
+                <span className="-mt-1.5 text-[0.78125rem] text-white/55">
                   {highlight.detail}
                 </span>
               </li>

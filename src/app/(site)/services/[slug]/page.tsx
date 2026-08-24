@@ -86,7 +86,7 @@ export default async function ServiceDetailPage({
 
         <Container className="relative py-16 lg:py-24">
           <nav aria-label="Breadcrumb">
-            <ol className="flex flex-wrap items-center gap-2 text-[13px] text-white/55">
+            <ol className="flex flex-wrap items-center gap-2 text-[0.8125rem] text-white/55">
               <li>
                 <Link
                   href="/"
@@ -122,11 +122,11 @@ export default async function ServiceDetailPage({
 
             <Eyebrow className="mt-6">Our Services</Eyebrow>
 
-            <h1 className="mt-4 text-[32px] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[40px] lg:text-[44px]">
+            <h1 className="mt-4 text-[2rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.5rem] lg:text-[2.75rem]">
               {service.title}
             </h1>
 
-            <p className="mt-5 text-[16px] leading-[1.7] text-white/70">
+            <p className="mt-5 text-base leading-[1.7] text-white/70">
               {service.description}
             </p>
 
@@ -158,7 +158,7 @@ export default async function ServiceDetailPage({
         <Container className="py-16 lg:py-20">
           <Reveal>
             <Eyebrow>Explore More</Eyebrow>
-            <h2 className="mt-4 text-[26px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[32px]">
+            <h2 className="mt-4 text-[1.625rem] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[2rem]">
               Other Services We Provide
             </h2>
           </Reveal>
@@ -174,15 +174,15 @@ export default async function ServiceDetailPage({
                     <Icon name={other.icon} size={22} strokeWidth={1.6} />
                   </span>
 
-                  <h3 className="mt-5 text-[18px] leading-snug font-bold text-ink">
+                  <h3 className="mt-5 text-lg leading-snug font-bold text-ink">
                     {other.title}
                   </h3>
 
-                  <p className="mt-3 flex-1 text-[14px] leading-[1.65] text-muted">
+                  <p className="mt-3 flex-1 text-sm leading-[1.65] text-muted">
                     {other.description}
                   </p>
 
-                  <span className="mt-6 inline-flex items-center gap-1.5 border-t border-line pt-5 text-[14px] font-semibold text-teal-500">
+                  <span className="mt-6 inline-flex items-center gap-1.5 border-t border-line pt-5 text-[0.875rem] font-semibold text-teal-500">
                     Learn More
                     <Icon
                       name="arrow-right"

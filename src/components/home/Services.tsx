@@ -25,11 +25,11 @@ export function Services() {
         <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-16">
           <div>
             <Eyebrow>What We Do</Eyebrow>
-            <RevealText className="mt-4 max-w-[16ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+            <RevealText className="mt-4 max-w-[16ch] text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[2.375rem] lg:text-[2.625rem]">
               End-to-End Amazon Brand Management
             </RevealText>
           </div>
-          <p className="max-w-[52ch] text-[16px] leading-[1.65] text-white/85 lg:pb-2">
+          <p className="max-w-[52ch] text-base leading-[1.65] text-white/85 lg:pb-2">
             We provide data-driven strategies and hands-on execution to help
             your brand stand out and scale profitably.
           </p>
@@ -48,10 +48,10 @@ export function Services() {
                   strokeWidth={1.5}
                   className="text-teal-400 transition-[color,transform] duration-300 ease-out-soft group-hover:-translate-y-0.5 group-hover:scale-108 group-hover:text-teal-300"
                 />
-                <h3 className="mt-6 text-[15px] font-bold text-white">
+                <h3 className="mt-6 text-[0.9375rem] font-bold text-white">
                   {service.title}
                 </h3>
-                <p className="mt-3 text-[13px] leading-[1.6] text-white/65">
+                <p className="mt-3 text-[0.8125rem] leading-[1.6] text-white/65">
                   {service.description}
                 </p>
               </Link>

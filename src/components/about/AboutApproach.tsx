@@ -9,8 +9,6 @@ import { site } from "@/lib/site";
 
 type Pillar = { icon: IconName; title: string; description: string };
 
-/** Each pillar names a discipline the agency already sells, so the page does
- *  not promise anything the services pages do not back up. */
 const pillars: Pillar[] = [
   {
     icon: "megaphone",
@@ -44,21 +42,21 @@ export function AboutApproach() {
       <Container className="grid gap-12 py-16 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-16 lg:py-20">
         <Reveal>
           <div className="flex items-center gap-3">
-            <span aria-hidden="true" className="h-px w-7 bg-teal-500" />
+            <span aria-hidden="true" className="h-[0.0625rem] w-7 bg-teal-500" />
             <Eyebrow>Why Choose Us</Eyebrow>
           </div>
 
-          <RevealText className="mt-4 max-w-[16ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[36px] lg:text-[40px]">
+          <RevealText className="mt-4 max-w-[16ch] text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-4xl lg:text-[2.5rem]">
             Specialists, not <span className="text-teal-500">generalists.</span>
           </RevealText>
 
-          <p className="mt-5 max-w-[50ch] text-[15px] leading-[1.7] text-muted">
+          <p className="mt-5 max-w-[50ch] text-[0.9375rem] leading-[1.7] text-muted">
             {site.name} exists to scale ecommerce brands on Amazon with
             data-driven strategy — advertising, listings, catalog health and
             profitability treated as one account rather than separate projects.
           </p>
 
-          <p className="mt-4 max-w-[50ch] text-[15px] leading-[1.7] text-muted">
+          <p className="mt-4 max-w-[50ch] text-[0.9375rem] leading-[1.7] text-muted">
             That focus is deliberate. Amazon is the only marketplace we work in,
             so the playbooks we bring to your account were written on accounts
             like it.
@@ -77,11 +75,11 @@ export function AboutApproach() {
                   <Icon name={pillar.icon} size={20} strokeWidth={1.7} />
                 </span>
 
-                <h3 className="mt-5 text-[16px] leading-snug font-bold tracking-[-0.01em] text-ink">
+                <h3 className="mt-5 text-base leading-snug font-bold tracking-[-0.01em] text-ink">
                   {pillar.title}
                 </h3>
 
-                <p className="mt-2.5 text-[14px] leading-[1.65] text-muted">
+                <p className="mt-2.5 text-sm leading-[1.65] text-muted">
                   {pillar.description}
                 </p>
               </div>

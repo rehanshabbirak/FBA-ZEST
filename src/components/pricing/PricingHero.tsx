@@ -31,12 +31,12 @@ export function PricingHero() {
         <div className="max-w-xl py-16 lg:max-w-lg lg:py-24">
           <Eyebrow>Pricing Plans</Eyebrow>
 
-          <h1 className="mt-4 text-[34px] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[42px] lg:text-[46px]">
+          <h1 className="mt-4 text-[2.125rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.625rem] lg:text-[2.875rem]">
             Simple Pricing.
             <span className="mt-1 block text-teal-400">Powerful Growth.</span>
           </h1>
 
-          <p className="mt-5 max-w-[44ch] text-[16px] leading-[1.7] text-white/70">
+          <p className="mt-5 max-w-[44ch] text-base leading-[1.7] text-white/70">
             Choose the plan that fits your business goals and let our Amazon
             experts drive real results.
           </p>
@@ -45,7 +45,7 @@ export function PricingHero() {
             {pricingGuarantees.map((guarantee) => (
               <li
                 key={guarantee}
-                className="flex items-center gap-2 text-[13px] font-medium text-white/80"
+                className="flex items-center gap-2 text-[0.8125rem] font-medium text-white/80"
               >
                 <Icon
                   name="shield-check"

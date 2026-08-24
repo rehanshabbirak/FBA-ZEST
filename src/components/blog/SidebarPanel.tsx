@@ -16,7 +16,7 @@ export function SidebarPanel({
         className,
       )}
     >
-      <h2 className="text-[16px] font-bold text-ink">{title}</h2>
+      <h2 className="text-[1rem] font-bold text-ink">{title}</h2>
       {children}
     </section>
   );

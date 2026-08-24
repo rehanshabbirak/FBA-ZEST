@@ -20,7 +20,7 @@ export function ProofResults() {
           <div className="flex items-center justify-center gap-3">
             <span
               aria-hidden="true"
-              className="h-px w-8 bg-teal-400/50 sm:w-10"
+              className="h-[0.0625rem] w-8 bg-teal-400/50 sm:w-10"
             />
             <span
               aria-hidden="true"
@@ -33,15 +33,15 @@ export function ProofResults() {
             />
             <span
               aria-hidden="true"
-              className="h-px w-8 bg-teal-400/50 sm:w-10"
+              className="h-[0.0625rem] w-8 bg-teal-400/50 sm:w-10"
             />
           </div>
 
-          <RevealText className="mx-auto mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[44px]">
+          <RevealText className="mx-auto mt-4 text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[2.375rem] lg:text-[2.75rem]">
             Proof, <span className="text-teal-400">Not Promises</span>
           </RevealText>
 
-          <p className="mx-auto mt-5 max-w-[58ch] text-[15px] leading-[1.7] text-white/60">
+          <p className="mx-auto mt-5 max-w-[58ch] text-[0.9375rem] leading-[1.7] text-white/60">
             The same client account, before and after FBA Zest took over ad
             management. Toggle the metric — every one moved in the right
             direction.

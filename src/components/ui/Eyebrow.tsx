@@ -15,7 +15,7 @@ export function Eyebrow({
   return (
     <p
       className={cn(
-        "text-[12px] font-bold tracking-[0.14em] uppercase",
+        "text-[0.75rem] font-bold tracking-[0.14em] uppercase",
         tone === "onTeal" && "text-teal-200",
         tone === "muted" && "text-subtle",
         tone === "default" && "text-teal-500",

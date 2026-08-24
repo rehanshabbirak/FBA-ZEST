@@ -40,7 +40,7 @@ export function ShareRow({ url, title }: ShareRowProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <span className="text-[13px] font-bold text-ink">Share this article</span>
+      <span className="text-[0.8125rem] font-bold text-ink">Share this article</span>
 
       <ul className="flex items-center gap-2">
         {targets.map((target) => (

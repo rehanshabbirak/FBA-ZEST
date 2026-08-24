@@ -14,13 +14,13 @@ export function ProcessStrip() {
       <Container className="pt-12 pb-16 lg:pt-16 lg:pb-24">
         <Reveal>
           <div className="flex flex-col items-center gap-8 rounded-lg bg-black px-6 py-10 lg:flex-row lg:gap-10 lg:px-10">
-            <h2 className="max-w-[9ch] text-center text-[22px] leading-tight font-bold text-white lg:text-left lg:text-[24px]">
+            <h2 className="max-w-[9ch] text-center text-[1.375rem] leading-tight font-bold text-white lg:text-left lg:text-2xl">
               Our Proven Process
             </h2>
 
             <span
               aria-hidden="true"
-              className="hidden h-20 w-px shrink-0 bg-white/15 lg:block"
+              className="hidden h-20 w-[0.0625rem] shrink-0 bg-white/15 lg:block"
             />
 
             <ol className="flex flex-1 flex-col items-center gap-8 lg:flex-row lg:justify-around lg:gap-4">
@@ -36,7 +36,7 @@ export function ProcessStrip() {
                       strokeWidth={1.5}
                       className="text-teal-400"
                     />
-                    <span className="text-[13px] font-medium text-white">
+                    <span className="text-[0.8125rem] font-medium text-white">
                       {i + 1}. {step.label}
                     </span>
                   </div>

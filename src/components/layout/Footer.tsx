@@ -15,13 +15,13 @@ import {
 function LinkColumn({ title, items }: { title: string; items: NavItem[] }) {
   return (
     <div>
-      <h3 className="text-[15px] font-bold text-white">{title}</h3>
+      <h3 className="text-[0.9375rem] font-bold text-white">{title}</h3>
       <ul className="mt-5 space-y-3">
         {items.map((item) => (
           <li key={`${title}-${item.label}`}>
             <Link
               href={item.href}
-              className="text-[14px] text-white/60 transition-colors duration-200 hover:text-teal-400"
+              className="text-[0.875rem] text-white/60 transition-colors duration-200 hover:text-teal-400"
             >
               {item.label}
             </Link>
@@ -46,7 +46,7 @@ function ContactRow({
       <span className="mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-md bg-teal-500/12 text-teal-400">
         <Icon name={icon} size={16} />
       </span>
-      <span className="text-[14px] leading-relaxed">
+      <span className="text-sm leading-relaxed">
         <span className="block font-semibold text-white">{label}</span>
         <span className="text-white/60">{children}</span>
       </span>
@@ -60,7 +60,7 @@ export function Footer() {
       <Container className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1fr_1.3fr] lg:gap-8 lg:py-16">
         <div>
           <Logo size="md" />
-          <p className="mt-6 max-w-[26ch] text-[14px] leading-relaxed text-white/60">
+          <p className="mt-6 max-w-[26ch] text-sm leading-relaxed text-white/60">
             {site.description}
           </p>
           <ul className="mt-7 flex gap-3">
@@ -85,7 +85,7 @@ export function Footer() {
         <LinkColumn title="Resources" items={resourceNav} />
 
         <div>
-          <h3 className="text-[15px] font-bold text-white">Contact Us</h3>
+          <h3 className="text-[0.9375rem] font-bold text-white">Contact Us</h3>
           <ul className="mt-5 space-y-4">
             <ContactRow icon="mail" label="Email">
               <a
@@ -111,7 +111,7 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-white/10">
-        <Container className="flex flex-col gap-3 py-5 text-[13px] text-white/50 sm:flex-row sm:items-center sm:justify-between">
+        <Container className="flex flex-col gap-3 py-5 text-[0.8125rem] text-white/50 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} {site.name} Account Management Agency.
             All rights reserved.

@@ -1,12 +1,9 @@
 export type Faq = {
   question: string;
-  /** Paragraphs of the answer; a nested array renders as a bullet list. */
   answer: (string | string[])[];
-  /** Optional link rendered after the answer. */
   cta?: { label: string; href: string };
 };
 
-/** Rendered two-up on the home page, so these read across then down. */
 export const faqs: Faq[] = [
   {
     question: "Is there a long-term contract?",

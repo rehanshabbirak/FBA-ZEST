@@ -36,12 +36,12 @@ export function BlogHero() {
         <div className="max-w-lg py-16 lg:py-24">
           <Eyebrow>Blog &amp; Insights</Eyebrow>
 
-          <h1 className="mt-4 text-[34px] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[42px] lg:text-[46px]">
+          <h1 className="mt-4 text-[2.125rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.625rem] lg:text-[2.875rem]">
             Insights That Drive
             <span className="block text-teal-400">Amazon Growth</span>
           </h1>
 
-          <p className="mt-5 max-w-[42ch] text-[16px] leading-[1.7] text-white/70">
+          <p className="mt-5 max-w-[42ch] text-base leading-[1.7] text-white/70">
             Stay ahead with expert strategies, tips, and case studies to scale
             your Amazon business.
           </p>
@@ -58,7 +58,7 @@ export function BlogHero() {
                   strokeWidth={1.6}
                   className="text-teal-400"
                 />
-                <span className="text-[13px] leading-snug font-semibold text-white">
+                <span className="text-[0.8125rem] leading-snug font-semibold text-white">
                   {highlight.label}
                 </span>
               </li>

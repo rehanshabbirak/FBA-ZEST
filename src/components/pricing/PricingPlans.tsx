@@ -17,19 +17,19 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
       )}
     >
       <div className="bg-teal-600 px-5 py-4">
-        <h2 className="text-center text-[14px] font-bold tracking-[0.08em] text-white uppercase">
+        <h2 className="text-center text-[0.875rem] font-bold tracking-[0.08em] text-white uppercase">
           {plan.name}
         </h2>
       </div>
 
       <div className="flex flex-1 flex-col px-6 py-7">
         <p className="flex items-start justify-center gap-1 text-ink">
-          <span className="mt-2 text-[20px] font-semibold">$</span>
-          <span className="text-[44px] leading-none font-extrabold tracking-[-0.03em]">
+          <span className="mt-2 text-[1.25rem] font-semibold">$</span>
+          <span className="text-[2.75rem] leading-none font-extrabold tracking-[-0.03em]">
             {plan.price}
           </span>
         </p>
-        <p className="mt-2 text-center text-[14px] font-medium text-teal-500">
+        <p className="mt-2 text-center text-[0.875rem] font-medium text-teal-500">
           /{plan.period}
         </p>
 
@@ -39,7 +39,7 @@ function PlanCard({ plan }: { plan: PricingPlan }) {
               <span className="flex size-5 shrink-0 items-center justify-center rounded-full border border-teal-500/40 text-teal-500">
                 <Icon name="check" size={11} strokeWidth={3} />
               </span>
-              <span className="text-[13.5px] leading-snug text-muted">
+              <span className="text-[0.84375rem] leading-snug text-muted">
                 {feature}
               </span>
             </li>
@@ -84,7 +84,7 @@ export function PricingPlans() {
                 // Sits outside the card so the card can clip its own header
                 // without clipping the badge.
                 <Reveal className="absolute -top-3.5 left-1/2 z-10 -translate-x-1/2">
-                  <span className="inline-flex items-center rounded-full border border-teal-400/45 bg-teal-600 px-5 py-1.5 text-[11.5px] font-bold tracking-[0.06em] whitespace-nowrap text-white uppercase shadow-card">
+                  <span className="inline-flex items-center rounded-full border border-teal-400/45 bg-teal-600 px-5 py-1.5 text-[0.71875rem] font-bold tracking-[0.06em] whitespace-nowrap text-white uppercase shadow-card">
                     {plan.badge}
                   </span>
                 </Reveal>

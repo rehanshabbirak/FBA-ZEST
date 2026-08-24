@@ -19,10 +19,10 @@ export function PagePlaceholder({
       />
       <Container className="relative flex min-h-[60vh] flex-col justify-center py-20 lg:py-28">
         <Eyebrow>{eyebrow}</Eyebrow>
-        <h1 className="mt-5 max-w-[18ch] text-[36px] leading-[1.1] font-extrabold tracking-[-0.02em] text-white sm:text-[46px] lg:text-[54px]">
+        <h1 className="mt-5 max-w-[18ch] text-4xl leading-[1.1] font-extrabold tracking-[-0.02em] text-white sm:text-[2.875rem] lg:text-[3.375rem]">
           {title}
         </h1>
-        <p className="mt-6 max-w-[52ch] text-[17px] leading-[1.65] text-white/65">
+        <p className="mt-6 max-w-[52ch] text-[1.0625rem] leading-[1.65] text-white/65">
           {description}
         </p>
         <div className="mt-9 flex flex-col gap-3 sm:flex-row">

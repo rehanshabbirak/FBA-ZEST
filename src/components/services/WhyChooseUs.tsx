@@ -26,7 +26,7 @@ const PHOTO_ALT =
 export function WhyChooseUs() {
   return (
     <section className="relative overflow-hidden bg-linear-to-br from-teal-50 via-white to-surface">
-      <div className="absolute inset-y-0 right-0 hidden overflow-hidden lg:block lg:left-[calc(min(58%,calc(50%_+_0.08_*_var(--container-page)))_+_48px)]">
+      <div className="absolute inset-y-0 right-0 hidden overflow-hidden lg:block lg:left-[calc(min(58%,calc(50%_+_0.08_*_var(--container-page)))_+_3rem)]">
         <Image
           src={growthPerson}
           alt={PHOTO_ALT}
@@ -39,10 +39,10 @@ export function WhyChooseUs() {
       <Container className="relative grid items-center gap-8 py-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-10 lg:py-14 lg:pr-[min(42%,calc(0.42_*_var(--container-page)))]">
         <Reveal>
           <Eyebrow>Why Choose Us</Eyebrow>
-          <RevealText className="mt-4 max-w-[19ch] text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[36px] lg:text-[38px]">
+          <RevealText className="mt-4 max-w-[19ch] text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-4xl lg:text-[2.375rem]">
             Your Growth Partner on <span className="text-teal-500">Amazon</span>
           </RevealText>
-          <p className="mt-5 max-w-[44ch] text-[15px] leading-[1.7] text-muted">
+          <p className="mt-5 max-w-[44ch] text-[0.9375rem] leading-[1.7] text-muted">
             We combine industry expertise, innovative strategies and a
             performance-driven approach to deliver measurable results.
           </p>
@@ -59,7 +59,7 @@ export function WhyChooseUs() {
                   <Icon name={icons[stat.key]} size={22} strokeWidth={1.7} />
                 </span>
                 <div>
-                  <p className="text-[24px] leading-none font-bold text-ink">
+                  <p className="text-2xl leading-none font-bold text-ink">
                     <CountUp
                       value={stat.value}
                       prefix={stat.prefix}
@@ -68,7 +68,7 @@ export function WhyChooseUs() {
                       delay={i * 80}
                     />
                   </p>
-                  <p className="mt-1.5 text-[13px] text-muted">{stat.label}</p>
+                  <p className="mt-1.5 text-[0.8125rem] text-muted">{stat.label}</p>
                 </div>
               </li>
             ))}

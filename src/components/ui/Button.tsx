@@ -17,15 +17,14 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  md: "h-11 px-5 text-[14px]",
-  lg: "h-13 px-6 text-[15px]",
+  md: "h-11 px-5 text-[0.875rem]",
+  lg: "h-13 px-6 text-[0.9375rem]",
 };
 
 type SharedProps = {
   variant?: ButtonVariant;
   size?: ButtonSize;
   icon?: IconName | null;
-  /** Side the icon sits on; "start" also flips the hover nudge. */
   iconPosition?: "start" | "end";
   fullWidth?: boolean;
   className?: string;
@@ -43,11 +42,11 @@ function classesFor({
   className,
 }: SharedProps) {
   return cn(
-    "inline-flex items-center justify-center gap-2 rounded-[10px] font-semibold",
+    "inline-flex items-center justify-center gap-2 rounded-[0.625rem] font-semibold",
     "transition-[background-color,color,border-color,box-shadow,transform] duration-200 ease-out-soft",
     "disabled:pointer-events-none disabled:opacity-55",
     variants[variant],
-    variant === "ghost" ? "h-auto text-[15px]" : sizes[size],
+    variant === "ghost" ? "h-auto text-[0.9375rem]" : sizes[size],
     fullWidth && "w-full",
     className,
   );

@@ -9,12 +9,12 @@ export function AuthorPanel({ author }: { author: BlogAuthor }) {
       <div className="mt-4 flex items-center gap-3.5">
         <Avatar name={author.name} src={author.avatar} size={52} />
         <div className="min-w-0">
-          <p className="text-[14px] font-bold text-ink">{author.name}</p>
-          <p className="mt-0.5 text-[12px] text-teal-600">{author.role}</p>
+          <p className="text-[0.875rem] font-bold text-ink">{author.name}</p>
+          <p className="mt-0.5 text-[0.75rem] text-teal-600">{author.role}</p>
         </div>
       </div>
 
-      <p className="mt-4 text-[12.5px] leading-[1.7] text-muted">{author.bio}</p>
+      <p className="mt-4 text-[0.78125rem] leading-[1.7] text-muted">{author.bio}</p>
 
       <div className="mt-4 flex gap-2">
         <a

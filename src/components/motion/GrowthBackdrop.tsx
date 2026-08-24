@@ -127,13 +127,6 @@ export function GrowthBackdrop({ className }: GrowthBackdropProps) {
 
       <path className="area" d={AREA} fill={`url(#${gradientId})`} opacity="0" />
 
-      {/*
-        No vector-effect here, unlike the grid lines: DrawSVG and MotionPath
-        both need getTotalLength(), which the browser refuses to compute for a
-        non-scaling stroke on a non-proportionally scaled element
-        (preserveAspectRatio="none"). The stroke scales with the viewBox
-        instead, which is why it is specified thinner than the grid's.
-      */}
       <path
         ref={line}
         className="line"

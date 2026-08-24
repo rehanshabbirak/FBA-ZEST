@@ -6,13 +6,10 @@ import { Reveal } from "@/components/ui/Reveal";
 
 type CTABannerProps = {
   icon?: IconName;
-  /** Replaces the icon badge with artwork, e.g. a brand mark. */
   logo?: StaticImageData;
-  /** Decorative artwork anchored to the right edge of the banner. */
   backdrop?: StaticImageData;
   title: string;
   description: string;
-  /** Closing invitation shown under the description, brighter than body copy. */
   note?: string;
   ctaLabel?: string;
   ctaHref?: string;
@@ -41,7 +38,7 @@ export function CTABanner({
                 src={backdrop}
                 alt=""
                 aria-hidden="true"
-                sizes="560px"
+                sizes="39vw"
                 className="pointer-events-none absolute top-1/2 right-[8%] hidden h-[95%] w-auto max-w-none -translate-y-1/2 opacity-90 lg:block"
               />
             ) : null}
@@ -65,14 +62,14 @@ export function CTABanner({
                 </span>
               )}
               <div>
-                <h2 className="text-[22px] leading-tight font-bold text-white lg:text-[26px]">
+                <h2 className="text-[1.375rem] leading-tight font-bold text-white lg:text-[1.625rem]">
                   {title}
                 </h2>
-                <p className="mt-2 max-w-[64ch] text-[15px] leading-relaxed text-white/70">
+                <p className="mt-2 max-w-[64ch] text-[0.9375rem] leading-relaxed text-white/70">
                   {description}
                 </p>
                 {note ? (
-                  <p className="mt-2.5 max-w-[64ch] text-[15px] leading-relaxed font-medium text-white">
+                  <p className="mt-2.5 max-w-[64ch] text-[0.9375rem] leading-relaxed font-medium text-white">
                     {note}
                   </p>
                 ) : null}

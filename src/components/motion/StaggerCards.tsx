@@ -30,7 +30,8 @@ export function StaggerCards({
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        gsap.set(items, { opacity: 0, y });
+        // rem, not px, so the travel scales with the fluid root font size.
+        gsap.set(items, { opacity: 0, y: `${y / 16}rem` });
 
         const triggers = ScrollTrigger.batch(items, {
           start: "top 90%",

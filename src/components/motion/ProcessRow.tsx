@@ -4,18 +4,10 @@ import { useRef, type ReactNode } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 
 type ProcessRowProps = {
-  /** Side the artwork sits on; the copy always enters from the opposite edge. */
   mediaSide: "left" | "right";
   children: ReactNode;
 };
 
-/**
- * One timeline per step rather than a trigger per element: the pieces of a step
- * have to arrive in a fixed order (artwork, heading, accent, checklist), and
- * independent triggers would fire on their own thresholds and scramble it.
- *
- * Targets are found by data attribute so the markup stays a server component.
- */
 export function ProcessRow({ mediaSide, children }: ProcessRowProps) {
   const scope = useRef<HTMLDivElement>(null);
 
@@ -40,9 +32,9 @@ export function ProcessRow({ mediaSide, children }: ProcessRowProps) {
 
         gsap.set(rule, { scaleX: 0, transformOrigin: "left center" });
         gsap.set(media, { opacity: 0, xPercent: 5 * dir });
-        gsap.set(copy, { opacity: 0, x: -26 * dir });
+        gsap.set(copy, { opacity: 0, x: `${(-26 * dir) / 16}rem` });
         gsap.set(badge, { opacity: 0, scale: 0.7 });
-        gsap.set(points, { opacity: 0, y: 12 });
+        gsap.set(points, { opacity: 0, y: "0.75rem" });
 
         const tl = gsap.timeline({
           scrollTrigger: {

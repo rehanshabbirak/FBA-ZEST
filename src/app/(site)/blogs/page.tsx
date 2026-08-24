@@ -62,7 +62,7 @@ export default async function BlogsPage({
       <BlogHero />
 
       <section className="bg-surface">
-        <Container className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_336px] lg:py-16">
+        <Container className="grid gap-8 py-14 lg:grid-cols-[minmax(0,1fr)_21rem] lg:py-16">
           <div className="flex flex-col gap-7">
             {showFeatured ? <FeaturedPost post={featured} /> : null}
 
@@ -71,7 +71,7 @@ export default async function BlogsPage({
             </div>
 
             {query ? (
-              <p className="text-[13.5px] text-muted">
+              <p className="text-[0.84375rem] text-muted">
                 {total === 0
                   ? "No articles match "
                   : `${total} article${total === 1 ? "" : "s"} matching `}
@@ -90,7 +90,7 @@ export default async function BlogsPage({
                 ))}
               </ul>
             ) : (
-              <p className="rounded-lg border border-line bg-white p-10 text-center text-[14px] text-muted shadow-card">
+              <p className="rounded-lg border border-line bg-white p-10 text-center text-[0.875rem] text-muted shadow-card">
                 Nothing here yet. Try another category or search term.
               </p>
             )}

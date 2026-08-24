@@ -18,7 +18,7 @@ const initialContactState: ContactFormState = {
 };
 
 const fieldBase =
-  "h-12 w-full rounded-[10px] border bg-white px-3.5 text-[14px] text-ink transition-colors duration-200 outline-none placeholder:text-subtle focus:border-teal-400";
+  "h-12 w-full rounded-[0.625rem] border bg-white px-3.5 text-[0.875rem] text-ink transition-colors duration-200 outline-none placeholder:text-subtle focus:border-teal-400";
 
 function Label({
   htmlFor,
@@ -32,7 +32,7 @@ function Label({
   return (
     <label
       htmlFor={htmlFor}
-      className="mb-2 block text-[13px] font-semibold text-ink"
+      className="mb-2 block text-[0.8125rem] font-semibold text-ink"
     >
       {children}
       {required ? <span className="ml-0.5 text-error">*</span> : null}
@@ -43,7 +43,7 @@ function Label({
 function FieldError({ id, children }: { id: string; children?: string }) {
   if (!children) return null;
   return (
-    <p id={id} className="mt-1.5 text-[12.5px] text-error">
+    <p id={id} className="mt-1.5 text-[0.78125rem] text-error">
       {children}
     </p>
   );
@@ -57,22 +57,15 @@ export function ContactForm() {
 
   return (
     <div className="rounded-lg border border-line bg-white p-6 shadow-card lg:p-8">
-      <h2 className="text-[24px] font-bold text-ink lg:text-[26px]">
+      <h2 className="text-[1.5rem] font-bold text-ink lg:text-[1.625rem]">
         Send Us a Message
       </h2>
-      <p className="mt-2.5 max-w-[46ch] text-[14px] leading-[1.6] text-muted">
+      <p className="mt-2.5 max-w-[46ch] text-sm leading-[1.6] text-muted">
         Fill out the form below and one of our Amazon experts will get back to
         you shortly.
       </p>
 
       <form action={formAction} className="mt-7" noValidate>
-        {/* Honeypot. Positioned off-screen rather than display:none, which some
-            bots detect and skip; hidden from tab order and assistive tech so no
-            visitor can reach it. The name is deliberately meaningless: calling
-            it "website" or "url" invites browser autofill and password managers
-            to fill it, which would silently discard a real enquiry. The
-            data-*-ignore attributes are the documented opt-outs for 1Password
-            and LastPass. */}
         <div aria-hidden="true" className="absolute -left-[9999px] top-auto">
           <label htmlFor="hp-reference">Do not fill this in</label>
           <input
@@ -206,7 +199,7 @@ export function ContactForm() {
           suppressHydrationWarning
           type="submit"
           disabled={isPending}
-          className="group/btn mt-6 inline-flex h-13 w-full items-center justify-center gap-2 rounded-[10px] bg-teal-500 text-[15px] font-semibold text-white transition-[background-color,box-shadow] duration-200 ease-out-soft hover:bg-teal-400 hover:shadow-cta disabled:pointer-events-none disabled:opacity-55"
+          className="group/btn mt-6 inline-flex h-13 w-full items-center justify-center gap-2 rounded-[0.625rem] bg-teal-500 text-[0.9375rem] font-semibold text-white transition-[background-color,box-shadow] duration-200 ease-out-soft hover:bg-teal-400 hover:shadow-cta disabled:pointer-events-none disabled:opacity-55"
         >
           {isPending ? "Sending..." : "Send Message"}
           <Icon
@@ -220,7 +213,7 @@ export function ContactForm() {
           <p
             role="status"
             className={cn(
-              "mt-4 rounded-[10px] px-4 py-3 text-[13.5px] font-medium",
+              "mt-4 rounded-[0.625rem] px-4 py-3 text-[0.84375rem] font-medium",
               state.status === "success"
                 ? "bg-teal-50 text-teal-700"
                 : "bg-error/10 text-error",
@@ -230,7 +223,7 @@ export function ContactForm() {
           </p>
         ) : null}
 
-        <p className="mt-4 flex items-center justify-center gap-1.5 text-[12.5px] text-subtle">
+        <p className="mt-4 flex items-center justify-center gap-1.5 text-[0.78125rem] text-subtle">
           <Icon name="lock" size={14} />
           Your information is 100% secure and will never be shared.
         </p>

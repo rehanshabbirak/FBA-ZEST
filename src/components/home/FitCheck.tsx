@@ -49,10 +49,6 @@ export function FitCheck() {
 
             return (
               <li key={panel.label}>
-                {/* The qualifying panel is the one being argued for, so it
-                    carries the brand colour; the disqualifying one stays
-                    neutral rather than turning red — nothing here is a
-                    warning, it is just the other half of an honest answer. */}
                 <div
                   className={cn(
                     "flex h-full flex-col rounded-xl border p-7 shadow-card lg:p-9",
@@ -65,7 +61,7 @@ export function FitCheck() {
                     {panel.label}
                   </Eyebrow>
 
-                  <h3 className="mt-4 max-w-[20ch] text-[22px] leading-[1.2] font-bold tracking-[-0.02em] text-ink sm:text-[26px]">
+                  <h3 className="mt-4 max-w-[20ch] text-[1.375rem] leading-[1.2] font-bold tracking-[-0.02em] text-ink sm:text-[1.625rem]">
                     {panel.heading}
                   </h3>
 
@@ -88,7 +84,7 @@ export function FitCheck() {
                         </span>
                         <span
                           className={cn(
-                            "text-[14px] leading-[1.5]",
+                            "text-sm leading-[1.5]",
                             isFit ? "font-medium text-ink" : "text-muted",
                           )}
                         >

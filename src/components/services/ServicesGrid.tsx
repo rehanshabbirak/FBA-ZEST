@@ -14,7 +14,7 @@ export function ServicesGrid() {
       <Container className="py-16 lg:py-24">
         <Reveal className="text-center">
           <Eyebrow>Our Services</Eyebrow>
-          <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-ink sm:text-[2.375rem] lg:text-[2.625rem]">
             What We Offer
           </RevealText>
         </Reveal>
@@ -38,17 +38,17 @@ export function ServicesGrid() {
                   <Icon name={service.icon} size={26} strokeWidth={1.6} />
                 </span>
 
-                <h3 className="mt-6 text-[19px] leading-snug font-bold text-ink">
+                <h3 className="mt-6 text-[1.1875rem] leading-snug font-bold text-ink">
                   {service.title}
                 </h3>
 
-                <p className="mt-3 flex-1 text-[14px] leading-[1.65] text-muted">
+                <p className="mt-3 flex-1 text-sm leading-[1.65] text-muted">
                   {service.description}
                 </p>
 
                 <Link
                   href={`/services/${service.id}`}
-                  className="mt-6 inline-flex items-center gap-1.5 border-t border-line pt-5 text-[14px] font-semibold text-teal-500 transition-colors duration-300 ease-out-soft hover:text-teal-600"
+                  className="mt-6 inline-flex items-center gap-1.5 border-t border-line pt-5 text-[0.875rem] font-semibold text-teal-500 transition-colors duration-300 ease-out-soft hover:text-teal-600"
                 >
                   Learn More
                   <Icon

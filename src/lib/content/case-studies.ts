@@ -23,14 +23,6 @@ export type CaseStudy = {
   featured?: boolean;
 };
 
-/**
- * Amazon case studies.
- * Source: FBA Zest Amazon Growth Case Studies document.
- * Client names are intentionally withheld because the source says client names
- * have been withheld and recommends keeping brands anonymous without approval.
- *
- * Images live in /public/images/case-studies/.
- */
 export const caseStudies: CaseStudy[] = [
   {
     id: "premium-wellness-85-growth",

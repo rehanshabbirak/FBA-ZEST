@@ -9,11 +9,6 @@ export type Enquiry = {
   message: string;
 };
 
-/**
- * Brand palette, duplicated from globals.css as literals. Email clients strip
- * <style> blocks and do not resolve CSS custom properties, so every colour has
- * to be inlined at the point of use.
- */
 const C = {
   ink: "#111417",
   muted: "#5b6268",
@@ -27,14 +22,8 @@ const C = {
   tealTint: "#eaf6f7",
 } as const;
 
-/**
- * Strapline in the email header. Deliberately not `site.tagline` — the website
- * introduces the company by what it is ("Amazon Account Management Agency"),
- * while a lead notification reads better framed by what the relationship is.
- */
 const STRAPLINE = "Amazon Brand Growth Partner";
 
-/** Webfonts do not load in most clients; this is the safe system stack. */
 const FONT =
   "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
@@ -44,7 +33,6 @@ const TIMESTAMP = new Intl.DateTimeFormat("en-GB", {
   timeZone: "Asia/Karachi",
 });
 
-/** Every value below is visitor-supplied, so it is escaped before interpolation. */
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -56,18 +44,12 @@ function escapeHtml(value: string): string {
 
 const singleLine = (value: string) => value.replace(/[\r\n]+/g, " ").trim();
 
-/**
- * Icons are glyphs in a coloured circle rather than SVG or <img>. Gmail strips
- * inline SVG outright, and remote images can be blocked before they load —
- * text always renders.
- */
 function badge(glyph: string, size: number, bg: string, color: string): string {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
     <td align="center" valign="middle" width="${size}" height="${size}" style="width:${size}px;height:${size}px;background-color:${bg};border-radius:${size}px;font-family:${FONT};font-size:${Math.round(size * 0.46)}px;line-height:${size}px;color:${color};text-align:center;">${glyph}</td>
   </tr></table>`;
 }
 
-/** Teal circle, uppercase title, short rule beneath — the section marker. */
 function sectionHeading(glyph: string, title: string): string {
   return `<table role="presentation" cellpadding="0" cellspacing="0" border="0"><tr>
     <td valign="middle" style="padding-right:12px;">${badge(glyph, 34, C.teal, C.white)}</td>
@@ -269,11 +251,6 @@ function buildText(enquiry: Enquiry, receivedAt: Date): string {
     .join("\n");
 }
 
-/**
- * Renders the lead notification as both HTML and plain text. Clients that
- * refuse HTML — and spam filters, which score HTML-only mail worse — get the
- * plain part, so both are always sent together.
- */
 export function renderEnquiryEmail(enquiry: Enquiry): {
   subject: string;
   html: string;

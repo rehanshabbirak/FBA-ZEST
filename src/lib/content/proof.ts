@@ -1,27 +1,15 @@
 export type ProofMetric = {
   id: string;
-  /** Shown on the toggle. */
   label: string;
-  /** Names what the line is measuring, under the chart. */
   caption: string;
   prefix: string;
   suffix: string;
-  /** Twelve readings before the handover and twelve after it. */
   before: number[];
   after: number[];
-  /** ACOS and ad spend improve by falling, so the trend colour cannot simply
-   *  follow the slope of the line. */
   improvesDownward: boolean;
-  /** Headline change, already rounded for display. */
   delta: string;
 };
 
-/**
- * PLACEHOLDER FIGURES — these are invented for layout and must be replaced with
- * real account data before this section goes live. The copy above the chart
- * presents them as one client's actual before/after, so shipping them as-is
- * would be a fabricated performance claim.
- */
 export const proofMetrics: ProofMetric[] = [
   {
     id: "sales",

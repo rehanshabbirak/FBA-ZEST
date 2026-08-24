@@ -6,7 +6,6 @@ import { RevealText } from "@/components/motion/RevealText";
 import { DragCarousel } from "@/components/motion/DragCarousel";
 import { GrowthBackdrop } from "@/components/motion/GrowthBackdrop";
 
-/** The four values as stated in the FBA Zest agency profile. */
 const values: { icon: IconName; title: string; description: string }[] = [
   {
     icon: "shield-check",
@@ -41,7 +40,7 @@ export function AboutValues() {
       <Container className="relative z-10 py-16 lg:py-24">
         <Reveal className="text-center">
           <Eyebrow tone="onTeal">Our Values</Eyebrow>
-          <RevealText className="mt-4 text-[30px] leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+          <RevealText className="mt-4 text-3xl leading-[1.15] font-bold tracking-[-0.02em] text-white sm:text-[2.375rem] lg:text-[2.625rem]">
             What Drives Us Every Day
           </RevealText>
         </Reveal>
@@ -58,10 +57,10 @@ export function AboutValues() {
                 <span className="flex size-16 items-center justify-center rounded-full bg-teal-50 text-teal-500 transition-[background-color,transform] duration-300 ease-out-soft group-hover:scale-105 group-hover:bg-teal-100">
                   <Icon name={value.icon} size={32} strokeWidth={1.5} />
                 </span>
-                <h3 className="mt-5 text-[20px] font-bold text-ink lg:text-[22px]">
+                <h3 className="mt-5 text-[1.25rem] font-bold text-ink lg:text-[1.375rem]">
                   {value.title}
                 </h3>
-                <p className="mt-3 max-w-[34ch] text-[15px] leading-[1.7] text-muted">
+                <p className="mt-3 max-w-[34ch] text-[0.9375rem] leading-[1.7] text-muted">
                   {value.description}
                 </p>
               </div>

@@ -25,13 +25,13 @@ export function SearchPanel({ category, query }: SearchPanelProps) {
           defaultValue={query}
           placeholder="Search blog posts..."
           aria-label="Search blog posts"
-          className="h-11 min-w-0 flex-1 rounded-[10px] border border-line bg-white px-3.5 text-[13.5px] text-ink transition-colors duration-200 outline-none placeholder:text-subtle focus:border-teal-400"
+          className="h-11 min-w-0 flex-1 rounded-[0.625rem] border border-line bg-white px-3.5 text-[0.84375rem] text-ink transition-colors duration-200 outline-none placeholder:text-subtle focus:border-teal-400"
         />
         <button
           suppressHydrationWarning
           type="submit"
           aria-label="Search"
-          className="flex size-11 shrink-0 items-center justify-center rounded-[10px] bg-teal-500 text-white transition-colors duration-200 hover:bg-teal-400"
+          className="flex size-11 shrink-0 items-center justify-center rounded-[0.625rem] bg-teal-500 text-white transition-colors duration-200 hover:bg-teal-400"
         >
           <Icon name="search" size={18} />
         </button>

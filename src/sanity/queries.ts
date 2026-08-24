@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-const POST_FIELDS = /* groq */ `
+const POST_FIELDS =  `
   "slug": slug.current,
   title,
   excerpt,
@@ -20,7 +20,7 @@ const POST_FIELDS = /* groq */ `
   popularRank
 `;
 
-const BODY_FIELDS = /* groq */ `
+const BODY_FIELDS =  `
   body[]{
     ...,
     "type": _type,

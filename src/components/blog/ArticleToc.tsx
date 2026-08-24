@@ -60,7 +60,7 @@ export function ArticleToc({ headings }: { headings: ArticleHeading[] }) {
 
   return (
     <section className="rounded-lg border border-line bg-white p-6 shadow-card">
-      <h2 className="border-l-[3px] border-teal-500 pl-3 text-[16px] font-bold text-ink">
+      <h2 className="border-l-[0.1875rem] border-teal-500 pl-3 text-[1rem] font-bold text-ink">
         Table of Contents
       </h2>
 
@@ -81,7 +81,7 @@ export function ArticleToc({ headings }: { headings: ArticleHeading[] }) {
                   expand();
                 }}
                 className={cn(
-                  "flex items-baseline gap-2.5 border-b border-line py-2.5 text-[13px] leading-snug transition-colors duration-200 last:border-b-0",
+                  "flex items-baseline gap-2.5 border-b border-line py-2.5 text-[0.8125rem] leading-snug transition-colors duration-200 last:border-b-0",
                   isActive
                     ? "font-semibold text-teal-600"
                     : "text-muted hover:text-teal-600",
@@ -89,7 +89,7 @@ export function ArticleToc({ headings }: { headings: ArticleHeading[] }) {
               >
                 <span
                   className={cn(
-                    "w-4 shrink-0 text-[11.5px] font-semibold",
+                    "w-4 shrink-0 text-[0.71875rem] font-semibold",
                     isActive ? "text-teal-600" : "text-subtle",
                   )}
                 >

@@ -15,7 +15,7 @@ export function AboutHero() {
         <Reveal>
           <Eyebrow>About {site.name}</Eyebrow>
 
-          <h1 className="mt-4 max-w-[14ch] text-[34px] leading-[1.12] font-extrabold tracking-[-0.02em] text-ink sm:text-[42px] lg:text-[46px]">
+          <h1 className="mt-4 max-w-[14ch] text-[2.125rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-ink sm:text-[2.625rem] lg:text-[2.875rem]">
             We Are Amazon Growth Partners
           </h1>
 
@@ -24,7 +24,7 @@ export function AboutHero() {
             className="mt-6 block h-1 w-16 rounded-full bg-teal-500"
           />
 
-          <p className="mt-6 max-w-[52ch] text-[16px] leading-[1.7] text-muted">
+          <p className="mt-6 max-w-[52ch] text-base leading-[1.7] text-muted">
             We strive to be the top Amazon account management agency, known for
             driving exceptional sales growth and efficiency. We want to empower
             brands with innovative strategies that lead to long-term success on
@@ -43,7 +43,7 @@ export function AboutHero() {
               alt={`Inside the ${site.name} office — a meeting room with the wall statement "We Build Brands. We Drive Growth. We Deliver Results."`}
               priority
               placeholder="blur"
-              sizes="(max-width: 1024px) 100vw, 660px"
+              sizes="(max-width: 1024px) 100vw, 46vw"
               className="h-auto w-full"
             />
           </Parallax>
@@ -54,8 +54,8 @@ export function AboutHero() {
                 <Icon name="target" size={26} strokeWidth={1.6} />
               </span>
               <div>
-                <h2 className="text-[19px] font-bold text-ink">Our Purpose</h2>
-                <p className="mt-2 text-[14px] leading-[1.6] text-muted">
+                <h2 className="text-[1.1875rem] font-bold text-ink">Our Purpose</h2>
+                <p className="mt-2 text-sm leading-[1.6] text-muted">
                   We help brands achieve remarkable growth on Amazon by
                   integrating expert strategies across marketing, creative
                   content, and account management.

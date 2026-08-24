@@ -39,7 +39,7 @@ export function ArticleHero({ post, readingMinutes }: ArticleHeroProps) {
       <Container className="relative">
         <nav
           aria-label="Breadcrumb"
-          className="pt-7 text-[12.5px] text-white/55"
+          className="pt-7 text-[0.78125rem] text-white/55"
         >
           <ol className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <li className="flex items-center gap-2">
@@ -76,15 +76,15 @@ export function ArticleHero({ post, readingMinutes }: ArticleHeroProps) {
         </nav>
 
         <div className="max-w-xl pt-8 pb-14 lg:max-w-lg lg:pt-10 lg:pb-20">
-          <p className="text-[12px] font-bold tracking-[0.14em] text-teal-400 uppercase">
+          <p className="text-[0.75rem] font-bold tracking-[0.14em] text-teal-400 uppercase">
             {categoryTitle}
           </p>
 
-          <h1 className="mt-4 text-[30px] leading-[1.14] font-extrabold tracking-[-0.02em] text-white sm:text-[38px] lg:text-[42px]">
+          <h1 className="mt-4 text-3xl leading-[1.14] font-extrabold tracking-[-0.02em] text-white sm:text-[2.375rem] lg:text-[2.625rem]">
             {post.title}
           </h1>
 
-          <p className="mt-5 text-[15px] leading-[1.7] text-white/70">
+          <p className="mt-5 text-[0.9375rem] leading-[1.7] text-white/70">
             {post.excerpt}
           </p>
 
@@ -95,10 +95,10 @@ export function ArticleHero({ post, readingMinutes }: ArticleHeroProps) {
               size={44}
             />
             <div className="leading-tight">
-              <p className="text-[13px] font-semibold text-white">
+              <p className="text-[0.8125rem] font-semibold text-white">
                 By {post.author.name}
               </p>
-              <p className="mt-1 flex items-center gap-2 text-[12px] text-white/55">
+              <p className="mt-1 flex items-center gap-2 text-[0.75rem] text-white/55">
                 <span>{formatPostDate(post.publishedAt)}</span>
                 <span aria-hidden="true" className="text-white/25">
                   •

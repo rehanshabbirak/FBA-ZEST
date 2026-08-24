@@ -35,18 +35,18 @@ export async function BlogSidebar({ category, query }: BlogSidebarProps) {
                   src={post.coverImage}
                   alt=""
                   fill
-                  sizes="56px"
+                  sizes="4vw"
                   className="object-cover"
                 />
               </span>
               <span className="min-w-0">
                 <Link
                   href={`/blogs/${post.slug}`}
-                  className="block text-[13px] leading-snug font-bold text-ink transition-colors duration-200 group-hover:text-teal-600"
+                  className="block text-[0.8125rem] leading-snug font-bold text-ink transition-colors duration-200 group-hover:text-teal-600"
                 >
                   {post.title}
                 </Link>
-                <span className="mt-1 block text-[11.5px] text-subtle">
+                <span className="mt-1 block text-[0.71875rem] text-subtle">
                   {formatPostDate(post.publishedAt)}
                 </span>
               </span>
@@ -63,7 +63,7 @@ export async function BlogSidebar({ category, query }: BlogSidebarProps) {
                 href={blogHref({ category: entry.slug, query })}
                 aria-current={entry.slug === category ? "page" : undefined}
                 className={cn(
-                  "flex items-center justify-between gap-3 border-b border-line py-3 text-[13.5px] transition-colors duration-200 last:border-b-0",
+                  "flex items-center justify-between gap-3 border-b border-line py-3 text-[0.84375rem] transition-colors duration-200 last:border-b-0",
                   entry.slug === category
                     ? "font-semibold text-teal-600"
                     : "text-muted hover:text-teal-600",
@@ -71,7 +71,7 @@ export async function BlogSidebar({ category, query }: BlogSidebarProps) {
               >
                 <span>{entry.title}</span>
                 <span className="flex items-center gap-1.5 text-subtle">
-                  <span className="text-[12.5px]">({entry.count})</span>
+                  <span className="text-[0.78125rem]">({entry.count})</span>
                   <Icon name="chevron-right" size={14} />
                 </span>
               </Link>

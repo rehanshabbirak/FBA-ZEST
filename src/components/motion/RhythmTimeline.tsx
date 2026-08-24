@@ -17,9 +17,6 @@ type StepParts = {
   copy: Element[];
 };
 
-/** How much of the timeline one step occupies before the next begins. Steps
- *  span ~2 units, so at 1.35 apart each starts while the one before it is
- *  still settling — the rail reads as continuous rather than stop-start. */
 const STEP = 1.35;
 
 function collect(root: HTMLElement): StepParts[] {
@@ -39,7 +36,6 @@ function collect(root: HTMLElement): StepParts[] {
     });
 }
 
-/** Only transforms and opacity, so hiding a step costs no layout. */
 function hide(parts: StepParts[]) {
   for (const part of parts) {
     gsap.set(part.rail, { scaleX: 0, transformOrigin: "left center" });
@@ -48,15 +44,10 @@ function hide(parts: StepParts[]) {
     gsap.set(part.disc, { opacity: 0, scale: 0.5 });
     gsap.set(part.node, { opacity: 0, scale: 0 });
     gsap.set(part.icon, { opacity: 0, scale: 0.85 });
-    gsap.set(part.copy, { opacity: 0, y: 14 });
+    gsap.set(part.copy, { opacity: 0, y: "0.875rem" });
   }
 }
 
-/** One step draws in a fixed order — rail, disc, node, drop, icon, copy, rule
- *  — so the eye is led along the rail into the plate and then the words.
- *
- *  Each beat is given room to finish and the next starts before it does, so
- *  the step reads as one continuous move rather than seven separate ones. */
 function draw(tl: gsap.core.Timeline, part: StepParts, at: number) {
   tl.to(
     part.rail,
@@ -89,18 +80,6 @@ function draw(tl: gsap.core.Timeline, part: StepParts, at: number) {
     .to(part.rule, { scaleX: 1, duration: 0.35, ease: "power2.out" }, at + 1.7);
 }
 
-/**
- * Wraps the whole section — heading included — because the section is what
- * gets pinned, and pinning the list alone would let the heading scroll away
- * above it.
- *
- * Every timeline here is scrubbed: tied to scroll position, not a clip played
- * at a threshold. Nothing advances unless the user is scrolling, and backing
- * up rewinds it. The 0.7 smoothing does not change that — it only lets the
- * timeline glide to the position the scroll asked for instead of snapping.
- *
- * Targets are found by data attribute so the section stays a server component.
- */
 export function RhythmTimeline({ children }: RhythmTimelineProps) {
   const scope = useRef<HTMLDivElement>(null);
 
@@ -160,7 +139,38 @@ export function RhythmTimeline({ children }: RhythmTimelineProps) {
           // rather than still drawing when the section lets go.
           pinned.to({}, { duration: 0.7 });
 
+          // Temporary diagnostic.
+          let probe: ReturnType<typeof setTimeout> | undefined;
+          if (process.env.NODE_ENV !== "production") {
+            const report = (when: string) =>
+              console.log("[rhythm] " + when, {
+                steps: parts.length,
+                discsFound: parts[0].disc.length,
+                scrollY: Math.round(window.scrollY),
+                docHeight: Math.round(document.body.scrollHeight),
+                intro: intro.scrollTrigger && {
+                  start: Math.round(intro.scrollTrigger.start),
+                  end: Math.round(intro.scrollTrigger.end),
+                  progress: +intro.scrollTrigger.progress.toFixed(2),
+                },
+                pinned: pinned.scrollTrigger && {
+                  start: Math.round(pinned.scrollTrigger.start),
+                  end: Math.round(pinned.scrollTrigger.end),
+                  progress: +pinned.scrollTrigger.progress.toFixed(2),
+                },
+                firstDiscOpacity:
+                  parts[0].disc[0] &&
+                  getComputedStyle(parts[0].disc[0] as Element).opacity,
+              });
+            report("setup");
+            probe = setTimeout(() => report("after 1.5s"), 1500);
+          }
+
           return () => {
+            if (probe) clearTimeout(probe);
+            if (process.env.NODE_ENV !== "production") {
+              console.log("[rhythm] cleanup");
+            }
             intro.scrollTrigger?.kill();
             intro.kill();
             pinned.scrollTrigger?.kill();

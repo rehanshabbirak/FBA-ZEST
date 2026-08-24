@@ -20,7 +20,7 @@ function SectionBody({ section }: { section: PolicySection }) {
   return (
     <div className="mt-3 space-y-3.5 sm:pl-11">
       {section.body.map((paragraph) => (
-        <p key={paragraph} className="text-[14px] leading-[1.75] text-muted">
+        <p key={paragraph} className="text-sm leading-[1.75] text-muted">
           {paragraph}
         </p>
       ))}
@@ -35,7 +35,7 @@ function SectionBody({ section }: { section: PolicySection }) {
                 strokeWidth={2.4}
                 className="mt-1 shrink-0 text-teal-500"
               />
-              <span className="text-[14px] leading-[1.7] text-muted">
+              <span className="text-sm leading-[1.7] text-muted">
                 {bullet}
               </span>
             </li>
@@ -51,18 +51,18 @@ function SectionBody({ section }: { section: PolicySection }) {
                 <Icon name={contact.icon} size={15} strokeWidth={1.8} />
               </span>
               <div className="min-w-0">
-                <p className="text-[10.5px] font-bold tracking-[0.12em] text-subtle uppercase">
+                <p className="text-[0.65625rem] font-bold tracking-[0.12em] text-subtle uppercase">
                   {contact.label}
                 </p>
                 {contact.href ? (
                   <a
                     href={contact.href}
-                    className="text-[13px] leading-[1.5] font-medium break-words text-ink transition-colors duration-200 hover:text-teal-600"
+                    className="text-[0.8125rem] leading-[1.5] font-medium break-words text-ink transition-colors duration-200 hover:text-teal-600"
                   >
                     {contact.value}
                   </a>
                 ) : (
-                  <p className="text-[13px] leading-[1.5] font-medium text-ink">
+                  <p className="text-[0.8125rem] leading-[1.5] font-medium text-ink">
                     {contact.value}
                   </p>
                 )}
@@ -97,10 +97,10 @@ function Section({
       )}
     >
       <div className="flex items-center gap-3">
-        <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-teal-500 text-[13px] font-bold text-white">
+        <span className="flex size-7 shrink-0 items-center justify-center rounded-md bg-teal-500 text-[0.8125rem] font-bold text-white">
           {index + 1}
         </span>
-        <h2 className="text-[18px] leading-tight font-bold text-ink sm:text-[19px]">
+        <h2 className="text-lg leading-tight font-bold text-ink sm:text-[1.1875rem]">
           {section.title}
         </h2>
       </div>
@@ -197,13 +197,13 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
   return (
     <section className="bg-surface">
       <Container className="py-12 lg:py-16">
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,270px)_minmax(0,1fr)] lg:gap-10">
+        <div className="grid gap-8 lg:grid-cols-[minmax(0,16.875rem)_minmax(0,1fr)] lg:gap-10">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <nav
               aria-label="On this page"
               className="rounded-xl border border-line bg-white p-4 shadow-card"
             >
-              <p className="px-2 pb-2 text-[11px] font-bold tracking-[0.14em] text-teal-500 uppercase">
+              <p className="px-2 pb-2 text-[0.6875rem] font-bold tracking-[0.14em] text-teal-500 uppercase">
                 On This Page
               </p>
               <ul className="space-y-0.5">
@@ -218,7 +218,7 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
                           handleNavClick(event, section.id, index)
                         }
                         className={cn(
-                          "flex items-start gap-2.5 rounded-lg px-2 py-2 text-[13px] leading-snug transition-colors duration-200",
+                          "flex items-start gap-2.5 rounded-lg px-2 py-2 text-[0.8125rem] leading-snug transition-colors duration-200",
                           isActive
                             ? "bg-teal-50 font-semibold text-teal-600"
                             : "text-muted hover:bg-surface hover:text-ink",
@@ -248,7 +248,7 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
               </ul>
             </nav>
 
-            <p className="mt-4 flex gap-3 rounded-xl border border-teal-100 bg-teal-50/60 p-4 text-[12.5px] leading-[1.6] text-muted">
+            <p className="mt-4 flex gap-3 rounded-xl border border-teal-100 bg-teal-50/60 p-4 text-[0.78125rem] leading-[1.6] text-muted">
               <Icon
                 name="shield-check"
                 size={18}
@@ -269,8 +269,6 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
               />
             ))}
 
-            {/* grid-rows 0fr -> 1fr collapses without removing the sections
-                from the DOM, so find-in-page and crawlers still reach them. */}
             <div
               className={cn(
                 "grid",
@@ -307,7 +305,7 @@ export function PolicyContent({ sections }: { sections: PolicySection[] }) {
                     ref={toggleRef}
                     aria-expanded={expanded}
                     onClick={handleToggle}
-                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[10px] bg-teal-500 px-5 text-[14px] font-semibold text-white transition-[background-color,box-shadow] duration-200 ease-out-soft hover:bg-teal-400 hover:shadow-cta active:bg-teal-700"
+                    className="inline-flex h-11 items-center justify-center gap-2 rounded-[0.625rem] bg-teal-500 px-5 text-[0.875rem] font-semibold text-white transition-[background-color,box-shadow] duration-200 ease-out-soft hover:bg-teal-400 hover:shadow-cta active:bg-teal-700"
                   >
                     {expanded ? "Show Less" : "Read Full Policy"}
                     <Icon

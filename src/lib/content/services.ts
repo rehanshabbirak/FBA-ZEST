@@ -1,20 +1,13 @@
 import type { IconName } from "@/components/ui/Icon";
 
 export type Service = {
-  /** Doubles as the anchor target on /services. */
   id: string;
   icon: IconName;
   title: string;
-  /** Shorter label for nav columns, where the full title wraps. */
   navLabel: string;
   description: string;
 };
 
-/**
- * The single source of truth for what we sell. The home teaser, the services
- * page and the footer column all read from here, so a change lands everywhere
- * and the anchor links cannot drift from the sections they point at.
- */
 export const services: Service[] = [
   {
     id: "ppc-management",
@@ -74,12 +67,10 @@ export const services: Service[] = [
   },
 ];
 
-/** Resolves the `[slug]` segment of /services/<id> to its service. */
 export function getServiceById(id: string): Service | undefined {
   return services.find((service) => service.id === id);
 }
 
-/** Everything except the given service, for the cross-links on a detail page. */
 export function getOtherServices(id: string): Service[] {
   return services.filter((service) => service.id !== id);
 }

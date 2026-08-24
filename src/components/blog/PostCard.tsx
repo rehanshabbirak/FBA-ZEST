@@ -12,19 +12,17 @@ export function PostCard({ post }: { post: BlogPost }) {
           src={post.coverImage}
           alt=""
           fill
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 21vw"
           className="object-cover transition-transform duration-500 ease-out-soft group-hover:scale-105"
         />
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <p className="text-[10px] font-bold tracking-[0.14em] text-teal-500 uppercase">
+        <p className="text-[0.625rem] font-bold tracking-[0.14em] text-teal-500 uppercase">
           {post.categoryTitle}
         </p>
 
-        <h3 className="mt-2.5 text-[15px] leading-snug font-bold text-ink">
-          {/* Stretched link: the whole card is clickable but only one link is
-              exposed to assistive tech. */}
+        <h3 className="mt-2.5 text-[0.9375rem] leading-snug font-bold text-ink">
           <Link
             href={`/blogs/${post.slug}`}
             className="transition-colors duration-200 after:absolute after:inset-0 group-hover:text-teal-600"
@@ -33,7 +31,7 @@ export function PostCard({ post }: { post: BlogPost }) {
           </Link>
         </h3>
 
-        <p className="mt-2.5 flex-1 text-[12.5px] leading-[1.6] text-muted">
+        <p className="mt-2.5 flex-1 text-[0.78125rem] leading-[1.6] text-muted">
           {post.excerpt}
         </p>
 
@@ -41,10 +39,10 @@ export function PostCard({ post }: { post: BlogPost }) {
           <div className="flex items-center gap-2.5">
             <Avatar name={post.author.name} src={post.author.avatar} size={28} />
             <span className="leading-tight">
-              <span className="block text-[11.5px] font-semibold text-ink">
+              <span className="block text-[0.71875rem] font-semibold text-ink">
                 By {post.author.name}
               </span>
-              <span className="block text-[11px] text-subtle">
+              <span className="block text-[0.6875rem] text-subtle">
                 {formatPostDate(post.publishedAt)}
               </span>
             </span>
@@ -52,7 +50,7 @@ export function PostCard({ post }: { post: BlogPost }) {
 
           <span
             aria-hidden="true"
-            className="inline-flex shrink-0 items-center gap-1 text-[12px] font-semibold text-teal-500"
+            className="inline-flex shrink-0 items-center gap-1 text-[0.75rem] font-semibold text-teal-500"
           >
             Read More
             <Icon

@@ -14,18 +14,13 @@ type DragCarouselProps = {
   tone?: "light" | "dark";
 };
 
-/** Settle after a dot/arrow press. Eased rather than sprung so it cannot overshoot past a bound. */
 const SETTLE = { duration: 0.55, ease: "power3.out" } as const;
 
 type Metrics = {
-  /** One card per view: pages map to cards and the active card is centred. */
   centered: boolean;
   pages: number;
-  /** Card width plus gap. */
   stride: number;
-  /** Offset that centres a card; also the resting x of the first card. */
   pad: number;
-  /** Total travel available, as a positive number. */
   maxDrag: number;
   vpWidth: number;
 };
@@ -47,7 +42,6 @@ const sameMetrics = (a: Metrics, b: Metrics) =>
   a.maxDrag === b.maxDrag &&
   a.vpWidth === b.vpWidth;
 
-/** Resting x for a page: centred layouts step by card, others by viewport. */
 function targetFor(m: Metrics, index: number) {
   if (m.centered) return m.pad - index * m.stride;
   // The last page snaps flush to the end so gap overflow never leaves a sliver
@@ -57,7 +51,6 @@ function targetFor(m: Metrics, index: number) {
     : Math.max(-m.maxDrag, -index * m.vpWidth);
 }
 
-/** Inverse of targetFor: which page does this x land on. */
 function pageFor(m: Metrics, x: number) {
   const raw = m.centered
     ? Math.round((m.pad - x) / m.stride)
@@ -80,7 +73,6 @@ export function DragCarousel({
   const viewport = useRef<HTMLDivElement>(null);
   const rail = useRef<HTMLUListElement>(null);
   const dragger = useRef<InstanceType<typeof Draggable> | null>(null);
-  /** Written by the snap solver, read once the throw settles. */
   const landedOn = useRef(0);
 
   const [metrics, setMetrics] = useState<Metrics>(EMPTY_METRICS);
@@ -218,7 +210,7 @@ export function DragCarousel({
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         gsap.from(Array.from(rl.children), {
           opacity: 0,
-          y: 24,
+          y: "1.5rem",
           duration: 0.5,
           ease: "power3.out",
           stagger: 0.08,
