@@ -21,7 +21,7 @@ export type NavItem = { label: string; href: string; icon?: IconName };
 export const mainNav: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "Our Services", href: "/services" },
-  { label: "Pricing", href: "/pricing" },
+  // { label: "Pricing", href: "/pricing" },
   { label: "Case Studies", href: "/case-studies" },
   { label: "Blogs", href: "/blogs" },
   { label: "About Us", href: "/about" },

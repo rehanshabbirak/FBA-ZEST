@@ -5,7 +5,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { RevealText } from "@/components/motion/RevealText";
 import { StaggerCards } from "@/components/motion/StaggerCards";
 
-/** What the weekly update covers, in the order the report itself reads. */
 const covered = [
   "Sales, orders, ACOS & TACOS",
   "PPC spend, sales & conversion",
@@ -17,7 +16,6 @@ type Line = {
   label: string;
   value: string;
   delta: string;
-  /** Sample commentary — the "why" the section is promising. */
   note: string;
 };
 
@@ -46,8 +44,6 @@ export function WeeklyReporting() {
   return (
     <section data-testid="weekly-reporting" className="bg-surface">
       <Container className="py-10 lg:py-12">
-        {/* The eyebrow alone is centred across the section; the heading and
-            copy that follow it belong to the left column, above the checklist. */}
         <Reveal className="flex items-center justify-center gap-3">
           <span
             aria-hidden="true"
@@ -98,20 +94,19 @@ export function WeeklyReporting() {
           </Reveal>
 
           <Reveal delay={120}>
-            {/* Skewed, not rotated: the card leans forward the way italic type
-                does — verticals slant right while the top and bottom edges stay
-                level. Only from lg, where the card is not near full-bleed. It
-                stands upright on hover so the figures are read straight. */}
-            <div className="relative isolate overflow-hidden rounded-xl border border-white/10 bg-linear-to-br from-dark-surface via-dark-900 to-black p-6 shadow-card-hover transition-transform duration-500 ease-out-soft lg:-skew-x-4 lg:p-7 lg:hover:skew-x-0">
-              {/* Gloss: a sheen falling from the top edge plus a teal bloom in
-                  the corner, so the black reads as lit rather than flat. */}
+            <div className="group relative isolate overflow-hidden rounded-xl border border-white/10 bg-linear-to-br from-dark-surface via-dark-900 to-black p-6 shadow-card-hover lg:p-7">
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 -z-10 bg-teal-400/0 transition-colors duration-700 ease-out-soft group-hover:bg-teal-400/4"
+              />
+
               <span
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-40 bg-linear-to-b from-white/10 to-transparent"
               />
               <span
                 aria-hidden="true"
-                className="teal-glow pointer-events-none absolute -top-20 -right-16 -z-10 h-56 w-72 opacity-70"
+                className="teal-glow pointer-events-none absolute -top-20 -right-16 -z-10 h-56 w-72 opacity-55 transition-opacity duration-700 ease-out-soft group-hover:opacity-100"
               />
 
               <div className="flex items-start justify-between gap-4">
@@ -119,7 +114,7 @@ export function WeeklyReporting() {
                   <p className="text-[11px] font-bold tracking-[0.14em] text-white/45 uppercase">
                     Weekly Performance
                   </p>
-                  <h3 className="mt-1.5 text-[20px] leading-tight font-bold tracking-[-0.01em] text-white lg:text-[22px]">
+                  <h3 className="mt-1.5 text-[20px] leading-tight font-bold tracking-[-0.01em] text-white transition-colors duration-500 ease-out-soft group-hover:text-teal-200 lg:text-[22px]">
                     Executive summary
                   </h3>
                 </div>
@@ -134,13 +129,16 @@ export function WeeklyReporting() {
                 className="mt-5 divide-y divide-white/10 border-t border-white/10"
               >
                 {lines.map((line) => (
-                  <li key={line.label} className="py-4">
+                  <li
+                    key={line.label}
+                    className="group/metric relative py-4 transition-colors duration-300 ease-out-soft hover:bg-white/4"
+                  >
                     <div className="flex items-baseline justify-between gap-4">
-                      <p className="text-[13.5px] font-bold text-white">
+                      <p className="text-[13.5px] font-bold text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-100">
                         {line.label}
                       </p>
                       <p className="flex shrink-0 items-baseline gap-2">
-                        <span className="text-[15px] font-bold tracking-[-0.01em] text-white">
+                        <span className="text-[15px] font-bold tracking-[-0.01em] text-white transition-colors duration-300 ease-out-soft group-hover/metric:text-teal-50">
                           {line.value}
                         </span>
                         <span className="flex items-center gap-0.5 text-[12px] font-bold text-teal-300">
@@ -160,13 +158,11 @@ export function WeeklyReporting() {
                 ))}
               </StaggerCards>
 
-              {/* The report ends on a decision, not a number — which is the
-                  claim the copy above it is making. */}
               <div className="mt-5 rounded-lg border border-teal-400/20 bg-teal-400/8 p-4">
                 <p className="text-[11px] font-bold tracking-[0.14em] text-teal-300 uppercase">
                   Next Action
                 </p>
-                <p className="mt-1.5 text-[13px] leading-[1.6] text-white/60">
+                <p className="mt-1.5 text-[13px] leading-[1.6] text-white/60 transition-colors duration-500 ease-out-soft group-hover:text-white/80">
                   Reduce bids on low-converting terms and expand exact-match
                   coverage for emerging search queries.
                 </p>
