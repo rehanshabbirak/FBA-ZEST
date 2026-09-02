@@ -10,7 +10,10 @@ import { Icon } from "@/components/ui/Icon";
 import { Reveal } from "@/components/ui/Reveal";
 import { StaggerCards } from "@/components/motion/StaggerCards";
 import { CTABanner } from "@/components/shared/CTABanner";
-import { ProcessStrip } from "@/components/services/ProcessStrip";
+import { ServiceOverview } from "@/components/services/ServiceOverview";
+import { ServiceEngagement } from "@/components/services/ServiceEngagement";
+import { ServiceProof } from "@/components/services/ServiceProof";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
 import {
   getOtherServices,
   getServiceById,
@@ -41,14 +44,17 @@ export async function generateMetadata({
 
   if (!service) return { title: "Service not found" };
 
+  const { seo } = service.detail;
+
   return {
-    title: service.title,
-    description: service.description,
+    title: seo.title,
+    description: seo.description,
+    keywords: seo.keywords,
     alternates: { canonical: `/services/${service.id}` },
     openGraph: {
       type: "website",
-      title: service.title,
-      description: service.description,
+      title: seo.title,
+      description: seo.description,
       url: `/services/${service.id}`,
     },
   };
@@ -64,6 +70,7 @@ export default async function ServiceDetailPage({
 
   if (!service) notFound();
 
+  const { detail } = service;
   const others = getOtherServices(service.id);
 
   return (
@@ -120,19 +127,19 @@ export default async function ServiceDetailPage({
               <Icon name={service.icon} size={26} strokeWidth={1.6} />
             </span>
 
-            <Eyebrow className="mt-6">Our Services</Eyebrow>
+            <Eyebrow className="mt-6">{detail.eyebrow}</Eyebrow>
 
             <h1 className="mt-4 text-[2rem] leading-[1.12] font-extrabold tracking-[-0.02em] text-white sm:text-[2.5rem] lg:text-[2.75rem]">
-              {service.title}
+              {detail.headline}
             </h1>
 
             <p className="mt-5 text-base leading-[1.7] text-white/70">
-              {service.description}
+              {detail.lede}
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href={bookingUrl} size="lg">
-                Get a Free Consultation
+                {detail.cta.label}
               </Button>
               <Button href="/services" variant="dark" size="lg">
                 View All Services
@@ -152,7 +159,18 @@ export default async function ServiceDetailPage({
         </div>
       </section>
 
-      <ProcessStrip />
+      <ServiceOverview
+        eyebrow={service.title}
+        intro={detail.intro}
+        inclusionsTitle={detail.inclusionsTitle}
+        inclusions={detail.inclusions}
+      />
+
+      <ServiceEngagement steps={detail.steps} />
+
+      <ServiceProof builtFor={detail.builtFor} proof={detail.proof} />
+
+      <ServiceFaqs faqs={detail.faqs} />
 
       <section className="bg-surface">
         <Container className="py-16 lg:py-20">
@@ -199,8 +217,9 @@ export default async function ServiceDetailPage({
 
       <CTABanner
         icon={service.icon}
-        title="Ready to Take Your Amazon Business to the Next Level?"
-        description="Book a free consultation call with our experts and get a customized growth plan."
+        title={detail.cta.title}
+        description={detail.cta.body}
+        ctaLabel={detail.cta.label}
         ctaHref={bookingUrl}
       />
     </>
