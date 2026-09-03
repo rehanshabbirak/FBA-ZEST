@@ -41,7 +41,7 @@ export const caseStudies: CaseStudy[] = [
       "Budget Allocation",
     ],
     metrics: [
-      { value: "85%", label: "YoY Sales Growth", tone: "positive" },
+      { value: "86%", label: "YoY Sales Growth", tone: "positive" },
       { value: "+10.55%", label: "Weekly Sales", tone: "positive" },
       { value: "-12.82%", label: "TACOS", tone: "positive" },
       { value: "-3.59%", label: "PPC Spend", tone: "positive" },
